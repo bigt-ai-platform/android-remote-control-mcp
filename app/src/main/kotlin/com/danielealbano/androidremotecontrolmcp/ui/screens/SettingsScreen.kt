@@ -16,6 +16,7 @@ import com.danielealbano.androidremotecontrolmcp.ui.screens.settings.GeneralSett
 import com.danielealbano.androidremotecontrolmcp.ui.screens.settings.McpToolsSettingsScreen
 import com.danielealbano.androidremotecontrolmcp.ui.screens.settings.NotificationFilterScreen
 import com.danielealbano.androidremotecontrolmcp.ui.screens.settings.OAuthClientsScreen
+import com.danielealbano.androidremotecontrolmcp.ui.screens.settings.PairedDevicesScreen
 import com.danielealbano.androidremotecontrolmcp.ui.screens.settings.PermissionsSettingsScreen
 import com.danielealbano.androidremotecontrolmcp.ui.screens.settings.PrivacySettingsScreen
 import com.danielealbano.androidremotecontrolmcp.ui.screens.settings.SecuritySettingsScreen
@@ -65,10 +66,14 @@ fun SettingsScreen(
             AccessSettingsScreen(
                 onBack = { navController.popBackStack() },
                 onNavigateClients = { navController.navigate(SettingsRoute.OAuthClients.route) },
+                onNavigatePairedDevices = { navController.navigate(SettingsRoute.PairedDevices.route) },
             )
         }
         composable(SettingsRoute.OAuthClients.route) {
             OAuthClientsScreen(onBack = { navController.popBackStack() })
+        }
+        composable(SettingsRoute.PairedDevices.route) {
+            PairedDevicesScreen(onBack = { navController.popBackStack() })
         }
         composable(SettingsRoute.Security.route) {
             SecuritySettingsScreen(onBack = { navController.popBackStack() }, viewModel = viewModel)

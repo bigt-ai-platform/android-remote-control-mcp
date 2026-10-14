@@ -334,6 +334,68 @@ class BearerTokenAuthTest {
             assertEquals(HttpStatusCode.Unauthorized, response.status)
         }
 
+    // --- Paired-device token path ---
+
+    @Test
+    fun `valid paired token allowed via validatePairedToken`() =
+        testApplication {
+            application {
+                install(ContentNegotiation) { json() }
+                install(McpAuthPlugin) {
+                    bearerTokenEnabled = true
+                    expectedToken = ""
+                    oauthEnabled = false
+                    validatePairedToken = { it == "paired-token" }
+                }
+                routing { get("/protected/resource") { call.respondText("OK") } }
+            }
+
+            val response = client.get("/protected/resource") { header("Authorization", "Bearer paired-token") }
+            assertEquals(HttpStatusCode.OK, response.status)
+        }
+
+    @Test
+    fun `rejected paired token fails closed`() =
+        testApplication {
+            application {
+                install(ContentNegotiation) { json() }
+                install(McpAuthPlugin) {
+                    bearerTokenEnabled = true
+                    expectedToken = ""
+                    oauthEnabled = false
+                    validatePairedToken = { false }
+                }
+                routing { get("/protected/resource") { call.respondText("OK") } }
+            }
+
+            val response = client.get("/protected/resource") { header("Authorization", "Bearer nope") }
+            assertEquals(HttpStatusCode.Unauthorized, response.status)
+        }
+
+    @Test
+    fun `paired validator not consulted for excluded paths`() =
+        testApplication {
+            var consulted = false
+            application {
+                install(ContentNegotiation) { json() }
+                install(McpAuthPlugin) {
+                    bearerTokenEnabled = true
+                    expectedToken = ""
+                    oauthEnabled = false
+                    excludedPaths = setOf("/health")
+                    validatePairedToken = {
+                        consulted = true
+                        false
+                    }
+                }
+                routing { get("/health") { call.respondText("OK") } }
+            }
+
+            val response = client.get("/health")
+            assertEquals(HttpStatusCode.OK, response.status)
+            assertFalse(consulted)
+        }
+
     companion object {
         private const val TEST_TOKEN = "test-secret-token"
     }

@@ -7,8 +7,9 @@ import com.danielealbano.androidremotecontrolmcp.data.model.ServerLogEntry
 import com.danielealbano.androidremotecontrolmcp.data.repository.ServerLogRepository
 import com.danielealbano.androidremotecontrolmcp.mcp.oauth.OAuthAccessValidator
 import com.danielealbano.androidremotecontrolmcp.mcp.oauth.OAuthRouteDeps
-import com.danielealbano.androidremotecontrolmcp.mcp.oauth.OAuthServerDeps
 import com.danielealbano.androidremotecontrolmcp.mcp.oauth.installOAuthRoutes
+import com.danielealbano.androidremotecontrolmcp.mcp.pairing.PairingRouteDeps
+import com.danielealbano.androidremotecontrolmcp.mcp.pairing.installPairingRoutes
 import com.danielealbano.androidremotecontrolmcp.services.sharing.EphemeralFileLinkService
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
@@ -46,7 +47,8 @@ class HttpsMaterial(
  * @param httpsMaterial TLS material for the HTTPS listener; null when HTTPS is disabled or no certificate is loaded.
  * @param mcpSdkServer The MCP SDK Server instance with registered tools.
  * @param ephemeralFileLinkService Backs the unauthenticated `/s/{token}` capability-link route.
- * @param oauth The OAuth authorization-server collaborators (used only when `config.oauthEnabled`).
+ * @param deps The OAuth authorization-server and pairing collaborators (OAuth used only when
+ *   `config.oauthEnabled`; pairing routes mounted when any auth method is enabled).
  * @param serverLog Disk-backed server log sink (auth-failure and, via collaborators, OAuth events).
  */
 class McpServer(
@@ -54,14 +56,15 @@ class McpServer(
     private val httpsMaterial: HttpsMaterial?,
     private val mcpSdkServer: io.modelcontextprotocol.kotlin.sdk.server.Server,
     private val ephemeralFileLinkService: EphemeralFileLinkService,
-    private val oauth: OAuthServerDeps,
+    private val deps: McpServerDeps,
     private val serverLog: ServerLogRepository,
 ) {
     @Volatile
     private var server: EmbeddedServer<NettyApplicationEngine, NettyApplicationEngine.Configuration>? = null
     private val running = AtomicBoolean(false)
 
-    private val accessValidator = OAuthAccessValidator(oauth.jwtTokenService, oauth.oauthClientRepository, serverLog)
+    private val accessValidator =
+        OAuthAccessValidator(deps.oauth.jwtTokenService, deps.oauth.oauthClientRepository, serverLog)
 
     /**
      * Starts the server. Non-blocking — the server runs on its own threads.
@@ -166,7 +169,8 @@ class McpServer(
             oauthEnabled = config.oauthEnabled
             baseUrlOf = { effectiveBaseUrl(it, config.publicUrlOverride) }
             validateOAuthToken = { token, resource -> accessValidator.validate(token, resource) }
-            excludedPaths = setOf("/health", "/register", "/token", "/authorize", "/authorize/status")
+            validatePairedToken = { token -> deps.pairing.deviceRepository.validate(token, System.currentTimeMillis()) }
+            excludedPaths = setOf("/health", "/register", "/token", "/authorize", "/authorize/status", "/pair/claim")
             excludedPathPrefixes = setOf(EphemeralFileLinkService.PATH_PREFIX, "/.well-known/")
             onAuthFailure = { serverLog.log(ServerLogEntry.Type.AUTH, "Authentication failed from $it") }
         }
@@ -200,8 +204,19 @@ class McpServer(
             if (config.oauthEnabled) {
                 installOAuthRoutes(
                     OAuthRouteDeps(
-                        oauth = oauth,
+                        oauth = deps.oauth,
                         publicUrlOverride = config.publicUrlOverride,
+                        serverLog = serverLog,
+                    ),
+                )
+            }
+
+            // Pairing-claim route — mounted only when an auth method is enabled (an open server needs no pairing).
+            if (config.bearerTokenEnabled || config.oauthEnabled) {
+                installPairingRoutes(
+                    PairingRouteDeps(
+                        codeRegistry = deps.pairing.codeRegistry,
+                        deviceRepository = deps.pairing.deviceRepository,
                         serverLog = serverLog,
                     ),
                 )

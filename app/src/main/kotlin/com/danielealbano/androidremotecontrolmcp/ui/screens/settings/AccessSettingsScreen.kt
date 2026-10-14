@@ -56,6 +56,7 @@ import com.danielealbano.androidremotecontrolmcp.ui.viewmodels.AccessViewModel
 fun AccessSettingsScreen(
     onBack: () -> Unit,
     onNavigateClients: () -> Unit,
+    onNavigatePairedDevices: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: AccessViewModel = hiltViewModel(),
 ) {
@@ -140,6 +141,17 @@ fun AccessSettingsScreen(
                         Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null)
                     },
                     modifier = Modifier.clickable(onClick = onNavigateClients),
+                )
+            }
+
+            if (serverConfig.oauthEnabled || serverConfig.bearerTokenEnabled) {
+                ListItem(
+                    headlineContent = { Text(stringResource(R.string.paired_devices)) },
+                    supportingContent = { Text(stringResource(R.string.access_paired_devices_supporting)) },
+                    trailingContent = {
+                        Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null)
+                    },
+                    modifier = Modifier.clickable(onClick = onNavigatePairedDevices),
                 )
             }
 

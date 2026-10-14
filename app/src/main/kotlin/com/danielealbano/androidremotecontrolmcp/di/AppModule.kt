@@ -8,6 +8,8 @@ import com.danielealbano.androidremotecontrolmcp.data.repository.EventChannelSet
 import com.danielealbano.androidremotecontrolmcp.data.repository.EventChannelSettingsImpl
 import com.danielealbano.androidremotecontrolmcp.data.repository.OAuthClientRepository
 import com.danielealbano.androidremotecontrolmcp.data.repository.OAuthClientRepositoryImpl
+import com.danielealbano.androidremotecontrolmcp.data.repository.PairedDeviceRepository
+import com.danielealbano.androidremotecontrolmcp.data.repository.PairedDeviceRepositoryImpl
 import com.danielealbano.androidremotecontrolmcp.data.repository.ServerLogRepository
 import com.danielealbano.androidremotecontrolmcp.data.repository.ServerLogRepositoryImpl
 import com.danielealbano.androidremotecontrolmcp.data.repository.SettingsRepository
@@ -20,6 +22,8 @@ import com.danielealbano.androidremotecontrolmcp.mcp.oauth.JwtTokenService
 import com.danielealbano.androidremotecontrolmcp.mcp.oauth.JwtTokenServiceImpl
 import com.danielealbano.androidremotecontrolmcp.mcp.oauth.OAuthApprovalCoordinator
 import com.danielealbano.androidremotecontrolmcp.mcp.oauth.OAuthApprovalCoordinatorImpl
+import com.danielealbano.androidremotecontrolmcp.mcp.pairing.PairingCodeRegistry
+import com.danielealbano.androidremotecontrolmcp.mcp.pairing.PairingCodeRegistryImpl
 import com.danielealbano.androidremotecontrolmcp.privacy.PrivacyPipeline
 import com.danielealbano.androidremotecontrolmcp.privacy.PrivacyPipelineImpl
 import com.danielealbano.androidremotecontrolmcp.privacy.model.PrivacyModelStore
@@ -85,6 +89,11 @@ import javax.inject.Singleton
 @Retention(AnnotationRetention.BINARY)
 annotation class OAuthClientsDataStore
 
+/** Qualifier for the dedicated paired-devices Preferences DataStore. */
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class PairedDevicesDataStore
+
 /** Extension property for creating the Preferences DataStore on [Context]. */
 private val Context.settingsDataStore: DataStore<Preferences> by preferencesDataStore(
     name = "settings",
@@ -93,6 +102,11 @@ private val Context.settingsDataStore: DataStore<Preferences> by preferencesData
 /** Extension property for the dedicated OAuth-clients Preferences DataStore on [Context]. */
 private val Context.oauthClientsDataStore: DataStore<Preferences> by preferencesDataStore(
     name = "oauth_clients",
+)
+
+/** Extension property for the dedicated paired-devices Preferences DataStore on [Context]. */
+private val Context.pairedDevicesDataStore: DataStore<Preferences> by preferencesDataStore(
+    name = "paired_devices",
 )
 
 @Module
@@ -116,6 +130,16 @@ object AppModule {
     fun provideOAuthClientsDataStore(
         @ApplicationContext context: Context,
     ): DataStore<Preferences> = context.oauthClientsDataStore
+
+    /**
+     * Provides the dedicated application-scoped [DataStore] for the paired-device token registry.
+     */
+    @Provides
+    @Singleton
+    @PairedDevicesDataStore
+    fun providePairedDevicesDataStore(
+        @ApplicationContext context: Context,
+    ): DataStore<Preferences> = context.pairedDevicesDataStore
 
     /**
      * Provides [Dispatchers.IO] for background work.
@@ -160,6 +184,11 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindOAuthClientRepository(impl: OAuthClientRepositoryImpl): OAuthClientRepository
+
+    /** Binds the persisted paired-device token registry. */
+    @Binds
+    @Singleton
+    abstract fun bindPairedDeviceRepository(impl: PairedDeviceRepositoryImpl): PairedDeviceRepository
 
     /** Binds the offline IP-geolocation resolver used to annotate connection requests. */
     @Binds
@@ -264,6 +293,10 @@ abstract class ServiceModule {
     @Binds
     @Singleton
     abstract fun bindAuthorizationCodeStore(impl: AuthorizationCodeStoreImpl): AuthorizationCodeStore
+
+    @Binds
+    @Singleton
+    abstract fun bindPairingCodeRegistry(impl: PairingCodeRegistryImpl): PairingCodeRegistry
 
     @Binds
     @Singleton

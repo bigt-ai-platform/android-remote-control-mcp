@@ -21,6 +21,8 @@ sealed class SettingsRoute(
 
     data object OAuthClients : SettingsRoute("settings/access/clients")
 
+    data object PairedDevices : SettingsRoute("settings/access/paired")
+
     data object Security : SettingsRoute("settings/security")
 
     data object Privacy : SettingsRoute("settings/privacy")

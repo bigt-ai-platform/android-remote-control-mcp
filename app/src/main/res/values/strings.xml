@@ -278,6 +278,24 @@
     <string name="oauth_clients_revoke_confirm">Revoke</string>
     <string name="oauth_clients_revoke_cancel">Cancel</string>
 
+    <!-- Pairing (short-code) -->
+    <string name="pairing_code_title">Pair with a code</string>
+    <string name="pairing_code_desc">Enter this code in the client (wallet Device screen, or dai Mobile page) to pair — no token to copy.</string>
+    <string name="pairing_code_expires">Expires %1$s</string>
+    <string name="pairing_code_copy">Copy code</string>
+    <string name="pairing_code_refresh">New code</string>
+    <string name="paired_devices">Paired devices</string>
+    <string name="paired_devices_title">Paired devices</string>
+    <string name="paired_devices_empty">No paired devices. A client appears here after it spends a pairing code.</string>
+    <string name="paired_devices_created">Paired %1$s</string>
+    <string name="paired_devices_last_used">Last used %1$s</string>
+    <string name="paired_devices_revoke">Revoke</string>
+    <string name="paired_devices_revoke_dialog_title">Revoke device?</string>
+    <string name="paired_devices_revoke_dialog_body">Revoking immediately invalidates this device\'s pairing token. It must pair again with a new code.</string>
+    <string name="paired_devices_revoke_confirm">Revoke</string>
+    <string name="paired_devices_revoke_cancel">Cancel</string>
+    <string name="access_paired_devices_supporting">Clients that paired with a code</string>
+
     <!-- On-device approval -->
     <string name="approval_title">Connection requests</string>
     <string name="approval_empty">No pending requests.</string>

@@ -46,16 +46,21 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.danielealbano.androidremotecontrolmcp.R
 import com.danielealbano.androidremotecontrolmcp.data.model.BindingAddress
+import com.danielealbano.androidremotecontrolmcp.data.model.ServerConfig
+import com.danielealbano.androidremotecontrolmcp.data.model.ServerStatus
+import com.danielealbano.androidremotecontrolmcp.mcp.pairing.PairingCode
 import com.danielealbano.androidremotecontrolmcp.ui.ApprovalActivity
 import com.danielealbano.androidremotecontrolmcp.ui.components.BatteryOptimizationCard
 import com.danielealbano.androidremotecontrolmcp.ui.components.CalloutCard
 import com.danielealbano.androidremotecontrolmcp.ui.components.ConnectionInfoCard
+import com.danielealbano.androidremotecontrolmcp.ui.components.PairingCodeCard
 import com.danielealbano.androidremotecontrolmcp.ui.components.PrivacyModeCard
 import com.danielealbano.androidremotecontrolmcp.ui.components.ServerLogsSection
 import com.danielealbano.androidremotecontrolmcp.ui.components.ServerStatusCard
 import com.danielealbano.androidremotecontrolmcp.ui.viewmodels.ChannelViewModel
 import com.danielealbano.androidremotecontrolmcp.ui.viewmodels.LogsViewModel
 import com.danielealbano.androidremotecontrolmcp.ui.viewmodels.MainViewModel
+import com.danielealbano.androidremotecontrolmcp.ui.viewmodels.PairingViewModel
 import com.danielealbano.androidremotecontrolmcp.ui.viewmodels.PrivacyViewModel
 import com.danielealbano.androidremotecontrolmcp.utils.NetworkUtils
 
@@ -71,6 +76,7 @@ fun ServerScreen(
     viewModel: MainViewModel = hiltViewModel(),
     channelViewModel: ChannelViewModel = hiltViewModel(),
     privacyViewModel: PrivacyViewModel = hiltViewModel(),
+    pairingViewModel: PairingViewModel = hiltViewModel(),
 ) {
     val context = LocalContext.current
     val clipboardManager = LocalClipboardManager.current
@@ -82,6 +88,7 @@ fun ServerScreen(
     val serverStatus by viewModel.serverStatus.collectAsStateWithLifecycle()
     val recentServerLogs by logsViewModel.recentServerLogs.collectAsStateWithLifecycle()
     val tunnelStatus by viewModel.tunnelStatus.collectAsStateWithLifecycle()
+    val pairingCode by pairingViewModel.pairingCode.collectAsStateWithLifecycle()
 
     val isAccessibilityEnabled by viewModel.isAccessibilityEnabled.collectAsStateWithLifecycle()
     val isBatteryOptimizationIgnored by viewModel.isBatteryOptimizationIgnored.collectAsStateWithLifecycle()
@@ -195,6 +202,17 @@ fun ServerScreen(
                 },
             )
 
+            PairingSection(
+                serverConfig = serverConfig,
+                serverStatus = serverStatus,
+                pairingCode = pairingCode,
+                onCopy = { value ->
+                    clipboardManager.setText(AnnotatedString(value))
+                    Toast.makeText(context, copiedToClipboardMessage, Toast.LENGTH_SHORT).show()
+                },
+                onRefresh = { pairingViewModel.refresh() },
+            )
+
             Spacer(Modifier.height(16.dp))
 
             ServerLogsSection(
@@ -269,4 +287,29 @@ private fun PermissionWarningCard(onClick: () -> Unit) {
             Text(stringResource(R.string.permission_warning_action))
         }
     }
+}
+
+/** Whether the pairing-code card should be shown: server running and an auth method enabled. */
+private fun shouldShowPairingCard(
+    serverConfig: ServerConfig,
+    serverStatus: ServerStatus,
+): Boolean = (serverConfig.bearerTokenEnabled || serverConfig.oauthEnabled) && serverStatus is ServerStatus.Running
+
+/** Renders the pairing-code card when a code is active and pairing applies, else nothing. */
+@Composable
+private fun PairingSection(
+    serverConfig: ServerConfig,
+    serverStatus: ServerStatus,
+    pairingCode: PairingCode?,
+    onCopy: (String) -> Unit,
+    onRefresh: () -> Unit,
+) {
+    if (pairingCode == null || !shouldShowPairingCard(serverConfig, serverStatus)) return
+    Spacer(Modifier.height(16.dp))
+    PairingCodeCard(
+        code = pairingCode.code,
+        expiresAtMs = pairingCode.expiresAtMs,
+        onCopy = onCopy,
+        onRefresh = onRefresh,
+    )
 }

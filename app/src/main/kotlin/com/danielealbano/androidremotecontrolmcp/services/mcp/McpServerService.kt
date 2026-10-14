@@ -16,16 +16,20 @@ import com.danielealbano.androidremotecontrolmcp.data.model.ServerStatus
 import com.danielealbano.androidremotecontrolmcp.data.model.ToolPermissionsConfig
 import com.danielealbano.androidremotecontrolmcp.data.model.TunnelStatus
 import com.danielealbano.androidremotecontrolmcp.data.repository.OAuthClientRepository
+import com.danielealbano.androidremotecontrolmcp.data.repository.PairedDeviceRepository
 import com.danielealbano.androidremotecontrolmcp.data.repository.ServerLogRepository
 import com.danielealbano.androidremotecontrolmcp.data.repository.SettingsRepository
 import com.danielealbano.androidremotecontrolmcp.geo.GeoIpResolver
 import com.danielealbano.androidremotecontrolmcp.mcp.CertificateManager
 import com.danielealbano.androidremotecontrolmcp.mcp.HttpsMaterial
 import com.danielealbano.androidremotecontrolmcp.mcp.McpServer
+import com.danielealbano.androidremotecontrolmcp.mcp.McpServerDeps
 import com.danielealbano.androidremotecontrolmcp.mcp.oauth.AuthorizationCodeStore
 import com.danielealbano.androidremotecontrolmcp.mcp.oauth.JwtTokenService
 import com.danielealbano.androidremotecontrolmcp.mcp.oauth.OAuthApprovalCoordinator
 import com.danielealbano.androidremotecontrolmcp.mcp.oauth.OAuthServerDeps
+import com.danielealbano.androidremotecontrolmcp.mcp.pairing.PairingCodeRegistry
+import com.danielealbano.androidremotecontrolmcp.mcp.pairing.PairingServerDeps
 import com.danielealbano.androidremotecontrolmcp.mcp.tools.LoggedToolRegistrar
 import com.danielealbano.androidremotecontrolmcp.mcp.tools.McpToolUtils
 import com.danielealbano.androidremotecontrolmcp.mcp.tools.ReferenceCountedToolCallIndicator
@@ -166,6 +170,10 @@ class McpServerService : Service() {
     @Inject lateinit var authorizationCodeStore: AuthorizationCodeStore
 
     @Inject lateinit var approvalCoordinator: OAuthApprovalCoordinator
+
+    @Inject lateinit var pairingCodeRegistry: PairingCodeRegistry
+
+    @Inject lateinit var pairedDeviceRepository: PairedDeviceRepository
 
     @Inject lateinit var geoIpResolver: GeoIpResolver
 
@@ -322,17 +330,26 @@ class McpServerService : Service() {
                     httpsMaterial = buildHttpsMaterial(keyStore, keyStorePassword),
                     mcpSdkServer = sdkServer,
                     ephemeralFileLinkService = ephemeralFileLinkService,
-                    oauth =
-                        OAuthServerDeps(
-                            jwtTokenService = jwtTokenService,
-                            oauthClientRepository = oauthClientRepository,
-                            authorizationCodeStore = authorizationCodeStore,
-                            approvalCoordinator = approvalCoordinator,
-                            geoIpResolver = geoIpResolver,
+                    deps =
+                        McpServerDeps(
+                            oauth =
+                                OAuthServerDeps(
+                                    jwtTokenService = jwtTokenService,
+                                    oauthClientRepository = oauthClientRepository,
+                                    authorizationCodeStore = authorizationCodeStore,
+                                    approvalCoordinator = approvalCoordinator,
+                                    geoIpResolver = geoIpResolver,
+                                ),
+                            pairing =
+                                PairingServerDeps(
+                                    codeRegistry = pairingCodeRegistry,
+                                    deviceRepository = pairedDeviceRepository,
+                                ),
                         ),
                     serverLog = serverLogRepository,
                 )
             mcpServer?.start()
+            maybeIssuePairingCode(pairingCodeRegistry, config)
 
             // Warm the geolocation DB off the request path so the first /authorize doesn't pay the
             // one-time gzip-inflate + mmap cost. Best-effort; a failure just leaves it lazy.
@@ -602,6 +619,8 @@ class McpServerService : Service() {
             )
         } catch (e: Exception) {
             Log.e(TAG, "Error during server shutdown", e)
+        } finally {
+            pairingCodeRegistry.clear()
         }
         mcpServer = null
         serverActive.set(false)
@@ -715,3 +734,13 @@ internal fun tunnelStatusLogMessage(status: TunnelStatus): String? =
         is TunnelStatus.Error -> "Tunnel error: ${status.message}"
         TunnelStatus.Disconnected -> null // Logged by TunnelManager.stop()
     }
+
+/** Issues a fresh pairing code on server start when an auth method is enabled (an open server needs none). */
+private fun maybeIssuePairingCode(
+    codeRegistry: PairingCodeRegistry,
+    config: ServerConfig,
+) {
+    if (config.bearerTokenEnabled || config.oauthEnabled) {
+        codeRegistry.issue()
+    }
+}

@@ -31,8 +31,8 @@ data class AuthErrorResponse(
  * Configuration for the [McpAuthPlugin].
  *
  * Authentication is required iff `bearerTokenEnabled || oauthEnabled`. With both disabled the server is
- * OPEN (explicit, allowed). A request is authorized when the static token matches OR a valid OAuth
- * access token is presented (dual-accept).
+ * OPEN (explicit, allowed). A request is authorized when the static token matches, OR a paired-device
+ * token validates, OR a valid OAuth access token is presented (multi-accept).
  *
  * @property bearerTokenEnabled Whether static bearer-token authentication is active.
  * @property expectedToken The static bearer token (empty + enabled = fail closed; no bearer path).
@@ -50,6 +50,9 @@ class McpAuthConfig {
     var expectedToken: String = ""
     var oauthEnabled: Boolean = false
     var validateOAuthToken: (suspend (token: String, canonicalResource: String) -> Boolean)? = null
+
+    /** Validates a per-device paired token (null when pairing is unavailable). */
+    var validatePairedToken: (suspend (String) -> Boolean)? = null
     var baseUrlOf: (ApplicationCall) -> String = { deriveBaseUrl(it) }
     var excludedPaths: Set<String> = emptySet()
     var excludedPathPrefixes: Set<String> = emptySet()
@@ -57,8 +60,8 @@ class McpAuthConfig {
 }
 
 /**
- * Ktor Application-level plugin enforcing combined MCP authentication: static bearer token OR issued
- * OAuth access token (dual-accept). Open when both methods are disabled.
+ * Ktor Application-level plugin enforcing combined MCP authentication: static bearer token, paired-device
+ * token, or issued OAuth access token (multi-accept). Open when both methods are disabled.
  *
  * Uses [MessageDigest.isEqual] for constant-time token comparison. Intercepts in a custom phase
  * inserted just before [ApplicationCallPipeline.Call] and calls
@@ -82,6 +85,7 @@ val McpAuthPlugin =
         val expectedToken = pluginConfig.expectedToken
         val oauthEnabled = pluginConfig.oauthEnabled
         val validateOAuthToken = pluginConfig.validateOAuthToken
+        val validatePairedToken = pluginConfig.validatePairedToken
         val baseUrlOf = pluginConfig.baseUrlOf
         val excludedPaths = pluginConfig.excludedPaths
         val excludedPathPrefixes = pluginConfig.excludedPathPrefixes
@@ -125,6 +129,11 @@ val McpAuthPlugin =
 
             // Static bearer path.
             if (bearerTokenEnabled && expectedToken.isNotEmpty() && constantTimeEquals(expectedToken, providedToken)) {
+                return@intercept
+            }
+
+            // Paired-device token path (short-code pairing).
+            if (validatePairedToken != null && providedToken.isNotEmpty() && validatePairedToken(providedToken)) {
                 return@intercept
             }
 

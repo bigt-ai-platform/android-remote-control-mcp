@@ -9,6 +9,8 @@ import com.danielealbano.androidremotecontrolmcp.data.model.ServerLogEntry
 import com.danielealbano.androidremotecontrolmcp.data.model.ToolPermissionsConfig
 import com.danielealbano.androidremotecontrolmcp.data.repository.OAuthClientRepository
 import com.danielealbano.androidremotecontrolmcp.data.repository.OAuthClientRepositoryImpl
+import com.danielealbano.androidremotecontrolmcp.data.repository.PairedDeviceRepository
+import com.danielealbano.androidremotecontrolmcp.data.repository.PairedDeviceRepositoryImpl
 import com.danielealbano.androidremotecontrolmcp.data.repository.SettingsRepository
 import com.danielealbano.androidremotecontrolmcp.mcp.effectiveBaseUrl
 import com.danielealbano.androidremotecontrolmcp.mcp.installMcpBasePlugins
@@ -22,6 +24,10 @@ import com.danielealbano.androidremotecontrolmcp.mcp.oauth.OAuthApprovalCoordina
 import com.danielealbano.androidremotecontrolmcp.mcp.oauth.OAuthRouteDeps
 import com.danielealbano.androidremotecontrolmcp.mcp.oauth.OAuthServerDeps
 import com.danielealbano.androidremotecontrolmcp.mcp.oauth.installOAuthRoutes
+import com.danielealbano.androidremotecontrolmcp.mcp.pairing.PairingCodeRegistry
+import com.danielealbano.androidremotecontrolmcp.mcp.pairing.PairingCodeRegistryImpl
+import com.danielealbano.androidremotecontrolmcp.mcp.pairing.PairingRouteDeps
+import com.danielealbano.androidremotecontrolmcp.mcp.pairing.installPairingRoutes
 import com.danielealbano.androidremotecontrolmcp.mcp.tools.LoggedToolRegistrar
 import com.danielealbano.androidremotecontrolmcp.mcp.tools.McpToolUtils
 import com.danielealbano.androidremotecontrolmcp.mcp.tools.registerAppManagementTools
@@ -506,6 +512,13 @@ object McpIntegrationTestHelper {
         val tokenService: JwtTokenService,
     )
 
+    /** Test-side collaborators exposed to pairing integration tests. */
+    class PairingTestContext(
+        val httpClient: io.ktor.client.HttpClient,
+        val codeRegistry: PairingCodeRegistry,
+        val deviceRepository: PairedDeviceRepository,
+    )
+
     /**
      * Runs a test within a Ktor [testApplication] configured exactly like production with OAuth enabled:
      * real [JwtTokenServiceImpl] (mocked signing secret), real in-memory code store + approval
@@ -551,7 +564,8 @@ object McpIntegrationTestHelper {
                     oauthEnabled = true
                     baseUrlOf = { effectiveBaseUrl(it, publicUrlOverride) }
                     validateOAuthToken = { token, resource -> accessValidator.validate(token, resource) }
-                    excludedPaths = setOf("/health", "/register", "/token", "/authorize", "/authorize/status")
+                    excludedPaths =
+                        setOf("/health", "/register", "/token", "/authorize", "/authorize/status", "/pair/claim")
                     excludedPathPrefixes = setOf(EphemeralFileLinkService.PATH_PREFIX, "/.well-known/")
                     onAuthFailure = { deps.serverLog.log(ServerLogEntry.Type.AUTH, "Authentication failed from $it") }
                 }
@@ -581,6 +595,65 @@ object McpIntegrationTestHelper {
                 }
 
             testBlock(OAuthTestContext(httpClient, clientRepository, approvalCoordinator, tokenService))
+        }
+    }
+
+    /**
+     * Runs a test within a Ktor [testApplication] configured exactly like production with the pairing
+     * routes mounted and paired-token auth enabled. Uses a real [PairedDeviceRepositoryImpl] over a temp
+     * dedicated DataStore and a real in-memory [PairingCodeRegistry]. `bearerTokenEnabled` defaults TRUE
+     * with an empty token (fail-closed) so the paired-token path is enforced rather than the server
+     * taking the open-server early return.
+     */
+    suspend fun withPairingTestApplication(
+        deps: MockDependencies = createMockDependencies(),
+        bearerTokenEnabled: Boolean = true,
+        bearerToken: String = "",
+        testBlock: suspend io.ktor.server.testing.ApplicationTestBuilder.(PairingTestContext) -> Unit,
+    ) {
+        val sdkServer = createSdkServer(deps)
+        val tempDir =
+            java.nio.file.Files
+                .createTempDirectory("pairing_helper")
+                .toFile()
+        val devicesDataStore =
+            PreferenceDataStoreFactory.create(
+                produceFile = { java.io.File(tempDir, "paired_devices.preferences_pb") },
+            )
+        val deviceRepository = PairedDeviceRepositoryImpl(devicesDataStore, deps.serverLog)
+        val codeRegistry = PairingCodeRegistryImpl()
+
+        testApplication {
+            application {
+                installMcpBasePlugins {
+                    this.bearerTokenEnabled = bearerTokenEnabled
+                    expectedToken = bearerToken
+                    oauthEnabled = false
+                    validatePairedToken = { token -> deviceRepository.validate(token, System.currentTimeMillis()) }
+                    excludedPaths =
+                        setOf("/health", "/register", "/token", "/authorize", "/authorize/status", "/pair/claim")
+                    excludedPathPrefixes = setOf(EphemeralFileLinkService.PATH_PREFIX, "/.well-known/")
+                    onAuthFailure = { deps.serverLog.log(ServerLogEntry.Type.AUTH, "Authentication failed from $it") }
+                }
+                routing {
+                    installPairingRoutes(
+                        PairingRouteDeps(
+                            codeRegistry = codeRegistry,
+                            deviceRepository = deviceRepository,
+                            serverLog = deps.serverLog,
+                        ),
+                    )
+                }
+                installMcpStatelessTransport { sdkServer }
+            }
+
+            val httpClient =
+                createClient {
+                    install(io.ktor.client.plugins.contentnegotiation.ContentNegotiation) { json(McpJson) }
+                    install(io.ktor.client.plugins.sse.SSE)
+                }
+
+            testBlock(PairingTestContext(httpClient, codeRegistry, deviceRepository))
         }
     }
 

@@ -54,11 +54,9 @@ import com.danielealbano.androidremotecontrolmcp.R
 import com.danielealbano.androidremotecontrolmcp.ui.viewmodels.UpdateCheckUiState
 import com.danielealbano.androidremotecontrolmcp.ui.viewmodels.UpdateViewModel
 
-private const val GITHUB_URL = "https://github.com/danielealbano/android-remote-control-mcp"
-private const val LICENSE_URL = "https://github.com/danielealbano/android-remote-control-mcp/blob/main/LICENSE"
-private const val ISSUES_URL = "https://github.com/danielealbano/android-remote-control-mcp/issues"
-private const val LINKEDIN_URL = "https://linkedin.com/in/danielesalvatorealbano"
-private const val X_URL = "https://x.com/daniele_dll"
+private const val GITHUB_URL = "https://github.com/bigt-ai-platform/android-remote-control-mcp"
+private const val LICENSE_URL = "https://github.com/bigt-ai-platform/android-remote-control-mcp/blob/main/LICENSE"
+private const val ISSUES_URL = "https://github.com/bigt-ai-platform/android-remote-control-mcp/issues"
 private const val DBIP_URL = "https://db-ip.com"
 private const val PRIVACY_MODEL_URL =
     "https://huggingface.co/ai4privacy/llama-ai4privacy-multilingual-categorical-anonymiser-openpii"
@@ -131,59 +129,6 @@ fun AboutScreen(
             )
 
             Spacer(Modifier.height(24.dp))
-            HorizontalDivider()
-            Spacer(Modifier.height(16.dp))
-
-            // Author section
-            Text(
-                text = stringResource(R.string.about_author_section),
-                style = MaterialTheme.typography.titleMedium,
-            )
-            Spacer(Modifier.height(8.dp))
-
-            Text(
-                text = stringResource(R.string.about_author_name),
-                style = MaterialTheme.typography.bodyLarge,
-            )
-            Spacer(Modifier.height(4.dp))
-
-            Text(
-                text = stringResource(R.string.about_author_email),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.primary,
-                modifier =
-                    Modifier.clickable {
-                        val intent =
-                            Intent(Intent.ACTION_SENDTO).apply {
-                                data = Uri.parse("mailto:d.albano@gmail.com")
-                            }
-                        context.startActivity(intent)
-                    },
-            )
-            Spacer(Modifier.height(4.dp))
-
-            Text(
-                text = stringResource(R.string.about_author_linkedin),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.primary,
-                modifier =
-                    Modifier.clickable {
-                        context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(LINKEDIN_URL)))
-                    },
-            )
-            Spacer(Modifier.height(4.dp))
-
-            Text(
-                text = stringResource(R.string.about_author_x),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.primary,
-                modifier =
-                    Modifier.clickable {
-                        context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(X_URL)))
-                    },
-            )
-
-            Spacer(Modifier.height(16.dp))
             HorizontalDivider()
             Spacer(Modifier.height(16.dp))
 

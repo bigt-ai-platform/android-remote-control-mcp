@@ -1,6 +1,6 @@
 # Android Remote Control MCP
 
-[![CI](https://github.com/danielealbano/android-remote-control-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/danielealbano/android-remote-control-mcp/actions/workflows/ci.yml)
+[![CI](https://github.com/bigt-ai-platform/android-remote-control-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/bigt-ai-platform/android-remote-control-mcp/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 An Android application that runs as an **MCP (Model Context Protocol) server**, enabling AI models to **fully control an Android device** remotely using accessibility services and screenshot capture.
@@ -119,13 +119,13 @@ If unsure, the GMS build is the right choice for a typical phone with the Play S
 
 ### Option A: Download on your phone (easiest)
 
-1. Open the [Releases](https://github.com/danielealbano/android-remote-control-mcp/releases) page on your phone's browser
+1. Open the [Releases](https://github.com/bigt-ai-platform/android-remote-control-mcp/releases) page on your phone's browser
 2. Download the APK from the latest release
 3. Open the downloaded APK and follow the prompts to install it (you may need to allow installation from unknown sources)
 
 ### Option B: Download on your PC and install via ADB
 
-1. Download the APK from the [Releases](https://github.com/danielealbano/android-remote-control-mcp/releases) page
+1. Download the APK from the [Releases](https://github.com/bigt-ai-platform/android-remote-control-mcp/releases) page
 2. Connect your phone via USB (with USB Debugging enabled)
 3. Install the APK (use the GMS or FOSS file you downloaded):
 ```bash
@@ -135,7 +135,7 @@ adb install android-remote-control-mcp-<version>-gms-release.apk
 ### Option C: Build from sources
 
 ```bash
-git clone https://github.com/danielealbano/android-remote-control-mcp.git
+git clone https://github.com/bigt-ai-platform/android-remote-control-mcp.git
 cd android-remote-control-mcp
 make build
 make install  # installs on connected device/emulator

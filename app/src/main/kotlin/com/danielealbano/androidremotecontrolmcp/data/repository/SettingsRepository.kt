@@ -272,10 +272,10 @@ interface SettingsRepository : EventChannelSettings {
     /** Emits whether the home-screen Privacy Mode callout card was dismissed (default false). */
     val privacyModeCardDismissed: Flow<Boolean>
 
-    /** Emits whether automatic GitHub update checks are enabled (default true). */
+    /** Emits whether automatic update checks are enabled (default true). */
     val autoUpdateCheckEnabled: Flow<Boolean>
 
-    /** Enables or disables automatic GitHub update checks. */
+    /** Enables or disables automatic update checks. */
     suspend fun updateAutoUpdateCheckEnabled(enabled: Boolean)
 
     /**

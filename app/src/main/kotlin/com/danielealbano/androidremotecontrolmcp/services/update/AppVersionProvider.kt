@@ -4,11 +4,14 @@ import com.danielealbano.androidremotecontrolmcp.BuildConfig
 import javax.inject.Inject
 import javax.inject.Singleton
 
-/** Supplies the installed app's version name. Abstracted behind an interface so logic that depends on
+/** Supplies the installed app's build version. Abstracted behind an interface so logic that depends on
  * it (the update-check coordinator) stays unit-testable without touching the generated `BuildConfig`. */
 interface AppVersionProvider {
     /** The installed `versionName` (git-derived, e.g. `1.11.0` or `1.11.0-dev.7+abc1234`). */
     val versionName: String
+
+    /** The installed monotonic `versionCode` (git-derived), compared against the OTA manifest. */
+    val versionCode: Int
 }
 
 @Singleton
@@ -16,4 +19,5 @@ class BuildConfigAppVersionProvider
     @Inject
     constructor() : AppVersionProvider {
         override val versionName: String = BuildConfig.VERSION_NAME
+        override val versionCode: Int = BuildConfig.VERSION_CODE
     }

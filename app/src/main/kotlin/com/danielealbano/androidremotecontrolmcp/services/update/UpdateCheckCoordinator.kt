@@ -11,7 +11,7 @@ import javax.inject.Singleton
 /**
  * What triggered an update check.
  * - [PERIODIC]: the recurring background worker; never time-throttled (WorkManager spaces it).
- * - [ON_OPEN]: the app-foreground one-shot; time-throttled so rapid foregrounding cannot spam GitHub.
+ * - [ON_OPEN]: the app-foreground one-shot; time-throttled so rapid foregrounding cannot spam the update host.
  * - [MANUAL]: the user's "Check now"; bypasses the enabled toggle and the throttle, and never notifies.
  */
 enum class UpdateCheckTrigger {
@@ -44,16 +44,16 @@ sealed interface UpdateCheckOutcome {
 }
 
 /**
- * Compares the installed version against the latest GitHub release and, when newer, persists it (so
- * the in-app banner can render) and — for automatic checks only, once per new version — posts a
- * notification. Idempotent and fail-closed: any failure yields [UpdateCheckOutcome.Failed] and
- * leaves persisted state untouched.
+ * Compares the installed versionCode against the latest published build (the OTA manifest) and, when
+ * newer, persists it (so the in-app banner can render) and — for automatic checks only, once per new
+ * version — posts a notification. Idempotent and fail-closed: any failure yields
+ * [UpdateCheckOutcome.Failed] and leaves persisted state untouched.
  */
 @Singleton
 class UpdateCheckCoordinator
     @Inject
     constructor(
-        private val checker: GithubReleaseChecker,
+        private val checker: OtaManifestChecker,
         private val settingsRepository: SettingsRepository,
         private val notifier: UpdateNotifier,
         private val versionProvider: AppVersionProvider,
@@ -85,33 +85,29 @@ class UpdateCheckCoordinator
         }
 
         private suspend fun proceed(manual: Boolean): UpdateCheckOutcome {
-            val currentRaw = versionProvider.versionName
-            val current = SemanticVersion.parse(currentRaw)
-            if (current == null || currentRaw.contains(DEV_MARKER)) {
+            // git-describe stamps builds after a tag with a `-dev.<n>` pre-release segment; those are
+            // development builds and must never be prompted to "update" to the tagged release.
+            if (versionProvider.versionName.contains(DEV_MARKER)) {
                 return UpdateCheckOutcome.DevBuild
             }
             // Record the attempt time for BOTH automatic triggers so the on-open throttle also counts the
             // most recent periodic run. Manual checks never touch the throttle window.
             if (!manual) settingsRepository.setLastAutoCheckAtMillis(nowMillis())
-            return evaluateAgainstLatest(current, manual)
+            return evaluateAgainstLatest(versionProvider.versionCode, manual)
         }
 
         private suspend fun evaluateAgainstLatest(
-            current: SemanticVersion,
+            currentVersionCode: Int,
             manual: Boolean,
         ): UpdateCheckOutcome {
-            // A missing release OR an unparseable tag both mean "could not determine the latest" → Failed.
-            val latest =
-                checker.fetchLatestRelease()?.let { release ->
-                    SemanticVersion.parse(release.tagName)?.let { version -> release to version }
-                } ?: return UpdateCheckOutcome.Failed
-            val (release, version) = latest
-            return if (version <= current) {
+            // A missing manifest means "could not determine the latest" → Failed.
+            val manifest = checker.fetchLatestManifest() ?: return UpdateCheckOutcome.Failed
+            return if (manifest.versionCode <= currentVersionCode) {
                 // Clear any stale persisted update (e.g. the user has since upgraded).
                 settingsRepository.setAvailableUpdate(null)
                 UpdateCheckOutcome.UpToDate
             } else {
-                applyUpdate(AvailableUpdate(version.toCoreString(), release.htmlUrl), manual)
+                applyUpdate(AvailableUpdate(manifest.versionName, manifest.downloadUrl), manual)
             }
         }
 
@@ -138,8 +134,8 @@ class UpdateCheckCoordinator
             // ahead of the tagged release and must never be prompted to "update" to that same tag.
             private const val DEV_MARKER = "-dev"
 
-            // Minimum spacing between on-open checks. Keeps rapid foreground transitions from exhausting
-            // GitHub's 60/hour anonymous quota; below the periodic interval so periodic runs are unaffected.
+            // Minimum spacing between on-open checks. Keeps rapid foreground transitions from hammering
+            // the update host; below the periodic interval so periodic runs are unaffected.
             private const val MIN_ON_OPEN_INTERVAL_MS = 60L * 60L * 1000L
         }
     }

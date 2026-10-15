@@ -38,7 +38,7 @@ object UpdateCheckScheduler {
     /**
      * Runs a one-off check when the app is opened. [ExistingWorkPolicy.KEEP] collapses rapid
      * foreground transitions into a single in-flight check; the coordinator additionally applies a
-     * time-based throttle so completed on-open checks cannot spam the GitHub API.
+     * time-based throttle so completed on-open checks cannot spam the update host.
      */
     fun checkOnOpen(context: Context) {
         val request =

@@ -69,8 +69,8 @@ import com.danielealbano.androidremotecontrolmcp.services.tunnel.AndroidCloudfla
 import com.danielealbano.androidremotecontrolmcp.services.tunnel.CloudflaredBinaryResolver
 import com.danielealbano.androidremotecontrolmcp.services.update.AppVersionProvider
 import com.danielealbano.androidremotecontrolmcp.services.update.BuildConfigAppVersionProvider
-import com.danielealbano.androidremotecontrolmcp.services.update.GithubReleaseChecker
-import com.danielealbano.androidremotecontrolmcp.services.update.GithubReleaseCheckerImpl
+import com.danielealbano.androidremotecontrolmcp.services.update.OtaManifestChecker
+import com.danielealbano.androidremotecontrolmcp.services.update.OtaManifestCheckerImpl
 import com.danielealbano.androidremotecontrolmcp.services.update.UpdateNotifier
 import com.danielealbano.androidremotecontrolmcp.services.update.UpdateNotifierImpl
 import dagger.Binds
@@ -312,7 +312,7 @@ abstract class ServiceModule {
 
     @Binds
     @Singleton
-    abstract fun bindGithubReleaseChecker(impl: GithubReleaseCheckerImpl): GithubReleaseChecker
+    abstract fun bindOtaManifestChecker(impl: OtaManifestCheckerImpl): OtaManifestChecker
 
     @Binds
     @Singleton

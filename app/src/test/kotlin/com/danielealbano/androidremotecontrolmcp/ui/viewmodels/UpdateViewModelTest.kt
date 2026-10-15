@@ -36,7 +36,7 @@ class UpdateViewModelTest {
     private lateinit var versionProvider: AppVersionProvider
     private lateinit var viewModel: UpdateViewModel
 
-    private val releaseUrl = "https://github.com/danielealbano/android-remote-control-mcp/releases/tag/v1.11.0"
+    private val releaseUrl = "https://minio-s1001.bigt.ai/mobile-agent/MobileAgent.apk"
 
     @BeforeEach
     fun setUp() {

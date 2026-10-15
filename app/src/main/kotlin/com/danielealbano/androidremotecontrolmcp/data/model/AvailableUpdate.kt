@@ -1,10 +1,10 @@
 package com.danielealbano.androidremotecontrolmcp.data.model
 
 /**
- * A newer app release that has been detected on GitHub and is available to install.
+ * A newer app build detected via the OTA manifest and available to install.
  *
- * @property versionName The canonical `major.minor.patch` version of the newer release (no leading `v`).
- * @property releaseUrl The canonical GitHub release page URL to open in the browser.
+ * @property versionName The release's `versionName`, shown in the banner and notification.
+ * @property releaseUrl The public APK download URL opened when the user accepts the update.
  */
 data class AvailableUpdate(
     val versionName: String,

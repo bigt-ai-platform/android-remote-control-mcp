@@ -84,9 +84,13 @@ info "read pairing code from the app UI"
 "$ADB" shell wm dismiss-keyguard >/dev/null 2>&1 || true
 "$ADB" shell am start -n "$ACT_MAIN" >/dev/null
 
-CODE=""
+# The pairing card is below the fold on the Server screen, and the dump can also
+# contain 8-char strings that are NOT the code (another app's text, a log line),
+# so scroll while accumulating every candidate, then let the claim pick the real
+# one instead of trusting the first match.
+CANDIDATES=""
 DUMP=""
-for _ in $(seq 1 8); do
+for _ in $(seq 1 6); do
   # Dismiss a system dialog (e.g. the USB-mode prompt) that may cover the app.
   FOCUS="$("$ADB" shell dumpsys window 2>/dev/null | grep -m1 mCurrentFocus || true)"
   if ! printf '%s' "$FOCUS" | grep -q "$PKG"; then
@@ -96,14 +100,15 @@ for _ in $(seq 1 8); do
   fi
   "$ADB" shell uiautomator dump /sdcard/pairing_dump.xml >/dev/null 2>&1 || true
   DUMP="$("$ADB" exec-out cat /sdcard/pairing_dump.xml 2>/dev/null || true)"
-  CODE="$(printf '%s' "$DUMP" | grep -oE '\b[A-HJ-NP-Z2-9]{8}\b' | head -n1 || true)"
-  [ -n "$CODE" ] && break
-  # The card may be below the fold — scroll the Server screen and retry.
+  NEW="$(printf '%s' "$DUMP" | grep -oE '\b[A-HJ-NP-Z2-9]{8}\b' || true)"
+  CANDIDATES="$(printf '%s\n%s\n' "$CANDIDATES" "$NEW" | sed '/^$/d' | sort -u | head -n 8)"
+  # Scroll the Server screen so the pairing card comes into view.
   "$ADB" shell input swipe 540 1800 540 900 300 >/dev/null 2>&1 || true
-  sleep 2
+  sleep 1
 done
-if [ -n "$CODE" ]; then
-  pass "pairing code shown by the app: $CODE"
+CANDIDATES="$(printf '%s' "$CANDIDATES" | tr '\n' ' ' | sed 's/ *$//')"
+if [ -n "$CANDIDATES" ]; then
+  pass "candidate code(s) from the UI: $CANDIDATES"
 else
   fail "could not find an 8-char pairing code in the UI dump"
   echo "--- UI text nodes (first 60) ---"
@@ -112,12 +117,20 @@ else
 fi
 
 info "claim the code"
-CLAIM_BODY="$(curl -sS -w '\n%{http_code}' -X POST "$BASE/pair/claim" \
-  -H 'content-type: application/json' -d "{\"code\":\"$CODE\",\"name\":\"e2e\"}")"
-CLAIM_STATUS="$(printf '%s' "$CLAIM_BODY" | tail -n1)"
-CLAIM_JSON="$(printf '%s' "$CLAIM_BODY" | sed '$d')"
+CODE=""
+CLAIM_STATUS=""
+CLAIM_JSON=""
+for CAND in $CANDIDATES; do
+  CLAIM_BODY="$(curl -sS -w '\n%{http_code}' -X POST "$BASE/pair/claim" \
+    -H 'content-type: application/json' -d "{\"code\":\"$CAND\",\"name\":\"e2e\"}")"
+  CLAIM_STATUS="$(printf '%s' "$CLAIM_BODY" | tail -n1)"
+  CLAIM_JSON="$(printf '%s' "$CLAIM_BODY" | sed '$d')"
+  [ "$CLAIM_STATUS" = 200 ] && { CODE="$CAND"; break; }
+  # 429 is terminal — stop burning the rate-limit budget on remaining candidates.
+  [ "$CLAIM_STATUS" = 429 ] && break
+done
 if [ "$CLAIM_STATUS" = 200 ]; then
-  pass "POST /pair/claim returned 200"
+  pass "POST /pair/claim returned 200 (code $CODE)"
 else
   fail "POST /pair/claim returned $CLAIM_STATUS: $CLAIM_JSON"
   exit 1

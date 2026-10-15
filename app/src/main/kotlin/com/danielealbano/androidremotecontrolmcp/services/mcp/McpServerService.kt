@@ -735,12 +735,17 @@ internal fun tunnelStatusLogMessage(status: TunnelStatus): String? =
         TunnelStatus.Disconnected -> null // Logged by TunnelManager.stop()
     }
 
-/** Issues a fresh pairing code on server start when an auth method is enabled (an open server needs none). */
-private fun maybeIssuePairingCode(
+/**
+ * Ensures a pairing code exists on server start when an auth method is enabled (an open server
+ * needs none). Idempotent — a still-valid code is kept — so a second start (e.g. the
+ * package-replaced restart racing the ADB trampoline start) does not rotate the code out from
+ * under a client that already read it off the screen. Use the "New code" action to rotate.
+ */
+internal fun maybeIssuePairingCode(
     codeRegistry: PairingCodeRegistry,
     config: ServerConfig,
 ) {
-    if (config.bearerTokenEnabled || config.oauthEnabled) {
+    if ((config.bearerTokenEnabled || config.oauthEnabled) && codeRegistry.current() == null) {
         codeRegistry.issue()
     }
 }

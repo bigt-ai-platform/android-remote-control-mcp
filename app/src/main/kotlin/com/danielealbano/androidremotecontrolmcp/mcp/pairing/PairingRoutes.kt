@@ -51,7 +51,7 @@ class PairingRouteDeps(
  */
 fun Route.installPairingRoutes(deps: PairingRouteDeps) {
     post("/pair/claim") {
-        val address = call.request.local.remoteAddress
+        val address = clientKey(call)
         if (!deps.rateLimiter.allow(address)) {
             call.respondPairError(HttpStatusCode.TooManyRequests, "rate_limited", "too many attempts")
             return@post
@@ -98,6 +98,28 @@ private suspend fun ApplicationCall.respondPairError(
         ContentType.Application.Json,
         status,
     )
+}
+
+/**
+ * The rate-limit identity for a claim attempt. Behind a local tunnel/proxy (cloudflared/ngrok)
+ * every client arrives from loopback, so keying on the peer address would collapse all clients
+ * into one bucket; use the proxy-set client IP instead. Direct (non-local) peers are keyed by
+ * their transport address; `X-Forwarded-For` is only trusted from a loopback peer, where the
+ * tunnel — not the client — supplies it.
+ */
+private fun clientKey(call: ApplicationCall): String {
+    val peer = call.request.local.remoteAddress
+    if (peer != "127.0.0.1" && peer != "::1") return peer
+    val forwarded =
+        call.request.headers["CF-Connecting-IP"]
+            ?.trim()
+            ?.takeIf { it.isNotEmpty() }
+            ?: call.request.headers["X-Forwarded-For"]
+                ?.split(",")
+                ?.lastOrNull()
+                ?.trim()
+                ?.takeIf { it.isNotEmpty() }
+    return forwarded ?: peer
 }
 
 private const val NAME_MAX = 64

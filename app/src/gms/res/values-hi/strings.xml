@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="event_channel_subtitle">सूचनाएँ, WiFi और जियोफ़ेंस ईवेंट फ़ॉरवर्डिंग</string>
+    <!-- gms: Location rationale mentions geofences (overrides the main default) -->
+    <string name="permission_location_rationale">GPS स्थिति पढ़ें और जियोफ़ेंस ट्रिगर करें।</string>
+    <!-- gms: Background Location permission row (geofence-only) -->
+    <string name="permission_background_location">पृष्ठभूमि स्थान</string>
+    <string name="permission_background_location_open_settings">सेटिंग्स खोलें</string>
+    <string name="permission_background_location_rationale">पृष्ठभूमि में रहते हुए जियोफ़ेंस ईवेंट प्रेषित करें।</string>
+</resources>

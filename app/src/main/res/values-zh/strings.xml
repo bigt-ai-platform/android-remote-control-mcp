@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Android 远程控制 MCP</string>
+    <string name="share_target_label">Android 远程控制 MCP</string>
+
+    <!-- Accessibility Service -->
+    <string name="accessibility_service_description">通过 MCP 协议提供远程控制功能。可查看界面元素并在设备上执行操作。</string>
+
+    <!-- Notification Channel -->
+    <string name="notification_channel_mcp_server_id">mcp_server_channel</string>
+    <string name="notification_channel_mcp_server_name">MCP 服务器</string>
+    <!-- Notification Content -->
+    <string name="notification_mcp_server_title">MCP 服务器运行中</string>
+
+    <!-- App Bar -->
+    <string name="app_bar_title">MCP 远程控制</string>
+
+    <!-- Tabs -->
+    <string name="tab_server">服务器</string>
+    <string name="tab_settings">设置</string>
+    <string name="tab_about">关于</string>
+
+    <!-- Settings Sub-pages -->
+    <string name="settings_general_title">通用</string>
+    <string name="settings_general_subtitle">端口、地址、设备、自动启动</string>
+    <string name="settings_access_title">访问</string>
+    <string name="settings_access_subtitle">OAuth、Bearer 令牌、已连接客户端</string>
+    <string name="settings_security_title">安全</string>
+    <string name="settings_security_subtitle">HTTPS、证书</string>
+    <string name="settings_tunnel_title">隧道</string>
+    <string name="settings_tunnel_subtitle">Cloudflare、ngrok</string>
+    <string name="settings_mcp_tools_title">MCP 工具</string>
+    <string name="settings_mcp_tools_subtitle">启用或禁用工具</string>
+    <string name="settings_mcp_tools_placeholder">工具权限 — 将在下个版本中提供</string>
+    <string name="settings_mcp_tools_missing_permission">未授予权限 — 这些工具对客户端隐藏。点按以授予。</string>
+    <string name="settings_mcp_tools_param_missing_permission">未授予权限 — 此选项不可用。点按以授予。</string>
+    <string name="settings_permissions_title">权限</string>
+    <string name="settings_permissions_subtitle">无障碍、摄像头、麦克风</string>
+    <string name="settings_storage_title">存储</string>
+    <string name="settings_storage_subtitle">存储位置、文件限制</string>
+
+    <!-- About Screen -->
+    <string name="about_links_section">链接</string>
+    <string name="about_link_github">GitHub 仓库</string>
+    <string name="about_link_license">MIT 许可证</string>
+    <string name="about_link_issues">报告问题</string>
+    <string name="about_attributions_section">致谢</string>
+    <string name="about_attribution_dbip">IP 地理位置数据由 DB-IP (db-ip.com) 提供，依据 CC BY 4.0 许可。</string>
+    <string name="about_attribution_privacy_model">隐私模式的 PII 检测模型由 Ai4Privacy 提供（MIT 许可证）。基于 Llama 构建。</string>
+    <string name="about_footer">开源，MIT 许可证</string>
+
+    <!-- Clipboard -->
+    <string name="copied_to_clipboard">已复制到剪贴板</string>
+
+    <!-- Server Status -->
+    <string name="server_status_title">服务器状态</string>
+    <string name="server_status_running">运行中</string>
+    <string name="server_status_stopped">已停止</string>
+    <string name="server_status_starting">正在启动…</string>
+    <string name="server_status_stopping">正在停止…</string>
+    <string name="server_status_error">错误：%1$s</string>
+    <string name="server_action_start">启动</string>
+    <string name="server_action_stop">停止</string>
+
+    <!-- Configuration -->
+    <string name="configuration_title">配置</string>
+    <string name="config_binding_address_label">绑定地址</string>
+    <string name="config_binding_localhost">本地主机 (127.0.0.1)</string>
+    <string name="config_binding_network">网络 (0.0.0.0)</string>
+    <string name="config_port_label">端口</string>
+    <string name="config_device_slug_label">设备标识 (可选)</string>
+    <string name="config_device_slug_hint">例如 pixel7、work_phone</string>
+    <string name="config_bearer_token_label">Bearer 令牌</string>
+    <string name="config_token_show">显示令牌</string>
+    <string name="config_token_hide">隐藏令牌</string>
+    <string name="config_token_copy">复制令牌</string>
+    <string name="config_token_regenerate">重新生成令牌</string>
+    <string name="config_token_clear">清除令牌</string>
+    <string name="config_bearer_token_empty_warning_title">身份验证已禁用</string>
+    <string name="config_bearer_token_empty_warning_body">Bearer 令牌为空，因此 MCP 服务器会接受任何能够访问它的未经验证请求。请先停止服务器（如果正在运行），然后按“重新生成”以启用身份验证。</string>
+    <string name="config_auto_start_label">开机时自动启动</string>
+    <string name="config_hide_from_recents_label">在最近任务中隐藏</string>
+    <string name="config_hide_from_recents_description">将本应用从 Android 的最近任务概览中排除。</string>
+    <string name="config_tool_call_indicator_label">显示工具调用指示器</string>
+    <string name="config_tool_call_indicator_description">当 MCP 控制本设备时显示隐私安全的叠加层。</string>
+    <string name="config_https_enabled_label">启用 HTTPS</string>
+    <string name="config_certificate_title">HTTPS 证书</string>
+    <string name="config_cert_auto_generated">自动生成的自签名</string>
+    <string name="config_cert_custom">自定义证书 (.p12/.pfx)</string>
+    <string name="config_hostname_label">证书主机名</string>
+
+    <!-- Network Security Warning -->
+    <string name="network_warning_title">网络暴露警告</string>
+    <string name="network_warning_message">绑定到 0.0.0.0 会使 MCP 服务器可被以下对象访问：\n\n\u2022 当前 WiFi 网络中的所有设备\n\u2022 连接到您热点的设备\n\u2022 视网络配置而定，可能还有其它设备\n\n在公共/不受信任的网络上这是一项安全风险。\n\n请仅在受信任的专用网络上使用此选项。</string>
+    <string name="network_warning_confirm">我了解，继续</string>
+    <string name="network_warning_cancel">取消</string>
+
+    <!-- Permissions -->
+    <string name="permissions_title">权限</string>
+    <string name="permission_accessibility">无障碍服务</string>
+    <string name="permission_notifications">通知</string>
+    <string name="permission_enable">启用</string>
+    <string name="permission_enabled">已启用</string>
+    <string name="permission_granted">已授予</string>
+    <string name="permission_grant">授予</string>
+    <string name="permission_camera">摄像头</string>
+    <string name="permission_microphone">麦克风</string>
+    <string name="permission_notification_listener">通知监听</string>
+    <string name="permission_location">位置</string>
+
+    <!-- Permissions screen: section headers -->
+    <string name="permission_section_required_title">必需</string>
+    <string name="permission_section_required_subtitle">应用控制您的设备所必需。</string>
+    <string name="permission_section_required_if_title">使用某项功能时必需</string>
+    <string name="permission_section_required_if_subtitle">仅授予您计划使用的功能。</string>
+    <string name="permission_section_optional_title">可选</string>
+    <string name="permission_section_optional_subtitle">锦上添花；没有它一切仍可正常工作。</string>
+    <!-- Permissions screen: per-permission rationale (default / foss values) -->
+    <string name="permission_accessibility_rationale">读取屏幕内容并执行点按、滑动和输入。</string>
+    <string name="permission_notifications_rationale">OAuth 授权提示、事件通道警报和服务器状态。</string>
+    <string name="permission_notification_listener_rationale">读取并处理设备通知。</string>
+    <string name="permission_camera_rationale">拍照和录制视频。</string>
+    <string name="permission_location_rationale">读取 GPS 位置。</string>
+    <string name="permission_microphone_rationale">为录制的视频添加音频。</string>
+
+    <!-- Permission Warning (main screen: accessibility is the one required permission) -->
+    <string name="permission_warning_title">需要无障碍权限</string>
+    <string name="permission_warning_action">前往权限设置</string>
+    <string name="server_pending_approvals_title">%1$d 个待处理的连接批准请求</string>
+    <string name="server_pending_approvals_action">查看</string>
+
+    <!-- Network Access Suggestion (main screen: localhost-only bind with no tunnel) -->
+    <string name="server_network_access_suggestion_title">仅可从此设备访问</string>
+    <string name="server_network_access_suggestion_wifi">启用 Wi-Fi 访问</string>
+    <string name="server_network_access_suggestion_tunnel">设置隧道</string>
+
+    <!-- Battery Optimization -->
+    <string name="battery_optimization_card_title">保持服务器运行</string>
+    <string name="battery_optimization_card_action">禁用电池优化</string>
+
+    <!-- Server Logs -->
+    <string name="server_logs_title">服务器日志</string>
+    <string name="server_logs_empty">暂无日志记录</string>
+    <string name="server_logs_show_more">显示更多</string>
+    <string name="server_logs_clear">清除日志</string>
+    <string name="server_logs_clear_dialog_title">清除日志？</string>
+    <string name="server_logs_clear_dialog_body">所有服务器日志记录将被永久删除。</string>
+    <string name="server_logs_clear_dialog_confirm">清除</string>
+    <string name="server_logs_clear_dialog_cancel">取消</string>
+    <string name="server_logs_type_tool_call">工具调用</string>
+    <string name="server_logs_type_tunnel">隧道</string>
+    <string name="server_logs_type_server">服务器</string>
+    <string name="server_logs_type_oauth">OAuth</string>
+    <string name="server_logs_type_auth">认证</string>
+    <string name="server_logs_type_channel">通道</string>
+    <string name="server_logs_type_settings">设置</string>
+    <string name="server_logs_type_privacy">隐私</string>
+
+    <!-- Remote Access / Tunnel -->
+    <string name="remote_access_title">远程访问</string>
+    <string name="remote_access_enabled_label">启用远程访问</string>
+    <string name="remote_access_provider_label">隧道提供商</string>
+    <string name="remote_access_provider_cloudflare">Cloudflare</string>
+    <string name="remote_access_provider_cloudflare_desc">无需账户</string>
+    <string name="remote_access_provider_ngrok">ngrok</string>
+    <string name="remote_access_provider_ngrok_desc">需要账户</string>
+    <string name="remote_access_ngrok_authtoken_label">ngrok 身份验证令牌</string>
+    <string name="remote_access_ngrok_domain_label">域名 (可选)</string>
+    <string name="remote_access_ngrok_domain_hint">留空则自动分配</string>
+    <string name="remote_access_status_disconnected">已断开连接</string>
+    <string name="remote_access_status_connecting">正在连接…</string>
+    <string name="remote_access_status_connected">已连接</string>
+    <string name="remote_access_status_error">错误：%1$s</string>
+    <string name="remote_access_public_url_label">公共 URL</string>
+    <string name="remote_access_ngrok_unsupported">此设备无法使用 ngrok（需要 arm64-v8a 或 x86_64）</string>
+    <string name="remote_access_cloudflare_mode_label">Cloudflare 模式</string>
+    <string name="remote_access_cloudflare_mode_free">免费</string>
+    <string name="remote_access_cloudflare_mode_free_desc">随机临时 URL，无需账户</string>
+    <string name="remote_access_cloudflare_mode_token">使用令牌</string>
+    <string name="remote_access_cloudflare_mode_token_desc">通过您的 Cloudflare 账户使用静态主机名</string>
+    <string name="remote_access_cloudflare_token_label">Cloudflare 隧道令牌</string>
+    <string name="remote_access_cloudflare_extra_args_label">额外参数</string>
+    <string name="remote_access_cloudflare_extra_args_hint">--edge region1.v2.argotunnel.com:7844</string>
+    <string name="remote_access_cloudflare_extra_args_help">传递给 cloudflared 的可选标志（例如指定 --edge 以绕过 DNS 问题）</string>
+    <string name="remote_access_cloudflare_service_url_help">在您的 Cloudflare 控制面板中，将此隧道的公共主机名 → 服务设置为：</string>
+    <string name="remote_access_cloudflare_service_url_copy">复制服务 URL</string>
+    <string name="remote_access_https_disabled_warning">启用 HTTPS 时无法使用远程访问。请禁用 HTTPS 以使用隧道。</string>
+    <string name="remote_access_no_route_configured">未配置路由</string>
+    <string name="remote_access_route_misconfigured">路由未指向此服务器</string>
+
+    <!-- Connection Info -->
+    <string name="connection_info_title">连接信息</string>
+    <string name="connection_info_ip">IP 地址</string>
+    <string name="connection_info_port">端口</string>
+    <string name="connection_info_url">URL</string>
+    <string name="connection_info_token">令牌</string>
+    <string name="connection_info_copy_all">全部复制</string>
+    <string name="connection_info_share">分享</string>
+
+    <!-- Storage Locations -->
+    <string name="storage_locations_title">存储位置</string>
+    <string name="storage_locations_description">添加存储位置以通过 MCP 工具启用文件操作。每个位置授予对您所选目录的访问权限。</string>
+    <string name="storage_location_no_locations">尚未添加存储位置。点按 + 添加一个。</string>
+    <string name="storage_location_path_label">路径：%1$s</string>
+    <string name="storage_location_add_button">添加存储位置</string>
+    <string name="storage_location_add_dialog_title">添加存储位置</string>
+    <string name="storage_location_add_dialog_description_label">描述 (可选)</string>
+    <string name="storage_location_add_dialog_description_hint">例如 项目文件、下载</string>
+    <string name="storage_location_add_dialog_browse">浏览</string>
+    <string name="storage_location_add_dialog_selected">已选择：%1$s</string>
+    <string name="storage_location_add_dialog_no_selection">未选择目录</string>
+    <string name="storage_location_add_dialog_add">添加</string>
+    <string name="storage_location_add_dialog_cancel">取消</string>
+    <string name="storage_location_add_dialog_duplicate">此目录已添加。</string>
+    <string name="storage_location_description_counter">%1$d / %2$d</string>
+    <string name="storage_location_edit_dialog_title">编辑描述</string>
+    <string name="storage_location_edit_dialog_save">保存</string>
+    <string name="storage_location_delete_dialog_title">移除存储位置</string>
+    <string name="storage_location_delete_dialog_message">移除 \"%1$s\"？MCP 服务器将无法再访问此位置中的文件。</string>
+    <string name="storage_location_delete_dialog_confirm">移除</string>
+    <string name="storage_location_delete_dialog_cancel">取消</string>
+    <string name="storage_location_allow_write_label">允许写入</string>
+    <string name="storage_location_allow_delete_label">允许删除</string>
+    <string name="storage_builtin_locations_title">内置位置</string>
+    <string name="storage_builtin_locations_description">始终可用。使用 MediaStore 读写文件，无需额外设置。</string>
+    <string name="storage_user_locations_title">用户位置</string>
+    <string name="storage_builtin_grant_all_files">授予访问所有文件的权限</string>
+    <string name="storage_builtin_all_files_granted">已授予所有文件访问权限</string>
+    <string name="storage_builtin_manage_access">管理访问权限</string>
+    <string name="storage_file_size_limit_label">文件大小限制 (MB)</string>
+    <string name="storage_file_size_limit_error">必须介于 %1$d 和 %2$d MB 之间</string>
+    <string name="storage_download_timeout_label">下载超时 (秒)</string>
+    <string name="storage_download_timeout_error">必须介于 %1$d 和 %2$d 秒之间</string>
+    <string name="storage_allow_http_downloads_label">允许 HTTP 下载</string>
+    <string name="storage_allow_http_downloads_description">允许从未加密的 HTTP URL 下载文件（安全性较低）</string>
+    <string name="storage_allow_unverified_https_label">允许未经验证的 HTTPS</string>
+    <string name="storage_allow_unverified_https_description">接受未经验证的 HTTPS 证书用于下载（安全性较低）</string>
+
+    <!-- Event Channel — start/stop dialogs -->
+    <string name="channel_not_configured_dialog_title">未设置端点 URL</string>
+    <string name="channel_not_configured_dialog_body">在启动服务之前，请在 设置 → 事件通道 中配置事件通道端点 URL。认证令牌是可选的，如果您的端点不需要，可以留空。</string>
+    <string name="channel_not_configured_dialog_ok">确定</string>
+
+    <!-- Access settings (OAuth + bearer) -->
+    <string name="access_title">访问</string>
+    <string name="access_oauth_label">OAuth</string>
+    <string name="access_oauth_supporting">需要活动的隧道（HTTPS、公共可访问性）</string>
+    <string name="access_connected_clients">已连接客户端</string>
+    <string name="access_bearer_label">Bearer 令牌身份验证</string>
+    <string name="access_bearer_token_field_label">Bearer 令牌</string>
+    <string name="access_public_url_label">公共 URL 覆盖 (可选)</string>
+    <string name="access_public_url_supporting">留空则从请求中自动检测；覆盖用于 OAuth 元数据和分享链接的主机</string>
+    <string name="access_no_auth_warning_title">服务器没有任何身份验证</string>
+    <string name="access_no_auth_warning_body">任何能够访问服务器的人都可完全控制此设备。</string>
+    <string name="access_internet_exposure_warning_title">可通过互联网访问</string>
+    <string name="access_internet_exposure_warning_body">隧道已激活且身份验证已关闭，因此可通过互联网在无任何检查的情况下访问 Android 远程控制 — 任何拥有该 URL 的人都能完全控制此设备。请启用 OAuth 或 Bearer 令牌。</string>
+    <string name="access_disable_auth_dialog_title">禁用所有身份验证？</string>
+    <string name="access_disable_auth_dialog_body">这会使服务器没有任何身份验证。任何能够访问它的人都能完全控制。是否继续？</string>
+    <string name="access_disable_auth_confirm">仍然禁用</string>
+    <string name="access_disable_auth_cancel">取消</string>
+    <string name="access_token_show">显示令牌</string>
+    <string name="access_token_hide">隐藏令牌</string>
+    <string name="access_token_copy">复制令牌</string>
+    <string name="access_token_regenerate">重新生成令牌</string>
+
+    <!-- Connected clients -->
+    <string name="oauth_clients_title">已连接客户端</string>
+    <string name="oauth_clients_empty">没有已连接的客户端。客户端通过 OAuth 连接后会出现在此处。</string>
+    <string name="oauth_clients_created">创建于 %1$s</string>
+    <string name="oauth_clients_last_used">上次使用 %1$s</string>
+    <string name="oauth_clients_revoke">撤销</string>
+    <string name="oauth_clients_revoke_dialog_title">撤销客户端？</string>
+    <string name="oauth_clients_revoke_dialog_body">撤销会立即使此客户端的令牌失效。它必须重新授权才能重新连接。</string>
+    <string name="oauth_clients_revoke_confirm">撤销</string>
+    <string name="oauth_clients_revoke_cancel">取消</string>
+
+    <!-- Pairing (short-code) -->
+    <string name="pairing_code_title">使用配对码配对</string>
+    <string name="pairing_code_desc">在客户端（wallet 的 Device 屏幕，或 dai Mobile 页面）中输入此代码以配对 — 无需复制令牌。</string>
+    <string name="pairing_code_expires">过期时间 %1$s</string>
+    <string name="pairing_code_copy">复制代码</string>
+    <string name="pairing_code_refresh">新代码</string>
+    <string name="paired_devices">已配对设备</string>
+    <string name="paired_devices_title">已配对设备</string>
+    <string name="paired_devices_empty">没有已配对的设备。客户端使用配对码后会出现在此处。</string>
+    <string name="paired_devices_created">配对于 %1$s</string>
+    <string name="paired_devices_last_used">上次使用 %1$s</string>
+    <string name="paired_devices_revoke">撤销</string>
+    <string name="paired_devices_revoke_dialog_title">撤销设备？</string>
+    <string name="paired_devices_revoke_dialog_body">撤销会立即使此设备的配对令牌失效。它必须使用新的配对码重新配对。</string>
+    <string name="paired_devices_revoke_confirm">撤销</string>
+    <string name="paired_devices_revoke_cancel">取消</string>
+    <string name="access_paired_devices_supporting">使用配对码配对的客户端</string>
+
+    <!-- On-device approval -->
+    <string name="approval_title">连接请求</string>
+    <string name="approval_empty">没有待处理的请求。</string>
+    <string name="approval_match_code_label">确认此代码与您的浏览器一致：</string>
+    <string name="approval_approve">批准</string>
+    <string name="approval_deny">拒绝</string>
+    <string name="approval_expires_in">%1$s 后过期</string>
+    <string name="approval_expired">请求已过期</string>
+    <string name="notification_channel_oauth_approval_name">连接批准</string>
+    <string name="notification_oauth_approval_title">连接请求待处理</string>
+    <string name="notification_oauth_approval_body">%1$d 个请求等待处理 — 点按以查看</string>
+    <string name="notification_channel_update_name">应用更新</string>
+    <string name="notification_update_available_title">有可用更新</string>
+    <string name="notification_update_available_body">版本 %1$s 可用 — 点按以查看发布说明</string>
+    <string name="update_banner_text">有可用更新：v%1$s — 点按查看</string>
+    <string name="update_banner_open_description">打开发布页面</string>
+    <string name="about_updates_section">更新</string>
+    <string name="about_auto_update_label">自动检查更新</string>
+    <string name="about_check_updates_button">检查更新</string>
+    <string name="about_update_up_to_date">您已使用最新版本</string>
+    <string name="about_update_check_failed">无法检查更新。请稍后重试。</string>
+    <string name="about_update_dev_build">开发版本已禁用更新检查</string>
+    <string name="about_update_found">版本 %1$s 可用 — 点按以查看发布说明</string>
+    <string name="event_channel_subtitle">通知和 WiFi 事件转发</string>
+    <string name="settings_privacy_title">隐私模式</string>
+    <string name="settings_privacy_subtitle">向 AI 提供商隐藏个人数据</string>
+    <string name="privacy_enable_label">启用隐私模式</string>
+    <string name="privacy_consent_title">下载检测模型？</string>
+    <string name="privacy_consent_message">隐私模式需要一个约 154 MB 的检测模型，从 Hugging Face 一次性下载（开源 ai4privacy 模型），并通过校验和验证。是否继续？</string>
+    <string name="privacy_consent_confirm">下载并启用</string>
+    <string name="privacy_consent_cancel">取消</string>
+    <string name="privacy_download_progress">正在下载模型… %1$d%%</string>
+    <string name="privacy_download_verifying">正在验证下载…</string>
+    <string name="privacy_download_failed">模型下载失败：%1$s</string>
+    <string name="privacy_status_ready">已启用 — 模型已加载</string>
+    <string name="privacy_status_deterministic">已启用 — 仅模式检测（模型类别已禁用）</string>
+    <string name="privacy_status_unavailable">不可用：%1$s</string>
+    <string name="privacy_status_disabled">已禁用</string>
+    <string name="privacy_benchmark_estimate">MCP 工具平均将大约多耗时 +%1$s 秒（针对 100 个屏幕上元素的估算值）</string>
+    <string name="privacy_benchmark_running">正在测量设备性能… 您可以继续使用应用或关闭隐私模式；测量会自行完成</string>
+    <string name="privacy_enable_preparing">正在准备隐私模式…</string>
+    <string name="privacy_detection_rates_header">实测检测率</string>
+    <string name="privacy_detection_rates_caption">按类别检测到的个人数据项占比，使用本项目的有效性基准在 8 种语言、贴近真实界面风格的内容上测量。实际结果会因内容和语言而异。</string>
+    <string name="privacy_categories_header">受保护的类别</string>
+    <string name="privacy_category_credentials">密码与凭证</string>
+    <string name="privacy_category_cards_iban">支付卡与 IBAN</string>
+    <string name="privacy_category_emails">电子邮件地址</string>
+    <string name="privacy_category_phones">电话号码</string>
+    <string name="privacy_category_names">姓名</string>
+    <string name="privacy_category_addresses">地址</string>
+    <string name="privacy_category_national_ids">国民身份证件与文档</string>
+    <string name="privacy_mode_header">遮盖方式</string>
+    <string name="privacy_mode_pseudonymize">假名化（占位符保持一致，工具可继续工作）</string>
+    <string name="privacy_mode_redact">完全遮盖</string>
+    <string name="privacy_format_header">占位符格式</string>
+    <string name="privacy_format_hashed">一致 — 相同的值始终保留相同的占位符 (EMAIL#a1b2c)</string>
+    <string name="privacy_format_numbered">编号 — 每个会话按顺序编号 ([EMAIL_1])</string>
+    <string name="privacy_disclaimer">检测是一种尽力而为的缓解措施，并非保证。没有检测器能捕获所有个人数据；仅当被标记的屏幕元素具有边界时，截图才会被遮盖。</string>
+    <string name="privacy_card_title">担心个人数据？</string>
+    <string name="privacy_card_action">设置隐私模式</string>
+    <string name="privacy_card_dismiss">忽略</string>
+</resources>

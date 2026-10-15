@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="event_channel_subtitle">Reenvío de eventos de notificaciones, WiFi y geovallas</string>
+    <!-- gms: Location rationale mentions geofences (overrides the main default) -->
+    <string name="permission_location_rationale">Leer la posición GPS y activar geovallas.</string>
+    <!-- gms: Background Location permission row (geofence-only) -->
+    <string name="permission_background_location">Ubicación en segundo plano</string>
+    <string name="permission_background_location_open_settings">Abrir ajustes</string>
+    <string name="permission_background_location_rationale">Disparar eventos de geovalla en segundo plano.</string>
+</resources>

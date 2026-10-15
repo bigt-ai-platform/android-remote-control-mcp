@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kontrol Jarak Jauh Android MCP</string>
+    <string name="share_target_label">Kontrol Jarak Jauh Android MCP</string>
+
+    <!-- Accessibility Service -->
+    <string name="accessibility_service_description">Menyediakan kemampuan kontrol jarak jauh melalui protokol MCP. Memungkinkan pemeriksaan elemen UI dan melakukan tindakan pada perangkat.</string>
+
+    <!-- Notification Channel -->
+    <string name="notification_channel_mcp_server_id">mcp_server_channel</string>
+    <string name="notification_channel_mcp_server_name">Server MCP</string>
+    <!-- Notification Content -->
+    <string name="notification_mcp_server_title">Server MCP Berjalan</string>
+
+    <!-- App Bar -->
+    <string name="app_bar_title">Kontrol Jarak Jauh MCP</string>
+
+    <!-- Tabs -->
+    <string name="tab_server">Server</string>
+    <string name="tab_settings">Pengaturan</string>
+    <string name="tab_about">Tentang</string>
+
+    <!-- Settings Sub-pages -->
+    <string name="settings_general_title">Umum</string>
+    <string name="settings_general_subtitle">Port, alamat, perangkat, mulai otomatis</string>
+    <string name="settings_access_title">Akses</string>
+    <string name="settings_access_subtitle">OAuth, token bearer, klien terhubung</string>
+    <string name="settings_security_title">Keamanan</string>
+    <string name="settings_security_subtitle">HTTPS, sertifikat</string>
+    <string name="settings_tunnel_title">Tunnel</string>
+    <string name="settings_tunnel_subtitle">Cloudflare, ngrok</string>
+    <string name="settings_mcp_tools_title">Alat MCP</string>
+    <string name="settings_mcp_tools_subtitle">Aktifkan atau nonaktifkan alat</string>
+    <string name="settings_mcp_tools_placeholder">Izin alat — tersedia pada pembaruan berikutnya</string>
+    <string name="settings_mcp_tools_missing_permission">Izin belum diberikan — alat ini disembunyikan dari klien. Ketuk untuk memberikan.</string>
+    <string name="settings_mcp_tools_param_missing_permission">Izin belum diberikan — opsi ini tidak tersedia. Ketuk untuk memberikan.</string>
+    <string name="settings_permissions_title">Izin</string>
+    <string name="settings_permissions_subtitle">Aksesibilitas, kamera, mikrofon</string>
+    <string name="settings_storage_title">Penyimpanan</string>
+    <string name="settings_storage_subtitle">Lokasi penyimpanan, batas file</string>
+
+    <!-- About Screen -->
+    <string name="about_links_section">Tautan</string>
+    <string name="about_link_github">Repositori GitHub</string>
+    <string name="about_link_license">Lisensi MIT</string>
+    <string name="about_link_issues">Laporkan Masalah</string>
+    <string name="about_attributions_section">Atribusi</string>
+    <string name="about_attribution_dbip">Data geolokasi IP oleh DB-IP (db-ip.com), dilisensikan di bawah CC BY 4.0.</string>
+    <string name="about_attribution_privacy_model">Model deteksi PII Mode Privasi oleh Ai4Privacy (lisensi MIT). Dibuat dengan Llama.</string>
+    <string name="about_footer">Sumber Terbuka, Lisensi MIT</string>
+
+    <!-- Clipboard -->
+    <string name="copied_to_clipboard">Disalin ke papan klip</string>
+
+    <!-- Server Status -->
+    <string name="server_status_title">Status Server</string>
+    <string name="server_status_running">Berjalan</string>
+    <string name="server_status_stopped">Berhenti</string>
+    <string name="server_status_starting">Memulai…</string>
+    <string name="server_status_stopping">Menghentikan…</string>
+    <string name="server_status_error">Kesalahan: %1$s</string>
+    <string name="server_action_start">Mulai</string>
+    <string name="server_action_stop">Hentikan</string>
+
+    <!-- Configuration -->
+    <string name="configuration_title">Konfigurasi</string>
+    <string name="config_binding_address_label">Alamat Pengikatan</string>
+    <string name="config_binding_localhost">Localhost (127.0.0.1)</string>
+    <string name="config_binding_network">Jaringan (0.0.0.0)</string>
+    <string name="config_port_label">Port</string>
+    <string name="config_device_slug_label">Slug Perangkat (opsional)</string>
+    <string name="config_device_slug_hint">mis., pixel7, work_phone</string>
+    <string name="config_bearer_token_label">Token Bearer</string>
+    <string name="config_token_show">Tampilkan token</string>
+    <string name="config_token_hide">Sembunyikan token</string>
+    <string name="config_token_copy">Salin token</string>
+    <string name="config_token_regenerate">Buat ulang token</string>
+    <string name="config_token_clear">Hapus token</string>
+    <string name="config_bearer_token_empty_warning_title">Autentikasi dinonaktifkan</string>
+    <string name="config_bearer_token_empty_warning_body">Token bearer kosong, sehingga server MCP menerima permintaan tanpa autentikasi dari siapa pun yang dapat menjangkaunya. Hentikan server (jika berjalan), lalu tekan Buat ulang untuk mengaktifkan autentikasi.</string>
+    <string name="config_auto_start_label">Mulai otomatis saat boot</string>
+    <string name="config_hide_from_recents_label">Sembunyikan dari terbaru</string>
+    <string name="config_hide_from_recents_description">Kecualikan aplikasi dari ringkasan aplikasi terbaru Android.</string>
+    <string name="config_tool_call_indicator_label">Tampilkan indikator pemanggilan alat</string>
+    <string name="config_tool_call_indicator_description">Tampilkan overlay yang aman privasi saat MCP mengendalikan perangkat ini.</string>
+    <string name="config_https_enabled_label">Aktifkan HTTPS</string>
+    <string name="config_certificate_title">Sertifikat HTTPS</string>
+    <string name="config_cert_auto_generated">Dibuat otomatis, self-signed</string>
+    <string name="config_cert_custom">Sertifikat kustom (.p12/.pfx)</string>
+    <string name="config_hostname_label">Hostname sertifikat</string>
+
+    <!-- Network Security Warning -->
+    <string name="network_warning_title">Peringatan Paparan Jaringan</string>
+    <string name="network_warning_message">Mengikat ke 0.0.0.0 membuat server MCP dapat diakses oleh:\n\n\u2022 Semua perangkat di jaringan WiFi Anda saat ini\n\u2022 Perangkat yang terhubung ke hotspot Anda\n\u2022 Berpotensi perangkat lain tergantung konfigurasi jaringan\n\nIni merupakan RISIKO KEAMANAN pada jaringan publik/tidak tepercaya.\n\nGunakan opsi ini hanya pada jaringan pribadi yang tepercaya.</string>
+    <string name="network_warning_confirm">Saya Mengerti, Lanjutkan</string>
+    <string name="network_warning_cancel">Batal</string>
+
+    <!-- Permissions -->
+    <string name="permissions_title">Izin</string>
+    <string name="permission_accessibility">Layanan Aksesibilitas</string>
+    <string name="permission_notifications">Notifikasi</string>
+    <string name="permission_enable">Aktifkan</string>
+    <string name="permission_enabled">Aktif</string>
+    <string name="permission_granted">Diberikan</string>
+    <string name="permission_grant">Berikan</string>
+    <string name="permission_camera">Kamera</string>
+    <string name="permission_microphone">Mikrofon</string>
+    <string name="permission_notification_listener">Pendengar Notifikasi</string>
+    <string name="permission_location">Lokasi</string>
+
+    <!-- Permissions screen: section headers -->
+    <string name="permission_section_required_title">Wajib</string>
+    <string name="permission_section_required_subtitle">Diperlukan agar aplikasi dapat mengendalikan perangkat Anda.</string>
+    <string name="permission_section_required_if_title">Wajib jika Anda menggunakan fitur</string>
+    <string name="permission_section_required_if_subtitle">Berikan hanya kemampuan yang ingin Anda gunakan.</string>
+    <string name="permission_section_optional_title">Opsional</string>
+    <string name="permission_section_optional_subtitle">Baik untuk dimiliki; semuanya berfungsi tanpanya.</string>
+    <!-- Permissions screen: per-permission rationale (default / foss values) -->
+    <string name="permission_accessibility_rationale">Membaca layar dan melakukan ketukan, geser, serta pengetikan.</string>
+    <string name="permission_notifications_rationale">Permintaan persetujuan OAuth, peringatan Saluran Peristiwa, dan status server.</string>
+    <string name="permission_notification_listener_rationale">Membaca dan menindaklanjuti notifikasi perangkat.</string>
+    <string name="permission_camera_rationale">Mengambil foto dan merekam video.</string>
+    <string name="permission_location_rationale">Membaca posisi GPS.</string>
+    <string name="permission_microphone_rationale">Menambahkan audio ke video yang direkam.</string>
+
+    <!-- Permission Warning (main screen: accessibility is the one required permission) -->
+    <string name="permission_warning_title">Izin aksesibilitas diperlukan</string>
+    <string name="permission_warning_action">Buka izin</string>
+    <string name="server_pending_approvals_title">%1$d persetujuan koneksi tertunda</string>
+    <string name="server_pending_approvals_action">Tinjau</string>
+
+    <!-- Network Access Suggestion (main screen: localhost-only bind with no tunnel) -->
+    <string name="server_network_access_suggestion_title">Hanya dapat dijangkau dari perangkat ini</string>
+    <string name="server_network_access_suggestion_wifi">Aktifkan akses Wi-Fi</string>
+    <string name="server_network_access_suggestion_tunnel">Siapkan tunnel</string>
+
+    <!-- Battery Optimization -->
+    <string name="battery_optimization_card_title">Jaga server tetap berjalan</string>
+    <string name="battery_optimization_card_action">Nonaktifkan optimasi baterai</string>
+
+    <!-- Server Logs -->
+    <string name="server_logs_title">Log Server</string>
+    <string name="server_logs_empty">Belum ada entri log</string>
+    <string name="server_logs_show_more">Tampilkan lebih banyak</string>
+    <string name="server_logs_clear">Hapus log</string>
+    <string name="server_logs_clear_dialog_title">Hapus log?</string>
+    <string name="server_logs_clear_dialog_body">Semua entri log server akan dihapus secara permanen.</string>
+    <string name="server_logs_clear_dialog_confirm">Hapus</string>
+    <string name="server_logs_clear_dialog_cancel">Batal</string>
+    <string name="server_logs_type_tool_call">Pemanggilan alat</string>
+    <string name="server_logs_type_tunnel">Tunnel</string>
+    <string name="server_logs_type_server">Server</string>
+    <string name="server_logs_type_oauth">OAuth</string>
+    <string name="server_logs_type_auth">Autentikasi</string>
+    <string name="server_logs_type_channel">Saluran</string>
+    <string name="server_logs_type_settings">Pengaturan</string>
+    <string name="server_logs_type_privacy">Privasi</string>
+
+    <!-- Remote Access / Tunnel -->
+    <string name="remote_access_title">Akses Jarak Jauh</string>
+    <string name="remote_access_enabled_label">Aktifkan Akses Jarak Jauh</string>
+    <string name="remote_access_provider_label">Penyedia Tunnel</string>
+    <string name="remote_access_provider_cloudflare">Cloudflare</string>
+    <string name="remote_access_provider_cloudflare_desc">Tidak perlu akun</string>
+    <string name="remote_access_provider_ngrok">ngrok</string>
+    <string name="remote_access_provider_ngrok_desc">Perlu akun</string>
+    <string name="remote_access_ngrok_authtoken_label">Authtoken ngrok</string>
+    <string name="remote_access_ngrok_domain_label">Domain (opsional)</string>
+    <string name="remote_access_ngrok_domain_hint">Biarkan kosong untuk penetapan otomatis</string>
+    <string name="remote_access_status_disconnected">Terputus</string>
+    <string name="remote_access_status_connecting">Menghubungkan…</string>
+    <string name="remote_access_status_connected">Terhubung</string>
+    <string name="remote_access_status_error">Kesalahan: %1$s</string>
+    <string name="remote_access_public_url_label">URL Publik</string>
+    <string name="remote_access_ngrok_unsupported">ngrok tidak tersedia di perangkat ini (memerlukan arm64-v8a atau x86_64)</string>
+    <string name="remote_access_cloudflare_mode_label">Mode Cloudflare</string>
+    <string name="remote_access_cloudflare_mode_free">Gratis</string>
+    <string name="remote_access_cloudflare_mode_free_desc">URL sementara acak, tanpa akun</string>
+    <string name="remote_access_cloudflare_mode_token">Dengan Token</string>
+    <string name="remote_access_cloudflare_mode_token_desc">Hostname statis melalui akun Cloudflare Anda</string>
+    <string name="remote_access_cloudflare_token_label">Token Tunnel Cloudflare</string>
+    <string name="remote_access_cloudflare_extra_args_label">Argumen Tambahan</string>
+    <string name="remote_access_cloudflare_extra_args_hint">--edge region1.v2.argotunnel.com:7844</string>
+    <string name="remote_access_cloudflare_extra_args_help">Flag opsional yang diteruskan ke cloudflared (mis. tentukan --edge untuk melewati masalah DNS)</string>
+    <string name="remote_access_cloudflare_service_url_help">Di dasbor Cloudflare Anda, atur Hostname Publik tunnel ini → Layanan ke:</string>
+    <string name="remote_access_cloudflare_service_url_copy">Salin URL layanan</string>
+    <string name="remote_access_https_disabled_warning">Akses jarak jauh tidak tersedia saat HTTPS aktif. Nonaktifkan HTTPS untuk menggunakan tunnel.</string>
+    <string name="remote_access_no_route_configured">Tidak ada rute yang dikonfigurasi</string>
+    <string name="remote_access_route_misconfigured">Rute tidak mengarah ke server ini</string>
+
+    <!-- Connection Info -->
+    <string name="connection_info_title">Info Koneksi</string>
+    <string name="connection_info_ip">Alamat IP</string>
+    <string name="connection_info_port">Port</string>
+    <string name="connection_info_url">URL</string>
+    <string name="connection_info_token">Token</string>
+    <string name="connection_info_copy_all">Salin Semua</string>
+    <string name="connection_info_share">Bagikan</string>
+
+    <!-- Storage Locations -->
+    <string name="storage_locations_title">Lokasi Penyimpanan</string>
+    <string name="storage_locations_description">Tambahkan lokasi penyimpanan untuk mengaktifkan operasi file melalui alat MCP. Setiap lokasi memberikan akses ke direktori yang Anda pilih.</string>
+    <string name="storage_location_no_locations">Belum ada lokasi penyimpanan. Ketuk + untuk menambahkan.</string>
+    <string name="storage_location_path_label">Jalur: %1$s</string>
+    <string name="storage_location_add_button">Tambah Lokasi Penyimpanan</string>
+    <string name="storage_location_add_dialog_title">Tambah Lokasi Penyimpanan</string>
+    <string name="storage_location_add_dialog_description_label">Deskripsi (opsional)</string>
+    <string name="storage_location_add_dialog_description_hint">mis., File proyek, Unduhan</string>
+    <string name="storage_location_add_dialog_browse">Telusuri</string>
+    <string name="storage_location_add_dialog_selected">Dipilih: %1$s</string>
+    <string name="storage_location_add_dialog_no_selection">Tidak ada direktori yang dipilih</string>
+    <string name="storage_location_add_dialog_add">Tambah</string>
+    <string name="storage_location_add_dialog_cancel">Batal</string>
+    <string name="storage_location_add_dialog_duplicate">Direktori ini sudah ditambahkan.</string>
+    <string name="storage_location_description_counter">%1$d / %2$d</string>
+    <string name="storage_location_edit_dialog_title">Edit Deskripsi</string>
+    <string name="storage_location_edit_dialog_save">Simpan</string>
+    <string name="storage_location_delete_dialog_title">Hapus Lokasi Penyimpanan</string>
+    <string name="storage_location_delete_dialog_message">Hapus \"%1$s\"? Server MCP tidak akan lagi dapat mengakses file di lokasi ini.</string>
+    <string name="storage_location_delete_dialog_confirm">Hapus</string>
+    <string name="storage_location_delete_dialog_cancel">Batal</string>
+    <string name="storage_location_allow_write_label">Izinkan Tulis</string>
+    <string name="storage_location_allow_delete_label">Izinkan Hapus</string>
+    <string name="storage_builtin_locations_title">Lokasi Bawaan</string>
+    <string name="storage_builtin_locations_description">Selalu tersedia. Gunakan MediaStore untuk membaca dan menulis file tanpa penyiapan tambahan.</string>
+    <string name="storage_user_locations_title">Lokasi Pengguna</string>
+    <string name="storage_builtin_grant_all_files">Berikan akses ke semua file</string>
+    <string name="storage_builtin_all_files_granted">Akses semua file diberikan</string>
+    <string name="storage_builtin_manage_access">Kelola akses</string>
+    <string name="storage_file_size_limit_label">Batas Ukuran File (MB)</string>
+    <string name="storage_file_size_limit_error">Harus antara %1$d dan %2$d MB</string>
+    <string name="storage_download_timeout_label">Batas Waktu Unduhan (detik)</string>
+    <string name="storage_download_timeout_error">Harus antara %1$d dan %2$d detik</string>
+    <string name="storage_allow_http_downloads_label">Izinkan Unduhan HTTP</string>
+    <string name="storage_allow_http_downloads_description">Izinkan mengunduh file dari URL HTTP yang tidak terenkripsi (kurang aman)</string>
+    <string name="storage_allow_unverified_https_label">Izinkan HTTPS Tidak Terverifikasi</string>
+    <string name="storage_allow_unverified_https_description">Terima sertifikat HTTPS yang tidak terverifikasi untuk unduhan (kurang aman)</string>
+
+    <!-- Event Channel — start/stop dialogs -->
+    <string name="channel_not_configured_dialog_title">URL endpoint belum diatur</string>
+    <string name="channel_not_configured_dialog_body">Konfigurasikan URL endpoint saluran peristiwa di Pengaturan → Saluran Peristiwa sebelum memulai layanan. Token autentikasi bersifat opsional dan dapat dibiarkan kosong jika endpoint Anda tidak memerlukannya.</string>
+    <string name="channel_not_configured_dialog_ok">OK</string>
+
+    <!-- Access settings (OAuth + bearer) -->
+    <string name="access_title">Akses</string>
+    <string name="access_oauth_label">OAuth</string>
+    <string name="access_oauth_supporting">Memerlukan tunnel aktif (HTTPS, dapat dijangkau publik)</string>
+    <string name="access_connected_clients">Klien terhubung</string>
+    <string name="access_bearer_label">Autentikasi token bearer</string>
+    <string name="access_bearer_token_field_label">Token bearer</string>
+    <string name="access_public_url_label">Penimpaan URL Publik (opsional)</string>
+    <string name="access_public_url_supporting">Biarkan kosong untuk deteksi otomatis dari permintaan; menimpa host yang digunakan untuk metadata OAuth dan tautan berbagi</string>
+    <string name="access_no_auth_warning_title">Server TIDAK memiliki autentikasi</string>
+    <string name="access_no_auth_warning_body">Siapa pun yang dapat menjangkau server memiliki kendali penuh atas perangkat ini.</string>
+    <string name="access_internet_exposure_warning_title">Dapat dijangkau melalui internet</string>
+    <string name="access_internet_exposure_warning_body">Tunnel aktif dan autentikasi mati, sehingga Android Remote Control dapat diakses melalui internet tanpa pemeriksaan apa pun — siapa pun yang memiliki URL memiliki kendali penuh atas perangkat ini. Aktifkan OAuth atau token bearer.</string>
+    <string name="access_disable_auth_dialog_title">Nonaktifkan semua autentikasi?</string>
+    <string name="access_disable_auth_dialog_body">Ini membuat server TANPA autentikasi. Siapa pun yang dapat menjangkaunya memiliki kendali penuh. Lanjutkan?</string>
+    <string name="access_disable_auth_confirm">Tetap nonaktifkan</string>
+    <string name="access_disable_auth_cancel">Batal</string>
+    <string name="access_token_show">Tampilkan token</string>
+    <string name="access_token_hide">Sembunyikan token</string>
+    <string name="access_token_copy">Salin token</string>
+    <string name="access_token_regenerate">Buat ulang token</string>
+
+    <!-- Connected clients -->
+    <string name="oauth_clients_title">Klien terhubung</string>
+    <string name="oauth_clients_empty">Tidak ada klien terhubung. Klien muncul di sini setelah terhubung melalui OAuth.</string>
+    <string name="oauth_clients_created">Dibuat %1$s</string>
+    <string name="oauth_clients_last_used">Terakhir digunakan %1$s</string>
+    <string name="oauth_clients_revoke">Cabut</string>
+    <string name="oauth_clients_revoke_dialog_title">Cabut klien?</string>
+    <string name="oauth_clients_revoke_dialog_body">Mencabut akan segera membatalkan token klien ini. Klien harus mengotorisasi ulang untuk menyambung kembali.</string>
+    <string name="oauth_clients_revoke_confirm">Cabut</string>
+    <string name="oauth_clients_revoke_cancel">Batal</string>
+
+    <!-- Pairing (short-code) -->
+    <string name="pairing_code_title">Pasangkan dengan kode</string>
+    <string name="pairing_code_desc">Masukkan kode ini di klien (layar Device wallet, atau halaman dai Mobile) untuk memasangkan — tidak perlu menyalin token.</string>
+    <string name="pairing_code_expires">Kedaluwarsa %1$s</string>
+    <string name="pairing_code_copy">Salin kode</string>
+    <string name="pairing_code_refresh">Kode baru</string>
+    <string name="paired_devices">Perangkat terpasangkan</string>
+    <string name="paired_devices_title">Perangkat terpasangkan</string>
+    <string name="paired_devices_empty">Tidak ada perangkat terpasangkan. Klien muncul di sini setelah menggunakan kode pemasangan.</string>
+    <string name="paired_devices_created">Dipasangkan %1$s</string>
+    <string name="paired_devices_last_used">Terakhir digunakan %1$s</string>
+    <string name="paired_devices_revoke">Cabut</string>
+    <string name="paired_devices_revoke_dialog_title">Cabut perangkat?</string>
+    <string name="paired_devices_revoke_dialog_body">Mencabut akan segera membatalkan token pemasangan perangkat ini. Perangkat harus dipasangkan lagi dengan kode baru.</string>
+    <string name="paired_devices_revoke_confirm">Cabut</string>
+    <string name="paired_devices_revoke_cancel">Batal</string>
+    <string name="access_paired_devices_supporting">Klien yang dipasangkan dengan kode</string>
+
+    <!-- On-device approval -->
+    <string name="approval_title">Permintaan koneksi</string>
+    <string name="approval_empty">Tidak ada permintaan tertunda.</string>
+    <string name="approval_match_code_label">Pastikan kode ini cocok dengan browser Anda:</string>
+    <string name="approval_approve">Setujui</string>
+    <string name="approval_deny">Tolak</string>
+    <string name="approval_expires_in">Kedaluwarsa dalam %1$s</string>
+    <string name="approval_expired">Permintaan kedaluwarsa</string>
+    <string name="notification_channel_oauth_approval_name">Persetujuan koneksi</string>
+    <string name="notification_oauth_approval_title">Permintaan koneksi tertunda</string>
+    <string name="notification_oauth_approval_body">%1$d permintaan menunggu — ketuk untuk meninjau</string>
+    <string name="notification_channel_update_name">Pembaruan aplikasi</string>
+    <string name="notification_update_available_title">Pembaruan tersedia</string>
+    <string name="notification_update_available_body">Versi %1$s tersedia — ketuk untuk melihat rilis</string>
+    <string name="update_banner_text">Pembaruan tersedia: v%1$s — ketuk untuk melihat</string>
+    <string name="update_banner_open_description">Buka halaman rilis</string>
+    <string name="about_updates_section">Pembaruan</string>
+    <string name="about_auto_update_label">Periksa pembaruan secara otomatis</string>
+    <string name="about_check_updates_button">Periksa pembaruan</string>
+    <string name="about_update_up_to_date">Anda menggunakan versi terbaru</string>
+    <string name="about_update_check_failed">Tidak dapat memeriksa pembaruan. Coba lagi nanti.</string>
+    <string name="about_update_dev_build">Pemeriksaan pembaruan dinonaktifkan untuk build pengembangan</string>
+    <string name="about_update_found">Versi %1$s tersedia — ketuk untuk melihat rilis</string>
+    <string name="event_channel_subtitle">Penerusan peristiwa notifikasi dan WiFi</string>
+    <string name="settings_privacy_title">Mode Privasi</string>
+    <string name="settings_privacy_subtitle">Sembunyikan data pribadi dari penyedia AI</string>
+    <string name="privacy_enable_label">Aktifkan Mode Privasi</string>
+    <string name="privacy_consent_title">Unduh model deteksi?</string>
+    <string name="privacy_consent_message">Mode Privasi memerlukan model deteksi ~154 MB, diunduh sekali dari Hugging Face (model ai4privacy sumber terbuka) dan diverifikasi dengan checksum. Lanjutkan?</string>
+    <string name="privacy_consent_confirm">Unduh dan aktifkan</string>
+    <string name="privacy_consent_cancel">Batal</string>
+    <string name="privacy_download_progress">Mengunduh model… %1$d%%</string>
+    <string name="privacy_download_verifying">Memverifikasi unduhan…</string>
+    <string name="privacy_download_failed">Unduhan model gagal: %1$s</string>
+    <string name="privacy_status_ready">Aktif — model dimuat</string>
+    <string name="privacy_status_deterministic">Aktif — hanya deteksi pola (kategori model dinonaktifkan)</string>
+    <string name="privacy_status_unavailable">TIDAK TERSEDIA: %1$s</string>
+    <string name="privacy_status_disabled">Nonaktif</string>
+    <string name="privacy_benchmark_estimate">Alat MCP akan memakan waktu rata-rata sekitar +%1$s dtk (perkiraan untuk 100 elemen di layar)</string>
+    <string name="privacy_benchmark_running">Mengukur performa di perangkat… Anda dapat terus menggunakan aplikasi atau menonaktifkan Mode Privasi; pengukuran selesai dengan sendirinya</string>
+    <string name="privacy_enable_preparing">Menyiapkan Mode Privasi…</string>
+    <string name="privacy_detection_rates_header">Tingkat deteksi terukur</string>
+    <string name="privacy_detection_rates_caption">Persentase item data pribadi yang terdeteksi per kategori, diukur dengan tolok ukur efektivitas proyek pada konten bergaya UI yang realistis dalam 8 bahasa. Hasil sebenarnya bervariasi tergantung konten dan bahasa.</string>
+    <string name="privacy_categories_header">Kategori yang dilindungi</string>
+    <string name="privacy_category_credentials">Kata sandi &amp; kredensial</string>
+    <string name="privacy_category_cards_iban">Kartu pembayaran &amp; IBAN</string>
+    <string name="privacy_category_emails">Alamat email</string>
+    <string name="privacy_category_phones">Nomor telepon</string>
+    <string name="privacy_category_names">Nama</string>
+    <string name="privacy_category_addresses">Alamat</string>
+    <string name="privacy_category_national_ids">ID nasional &amp; dokumen</string>
+    <string name="privacy_mode_header">Gaya penyuntingan</string>
+    <string name="privacy_mode_pseudonymize">Pseudonimisasi (placeholder konsisten, alat tetap berfungsi)</string>
+    <string name="privacy_mode_redact">Sunting sepenuhnya</string>
+    <string name="privacy_format_header">Format placeholder</string>
+    <string name="privacy_format_hashed">Konsisten — nilai yang sama selalu mempertahankan placeholder yang sama (EMAIL#a1b2c)</string>
+    <string name="privacy_format_numbered">Bernomor — berurutan per sesi ([EMAIL_1])</string>
+    <string name="privacy_disclaimer">Deteksi adalah upaya mitigasi terbaik, bukan jaminan. Tidak ada detektor yang menangkap semua data pribadi; tangkapan layar hanya disamarkan di bagian elemen layar yang ditandai memiliki batas.</string>
+    <string name="privacy_card_title">Khawatir tentang data pribadi?</string>
+    <string name="privacy_card_action">Siapkan Mode Privasi</string>
+    <string name="privacy_card_dismiss">Tutup</string>
+</resources>

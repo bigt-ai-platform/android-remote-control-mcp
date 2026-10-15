@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Android リモートコントロール MCP</string>
+    <string name="share_target_label">Android リモートコントロール MCP</string>
+
+    <!-- Accessibility Service -->
+    <string name="accessibility_service_description">MCP プロトコル経由でリモートコントロール機能を提供します。UI 要素を調べてデバイス上で操作を実行できます。</string>
+
+    <!-- Notification Channel -->
+    <string name="notification_channel_mcp_server_id">mcp_server_channel</string>
+    <string name="notification_channel_mcp_server_name">MCP サーバー</string>
+    <!-- Notification Content -->
+    <string name="notification_mcp_server_title">MCP サーバー実行中</string>
+
+    <!-- App Bar -->
+    <string name="app_bar_title">MCP リモートコントロール</string>
+
+    <!-- Tabs -->
+    <string name="tab_server">サーバー</string>
+    <string name="tab_settings">設定</string>
+    <string name="tab_about">アプリ情報</string>
+
+    <!-- Settings Sub-pages -->
+    <string name="settings_general_title">一般</string>
+    <string name="settings_general_subtitle">ポート、アドレス、デバイス、自動起動</string>
+    <string name="settings_access_title">アクセス</string>
+    <string name="settings_access_subtitle">OAuth、ベアラートークン、接続クライアント</string>
+    <string name="settings_security_title">セキュリティ</string>
+    <string name="settings_security_subtitle">HTTPS、証明書</string>
+    <string name="settings_tunnel_title">トンネル</string>
+    <string name="settings_tunnel_subtitle">Cloudflare、ngrok</string>
+    <string name="settings_mcp_tools_title">MCP ツール</string>
+    <string name="settings_mcp_tools_subtitle">ツールの有効化・無効化</string>
+    <string name="settings_mcp_tools_placeholder">ツールの権限 — 次のアップデートで利用可能</string>
+    <string name="settings_mcp_tools_missing_permission">権限が付与されていません — これらのツールはクライアントから隠されています。タップして付与してください。</string>
+    <string name="settings_mcp_tools_param_missing_permission">権限が付与されていません — このオプションは利用できません。タップして付与してください。</string>
+    <string name="settings_permissions_title">権限</string>
+    <string name="settings_permissions_subtitle">アクセシビリティ、カメラ、マイク</string>
+    <string name="settings_storage_title">ストレージ</string>
+    <string name="settings_storage_subtitle">ストレージの場所、ファイル制限</string>
+
+    <!-- About Screen -->
+    <string name="about_links_section">リンク</string>
+    <string name="about_link_github">GitHub リポジトリ</string>
+    <string name="about_link_license">MIT ライセンス</string>
+    <string name="about_link_issues">問題を報告</string>
+    <string name="about_attributions_section">クレジット</string>
+    <string name="about_attribution_dbip">IP 位置情報データ: DB-IP (db-ip.com)、CC BY 4.0 ライセンス。</string>
+    <string name="about_attribution_privacy_model">プライバシーモードの PII 検出モデル: Ai4Privacy (MIT ライセンス)。Llama で構築。</string>
+    <string name="about_footer">オープンソース、MIT ライセンス</string>
+
+    <!-- Clipboard -->
+    <string name="copied_to_clipboard">クリップボードにコピーしました</string>
+
+    <!-- Server Status -->
+    <string name="server_status_title">サーバー状態</string>
+    <string name="server_status_running">実行中</string>
+    <string name="server_status_stopped">停止</string>
+    <string name="server_status_starting">起動中…</string>
+    <string name="server_status_stopping">停止中…</string>
+    <string name="server_status_error">エラー: %1$s</string>
+    <string name="server_action_start">開始</string>
+    <string name="server_action_stop">停止</string>
+
+    <!-- Configuration -->
+    <string name="configuration_title">設定</string>
+    <string name="config_binding_address_label">バインドアドレス</string>
+    <string name="config_binding_localhost">ローカルホスト (127.0.0.1)</string>
+    <string name="config_binding_network">ネットワーク (0.0.0.0)</string>
+    <string name="config_port_label">ポート</string>
+    <string name="config_device_slug_label">デバイススラッグ (任意)</string>
+    <string name="config_device_slug_hint">例: pixel7、work_phone</string>
+    <string name="config_bearer_token_label">ベアラートークン</string>
+    <string name="config_token_show">トークンを表示</string>
+    <string name="config_token_hide">トークンを非表示</string>
+    <string name="config_token_copy">トークンをコピー</string>
+    <string name="config_token_regenerate">トークンを再生成</string>
+    <string name="config_token_clear">トークンを消去</string>
+    <string name="config_bearer_token_empty_warning_title">認証が無効です</string>
+    <string name="config_bearer_token_empty_warning_body">ベアラートークンが空のため、MCP サーバーは到達可能な誰からの認証なしリクエストも受け付けます。サーバーを (実行中なら) 停止し、再生成を押して認証を有効にしてください。</string>
+    <string name="config_auto_start_label">起動時に自動開始</string>
+    <string name="config_hide_from_recents_label">履歴から非表示</string>
+    <string name="config_hide_from_recents_description">Android の最近使用したアプリ一覧からアプリを除外します。</string>
+    <string name="config_tool_call_indicator_label">ツール呼び出しインジケーターを表示</string>
+    <string name="config_tool_call_indicator_description">MCP がこのデバイスを操作している間、プライバシーに配慮したオーバーレイを表示します。</string>
+    <string name="config_https_enabled_label">HTTPS を有効化</string>
+    <string name="config_certificate_title">HTTPS 証明書</string>
+    <string name="config_cert_auto_generated">自動生成の自己署名</string>
+    <string name="config_cert_custom">カスタム証明書 (.p12/.pfx)</string>
+    <string name="config_hostname_label">証明書のホスト名</string>
+
+    <!-- Network Security Warning -->
+    <string name="network_warning_title">ネットワーク露出の警告</string>
+    <string name="network_warning_message">0.0.0.0 にバインドすると、MCP サーバーは以下からアクセス可能になります:\n\n\u2022 現在の WiFi ネットワーク上のすべてのデバイス\n\u2022 ホットスポットに接続されたデバイス\n\u2022 ネットワーク構成によってはその他のデバイス\n\nこれはパブリック/信頼できないネットワークではセキュリティリスクです。\n\n信頼できるプライベートネットワークでのみこのオプションを使用してください。</string>
+    <string name="network_warning_confirm">理解しました、続行</string>
+    <string name="network_warning_cancel">キャンセル</string>
+
+    <!-- Permissions -->
+    <string name="permissions_title">権限</string>
+    <string name="permission_accessibility">アクセシビリティサービス</string>
+    <string name="permission_notifications">通知</string>
+    <string name="permission_enable">有効化</string>
+    <string name="permission_enabled">有効</string>
+    <string name="permission_granted">付与済み</string>
+    <string name="permission_grant">許可</string>
+    <string name="permission_camera">カメラ</string>
+    <string name="permission_microphone">マイク</string>
+    <string name="permission_notification_listener">通知リスナー</string>
+    <string name="permission_location">位置情報</string>
+
+    <!-- Permissions screen: section headers -->
+    <string name="permission_section_required_title">必須</string>
+    <string name="permission_section_required_subtitle">アプリがデバイスを操作するために必要です。</string>
+    <string name="permission_section_required_if_title">機能を使用する場合に必須</string>
+    <string name="permission_section_required_if_subtitle">使用する予定の機能のみ許可してください。</string>
+    <string name="permission_section_optional_title">任意</string>
+    <string name="permission_section_optional_subtitle">あると便利ですが、なくてもすべて動作します。</string>
+    <!-- Permissions screen: per-permission rationale (default / foss values) -->
+    <string name="permission_accessibility_rationale">画面を読み取り、タップ、スワイプ、文字入力を実行します。</string>
+    <string name="permission_notifications_rationale">OAuth 承認プロンプト、イベントチャネル通知、サーバー状態。</string>
+    <string name="permission_notification_listener_rationale">デバイスの通知を読み取り、操作します。</string>
+    <string name="permission_camera_rationale">写真を撮影し、動画を録画します。</string>
+    <string name="permission_location_rationale">GPS 位置を読み取ります。</string>
+    <string name="permission_microphone_rationale">録画した動画に音声を追加します。</string>
+
+    <!-- Permission Warning (main screen: accessibility is the one required permission) -->
+    <string name="permission_warning_title">アクセシビリティ権限が必要です</string>
+    <string name="permission_warning_action">権限設定へ移動</string>
+    <string name="server_pending_approvals_title">%1$d 件の保留中の接続承認</string>
+    <string name="server_pending_approvals_action">確認</string>
+
+    <!-- Network Access Suggestion (main screen: localhost-only bind with no tunnel) -->
+    <string name="server_network_access_suggestion_title">このデバイスからのみアクセス可能</string>
+    <string name="server_network_access_suggestion_wifi">Wi-Fi アクセスを有効化</string>
+    <string name="server_network_access_suggestion_tunnel">トンネルを設定</string>
+
+    <!-- Battery Optimization -->
+    <string name="battery_optimization_card_title">サーバーを実行し続ける</string>
+    <string name="battery_optimization_card_action">バッテリー最適化を無効化</string>
+
+    <!-- Server Logs -->
+    <string name="server_logs_title">サーバーログ</string>
+    <string name="server_logs_empty">ログエントリはまだありません</string>
+    <string name="server_logs_show_more">さらに表示</string>
+    <string name="server_logs_clear">ログを消去</string>
+    <string name="server_logs_clear_dialog_title">ログを消去しますか？</string>
+    <string name="server_logs_clear_dialog_body">すべてのサーバーログエントリが完全に削除されます。</string>
+    <string name="server_logs_clear_dialog_confirm">消去</string>
+    <string name="server_logs_clear_dialog_cancel">キャンセル</string>
+    <string name="server_logs_type_tool_call">ツール呼び出し</string>
+    <string name="server_logs_type_tunnel">トンネル</string>
+    <string name="server_logs_type_server">サーバー</string>
+    <string name="server_logs_type_oauth">OAuth</string>
+    <string name="server_logs_type_auth">認証</string>
+    <string name="server_logs_type_channel">チャネル</string>
+    <string name="server_logs_type_settings">設定</string>
+    <string name="server_logs_type_privacy">プライバシー</string>
+
+    <!-- Remote Access / Tunnel -->
+    <string name="remote_access_title">リモートアクセス</string>
+    <string name="remote_access_enabled_label">リモートアクセスを有効化</string>
+    <string name="remote_access_provider_label">トンネルプロバイダー</string>
+    <string name="remote_access_provider_cloudflare">Cloudflare</string>
+    <string name="remote_access_provider_cloudflare_desc">アカウント不要</string>
+    <string name="remote_access_provider_ngrok">ngrok</string>
+    <string name="remote_access_provider_ngrok_desc">アカウントが必要</string>
+    <string name="remote_access_ngrok_authtoken_label">ngrok 認証トークン</string>
+    <string name="remote_access_ngrok_domain_label">ドメイン (任意)</string>
+    <string name="remote_access_ngrok_domain_hint">空欄にすると自動割り当て</string>
+    <string name="remote_access_status_disconnected">未接続</string>
+    <string name="remote_access_status_connecting">接続中…</string>
+    <string name="remote_access_status_connected">接続済み</string>
+    <string name="remote_access_status_error">エラー: %1$s</string>
+    <string name="remote_access_public_url_label">公開 URL</string>
+    <string name="remote_access_ngrok_unsupported">ngrok はこのデバイスでは利用できません (arm64-v8a または x86_64 が必要)</string>
+    <string name="remote_access_cloudflare_mode_label">Cloudflare モード</string>
+    <string name="remote_access_cloudflare_mode_free">無料</string>
+    <string name="remote_access_cloudflare_mode_free_desc">ランダムな一時 URL、アカウント不要</string>
+    <string name="remote_access_cloudflare_mode_token">トークン使用</string>
+    <string name="remote_access_cloudflare_mode_token_desc">Cloudflare アカウント経由の固定ホスト名</string>
+    <string name="remote_access_cloudflare_token_label">Cloudflare トンネルトークン</string>
+    <string name="remote_access_cloudflare_extra_args_label">追加引数</string>
+    <string name="remote_access_cloudflare_extra_args_hint">--edge region1.v2.argotunnel.com:7844</string>
+    <string name="remote_access_cloudflare_extra_args_help">cloudflared に渡す任意のフラグ (例: DNS の問題を回避するために --edge を指定)</string>
+    <string name="remote_access_cloudflare_service_url_help">Cloudflare ダッシュボードで、このトンネルの公開ホスト名 → サービスを次に設定します:</string>
+    <string name="remote_access_cloudflare_service_url_copy">サービス URL をコピー</string>
+    <string name="remote_access_https_disabled_warning">HTTPS が有効な間はリモートアクセスを利用できません。トンネルを使用するには HTTPS を無効にしてください。</string>
+    <string name="remote_access_no_route_configured">ルートが構成されていません</string>
+    <string name="remote_access_route_misconfigured">ルートがこのサーバーを指していません</string>
+
+    <!-- Connection Info -->
+    <string name="connection_info_title">接続情報</string>
+    <string name="connection_info_ip">IP アドレス</string>
+    <string name="connection_info_port">ポート</string>
+    <string name="connection_info_url">URL</string>
+    <string name="connection_info_token">トークン</string>
+    <string name="connection_info_copy_all">すべてコピー</string>
+    <string name="connection_info_share">共有</string>
+
+    <!-- Storage Locations -->
+    <string name="storage_locations_title">ストレージの場所</string>
+    <string name="storage_locations_description">ストレージの場所を追加すると、MCP ツール経由でファイル操作が可能になります。各場所は、選択したディレクトリへのアクセスを許可します。</string>
+    <string name="storage_location_no_locations">ストレージの場所が追加されていません。+ をタップして追加してください。</string>
+    <string name="storage_location_path_label">パス: %1$s</string>
+    <string name="storage_location_add_button">ストレージの場所を追加</string>
+    <string name="storage_location_add_dialog_title">ストレージの場所を追加</string>
+    <string name="storage_location_add_dialog_description_label">説明 (任意)</string>
+    <string name="storage_location_add_dialog_description_hint">例: プロジェクトファイル、ダウンロード</string>
+    <string name="storage_location_add_dialog_browse">参照</string>
+    <string name="storage_location_add_dialog_selected">選択中: %1$s</string>
+    <string name="storage_location_add_dialog_no_selection">ディレクトリが選択されていません</string>
+    <string name="storage_location_add_dialog_add">追加</string>
+    <string name="storage_location_add_dialog_cancel">キャンセル</string>
+    <string name="storage_location_add_dialog_duplicate">このディレクトリはすでに追加されています。</string>
+    <string name="storage_location_description_counter">%1$d / %2$d</string>
+    <string name="storage_location_edit_dialog_title">説明を編集</string>
+    <string name="storage_location_edit_dialog_save">保存</string>
+    <string name="storage_location_delete_dialog_title">ストレージの場所を削除</string>
+    <string name="storage_location_delete_dialog_message">\"%1$s\" を削除しますか？MCP サーバーはこの場所のファイルにアクセスできなくなります。</string>
+    <string name="storage_location_delete_dialog_confirm">削除</string>
+    <string name="storage_location_delete_dialog_cancel">キャンセル</string>
+    <string name="storage_location_allow_write_label">書き込みを許可</string>
+    <string name="storage_location_allow_delete_label">削除を許可</string>
+    <string name="storage_builtin_locations_title">組み込みの場所</string>
+    <string name="storage_builtin_locations_description">常に利用可能。追加設定なしで MediaStore を使用してファイルの読み書きができます。</string>
+    <string name="storage_user_locations_title">ユーザーの場所</string>
+    <string name="storage_builtin_grant_all_files">すべてのファイルへのアクセスを許可</string>
+    <string name="storage_builtin_all_files_granted">すべてのファイルへのアクセスが許可されています</string>
+    <string name="storage_builtin_manage_access">アクセスを管理</string>
+    <string name="storage_file_size_limit_label">ファイルサイズ制限 (MB)</string>
+    <string name="storage_file_size_limit_error">%1$d ～ %2$d MB の範囲で指定してください</string>
+    <string name="storage_download_timeout_label">ダウンロードタイムアウト (秒)</string>
+    <string name="storage_download_timeout_error">%1$d ～ %2$d 秒の範囲で指定してください</string>
+    <string name="storage_allow_http_downloads_label">HTTP ダウンロードを許可</string>
+    <string name="storage_allow_http_downloads_description">暗号化されていない HTTP URL からのファイルのダウンロードを許可します (安全性が低下)</string>
+    <string name="storage_allow_unverified_https_label">未検証の HTTPS を許可</string>
+    <string name="storage_allow_unverified_https_description">ダウンロード時に未検証の HTTPS 証明書を受け入れます (安全性が低下)</string>
+
+    <!-- Event Channel — start/stop dialogs -->
+    <string name="channel_not_configured_dialog_title">エンドポイント URL が未設定</string>
+    <string name="channel_not_configured_dialog_body">サービスを開始する前に、設定 → イベントチャネルでイベントチャネルのエンドポイント URL を構成してください。認証トークンは任意で、エンドポイントが要求しない場合は空のままで構いません。</string>
+    <string name="channel_not_configured_dialog_ok">OK</string>
+
+    <!-- Access settings (OAuth + bearer) -->
+    <string name="access_title">アクセス</string>
+    <string name="access_oauth_label">OAuth</string>
+    <string name="access_oauth_supporting">アクティブなトンネルが必要です (HTTPS、公開到達性)</string>
+    <string name="access_connected_clients">接続クライアント</string>
+    <string name="access_bearer_label">ベアラートークン認証</string>
+    <string name="access_bearer_token_field_label">ベアラートークン</string>
+    <string name="access_public_url_label">公開 URL の上書き (任意)</string>
+    <string name="access_public_url_supporting">空欄にするとリクエストから自動検出します。OAuth メタデータと共有リンクに使用されるホストを上書きします。</string>
+    <string name="access_no_auth_warning_title">サーバーに認証がありません</string>
+    <string name="access_no_auth_warning_body">サーバーに到達できる誰もが、このデバイスを完全に制御できます。</string>
+    <string name="access_internet_exposure_warning_title">インターネット経由でアクセス可能</string>
+    <string name="access_internet_exposure_warning_body">トンネルが有効で認証がオフのため、Android リモートコントロールにインターネット経由でチェックなしにアクセスできます — URL を知っている誰もがこのデバイスを完全に制御できます。OAuth またはベアラートークンを有効にしてください。</string>
+    <string name="access_disable_auth_dialog_title">すべての認証を無効にしますか？</string>
+    <string name="access_disable_auth_dialog_body">サーバーは認証なしになります。到達できる誰もが完全に制御できます。続行しますか？</string>
+    <string name="access_disable_auth_confirm">無効にする</string>
+    <string name="access_disable_auth_cancel">キャンセル</string>
+    <string name="access_token_show">トークンを表示</string>
+    <string name="access_token_hide">トークンを非表示</string>
+    <string name="access_token_copy">トークンをコピー</string>
+    <string name="access_token_regenerate">トークンを再生成</string>
+
+    <!-- Connected clients -->
+    <string name="oauth_clients_title">接続クライアント</string>
+    <string name="oauth_clients_empty">接続クライアントはありません。クライアントは OAuth で接続するとここに表示されます。</string>
+    <string name="oauth_clients_created">作成日 %1$s</string>
+    <string name="oauth_clients_last_used">最終使用 %1$s</string>
+    <string name="oauth_clients_revoke">取り消す</string>
+    <string name="oauth_clients_revoke_dialog_title">クライアントを取り消しますか？</string>
+    <string name="oauth_clients_revoke_dialog_body">取り消すと、このクライアントのトークンが即座に無効になります。再接続するには再認証が必要です。</string>
+    <string name="oauth_clients_revoke_confirm">取り消す</string>
+    <string name="oauth_clients_revoke_cancel">キャンセル</string>
+
+    <!-- Pairing (short-code) -->
+    <string name="pairing_code_title">コードでペアリング</string>
+    <string name="pairing_code_desc">クライアント (wallet のデバイス画面、または dai Mobile ページ) でこのコードを入力してペアリングします — コピーするトークンはありません。</string>
+    <string name="pairing_code_expires">有効期限 %1$s</string>
+    <string name="pairing_code_copy">コードをコピー</string>
+    <string name="pairing_code_refresh">新しいコード</string>
+    <string name="paired_devices">ペアリング済みデバイス</string>
+    <string name="paired_devices_title">ペアリング済みデバイス</string>
+    <string name="paired_devices_empty">ペアリング済みデバイスはありません。クライアントはペアリングコードを使用するとここに表示されます。</string>
+    <string name="paired_devices_created">ペアリング日 %1$s</string>
+    <string name="paired_devices_last_used">最終使用 %1$s</string>
+    <string name="paired_devices_revoke">取り消す</string>
+    <string name="paired_devices_revoke_dialog_title">デバイスを取り消しますか？</string>
+    <string name="paired_devices_revoke_dialog_body">取り消すと、このデバイスのペアリングトークンが即座に無効になります。新しいコードで再度ペアリングする必要があります。</string>
+    <string name="paired_devices_revoke_confirm">取り消す</string>
+    <string name="paired_devices_revoke_cancel">キャンセル</string>
+    <string name="access_paired_devices_supporting">コードでペアリングしたクライアント</string>
+
+    <!-- On-device approval -->
+    <string name="approval_title">接続リクエスト</string>
+    <string name="approval_empty">保留中のリクエストはありません。</string>
+    <string name="approval_match_code_label">このコードがブラウザと一致することを確認してください:</string>
+    <string name="approval_approve">承認</string>
+    <string name="approval_deny">拒否</string>
+    <string name="approval_expires_in">残り時間 %1$s</string>
+    <string name="approval_expired">リクエストの有効期限が切れました</string>
+    <string name="notification_channel_oauth_approval_name">接続の承認</string>
+    <string name="notification_oauth_approval_title">接続リクエストが保留中</string>
+    <string name="notification_oauth_approval_body">%1$d 件のリクエストが待機中 — タップして確認</string>
+    <string name="notification_channel_update_name">アプリの更新</string>
+    <string name="notification_update_available_title">アップデートがあります</string>
+    <string name="notification_update_available_body">バージョン %1$s が利用可能です — タップしてリリースを表示</string>
+    <string name="update_banner_text">アップデートがあります: v%1$s — タップして表示</string>
+    <string name="update_banner_open_description">リリースページを開く</string>
+    <string name="about_updates_section">アップデート</string>
+    <string name="about_auto_update_label">自動的にアップデートを確認</string>
+    <string name="about_check_updates_button">アップデートを確認</string>
+    <string name="about_update_up_to_date">最新バージョンです</string>
+    <string name="about_update_check_failed">アップデートを確認できませんでした。後でもう一度お試しください。</string>
+    <string name="about_update_dev_build">開発ビルドではアップデート確認が無効です</string>
+    <string name="about_update_found">バージョン %1$s が利用可能です — タップしてリリースを表示</string>
+    <string name="event_channel_subtitle">通知と WiFi イベントの転送</string>
+    <string name="settings_privacy_title">プライバシーモード</string>
+    <string name="settings_privacy_subtitle">AI プロバイダーから個人データを隠す</string>
+    <string name="privacy_enable_label">プライバシーモードを有効化</string>
+    <string name="privacy_consent_title">検出モデルをダウンロードしますか？</string>
+    <string name="privacy_consent_message">プライバシーモードには約 154 MB の検出モデルが必要です。Hugging Face から一度だけダウンロードし (オープンソースの ai4privacy モデル)、チェックサムで検証します。続行しますか？</string>
+    <string name="privacy_consent_confirm">ダウンロードして有効化</string>
+    <string name="privacy_consent_cancel">キャンセル</string>
+    <string name="privacy_download_progress">モデルをダウンロード中… %1$d%%</string>
+    <string name="privacy_download_verifying">ダウンロードを検証中…</string>
+    <string name="privacy_download_failed">モデルのダウンロードに失敗しました: %1$s</string>
+    <string name="privacy_status_ready">有効 — モデル読み込み済み</string>
+    <string name="privacy_status_deterministic">有効 — パターン検出のみ (モデルカテゴリは無効)</string>
+    <string name="privacy_status_unavailable">利用不可: %1$s</string>
+    <string name="privacy_status_disabled">無効</string>
+    <string name="privacy_benchmark_estimate">MCP ツールは平均で約 +%1$s 秒かかります (画面上の要素 100 個で推定)</string>
+    <string name="privacy_benchmark_running">デバイス上のパフォーマンスを測定中… アプリを使い続けても、プライバシーモードをオフにしてもかまいません。測定は自動的に終了します</string>
+    <string name="privacy_enable_preparing">プライバシーモードを準備中…</string>
+    <string name="privacy_detection_rates_header">測定された検出率</string>
+    <string name="privacy_detection_rates_caption">カテゴリごとに検出された個人データ項目の割合。8 言語にわたる現実的な UI 風コンテンツでプロジェクトの有効性ベンチマークを用いて測定。実際の結果はコンテンツと言語によって異なります。</string>
+    <string name="privacy_categories_header">保護されるカテゴリ</string>
+    <string name="privacy_category_credentials">パスワード &amp; 認証情報</string>
+    <string name="privacy_category_cards_iban">決済カード &amp; IBAN</string>
+    <string name="privacy_category_emails">メールアドレス</string>
+    <string name="privacy_category_phones">電話番号</string>
+    <string name="privacy_category_names">名前</string>
+    <string name="privacy_category_addresses">住所</string>
+    <string name="privacy_category_national_ids">国民 ID &amp; 書類</string>
+    <string name="privacy_mode_header">秘匿化スタイル</string>
+    <string name="privacy_mode_pseudonymize">仮名化 (一貫したプレースホルダー、ツールは引き続き動作)</string>
+    <string name="privacy_mode_redact">完全に秘匿化</string>
+    <string name="privacy_format_header">プレースホルダーの形式</string>
+    <string name="privacy_format_hashed">一貫 — 同じ値は常に同じプレースホルダーを保ちます (EMAIL#a1b2c)</string>
+    <string name="privacy_format_numbered">番号付き — セッションごとに連番 ([EMAIL_1])</string>
+    <string name="privacy_disclaimer">検出はベストエフォートの緩和策であり、保証ではありません。すべての個人データを検出できる検出器はありません。スクリーンショットは、フラグが付いた画面要素に境界がある場合にのみマスクされます。</string>
+    <string name="privacy_card_title">個人データが心配ですか？</string>
+    <string name="privacy_card_action">プライバシーモードを設定</string>
+    <string name="privacy_card_dismiss">閉じる</string>
+</resources>

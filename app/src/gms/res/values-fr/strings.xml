@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="event_channel_subtitle">Transfert des notifications, du WiFi et des événements de géorepérage</string>
+    <!-- gms: Location rationale mentions geofences (overrides the main default) -->
+    <string name="permission_location_rationale">Lire la position GPS et déclencher des géorepérages.</string>
+    <!-- gms: Background Location permission row (geofence-only) -->
+    <string name="permission_background_location">Localisation en arrière-plan</string>
+    <string name="permission_background_location_open_settings">Ouvrir les paramètres</string>
+    <string name="permission_background_location_rationale">Déclencher des événements de géorepérage en arrière-plan.</string>
+</resources>

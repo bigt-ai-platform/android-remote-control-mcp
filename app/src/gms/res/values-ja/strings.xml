@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="event_channel_subtitle">通知、WiFi、ジオフェンスイベントの転送</string>
+    <!-- gms: Location rationale mentions geofences (overrides the main default) -->
+    <string name="permission_location_rationale">GPS 位置を読み取り、ジオフェンスを発動します。</string>
+    <!-- gms: Background Location permission row (geofence-only) -->
+    <string name="permission_background_location">バックグラウンド位置情報</string>
+    <string name="permission_background_location_open_settings">設定を開く</string>
+    <string name="permission_background_location_rationale">バックグラウンドでジオフェンスイベントを発火します。</string>
+</resources>

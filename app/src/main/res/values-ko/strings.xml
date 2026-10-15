@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Android 원격 제어 MCP</string>
+    <string name="share_target_label">Android 원격 제어 MCP</string>
+
+    <!-- Accessibility Service -->
+    <string name="accessibility_service_description">MCP 프로토콜을 통해 원격 제어 기능을 제공합니다. UI 요소를 검사하고 기기에서 작업을 수행할 수 있습니다.</string>
+
+    <!-- Notification Channel -->
+    <string name="notification_channel_mcp_server_id">mcp_server_channel</string>
+    <string name="notification_channel_mcp_server_name">MCP 서버</string>
+    <!-- Notification Content -->
+    <string name="notification_mcp_server_title">MCP 서버 실행 중</string>
+
+    <!-- App Bar -->
+    <string name="app_bar_title">MCP 원격 제어</string>
+
+    <!-- Tabs -->
+    <string name="tab_server">서버</string>
+    <string name="tab_settings">설정</string>
+    <string name="tab_about">정보</string>
+
+    <!-- Settings Sub-pages -->
+    <string name="settings_general_title">일반</string>
+    <string name="settings_general_subtitle">포트, 주소, 기기, 자동 시작</string>
+    <string name="settings_access_title">접근</string>
+    <string name="settings_access_subtitle">OAuth, 베어러 토큰, 연결된 클라이언트</string>
+    <string name="settings_security_title">보안</string>
+    <string name="settings_security_subtitle">HTTPS, 인증서</string>
+    <string name="settings_tunnel_title">터널</string>
+    <string name="settings_tunnel_subtitle">Cloudflare, ngrok</string>
+    <string name="settings_mcp_tools_title">MCP 도구</string>
+    <string name="settings_mcp_tools_subtitle">도구 활성화 또는 비활성화</string>
+    <string name="settings_mcp_tools_placeholder">도구 권한 — 다음 업데이트에서 제공</string>
+    <string name="settings_mcp_tools_missing_permission">권한이 부여되지 않음 — 이 도구는 클라이언트에서 숨겨집니다. 탭하여 부여하세요.</string>
+    <string name="settings_mcp_tools_param_missing_permission">권한이 부여되지 않음 — 이 옵션은 사용할 수 없습니다. 탭하여 부여하세요.</string>
+    <string name="settings_permissions_title">권한</string>
+    <string name="settings_permissions_subtitle">접근성, 카메라, 마이크</string>
+    <string name="settings_storage_title">저장소</string>
+    <string name="settings_storage_subtitle">저장소 위치, 파일 제한</string>
+
+    <!-- About Screen -->
+    <string name="about_links_section">링크</string>
+    <string name="about_link_github">GitHub 리포지토리</string>
+    <string name="about_link_license">MIT 라이선스</string>
+    <string name="about_link_issues">문제 신고</string>
+    <string name="about_attributions_section">저작자 표시</string>
+    <string name="about_attribution_dbip">IP 위치 데이터 제공: DB-IP (db-ip.com), CC BY 4.0 라이선스.</string>
+    <string name="about_attribution_privacy_model">Ai4Privacy의 개인정보 보호 모드 PII 감지 모델 (MIT 라이선스). Llama로 구축됨.</string>
+    <string name="about_footer">오픈 소스, MIT 라이선스</string>
+
+    <!-- Clipboard -->
+    <string name="copied_to_clipboard">클립보드에 복사됨</string>
+
+    <!-- Server Status -->
+    <string name="server_status_title">서버 상태</string>
+    <string name="server_status_running">실행 중</string>
+    <string name="server_status_stopped">중지됨</string>
+    <string name="server_status_starting">시작 중…</string>
+    <string name="server_status_stopping">중지 중…</string>
+    <string name="server_status_error">오류: %1$s</string>
+    <string name="server_action_start">시작</string>
+    <string name="server_action_stop">중지</string>
+
+    <!-- Configuration -->
+    <string name="configuration_title">구성</string>
+    <string name="config_binding_address_label">바인딩 주소</string>
+    <string name="config_binding_localhost">로컬호스트 (127.0.0.1)</string>
+    <string name="config_binding_network">네트워크 (0.0.0.0)</string>
+    <string name="config_port_label">포트</string>
+    <string name="config_device_slug_label">기기 슬러그 (선택 사항)</string>
+    <string name="config_device_slug_hint">예: pixel7, work_phone</string>
+    <string name="config_bearer_token_label">베어러 토큰</string>
+    <string name="config_token_show">토큰 표시</string>
+    <string name="config_token_hide">토큰 숨기기</string>
+    <string name="config_token_copy">토큰 복사</string>
+    <string name="config_token_regenerate">토큰 재생성</string>
+    <string name="config_token_clear">토큰 지우기</string>
+    <string name="config_bearer_token_empty_warning_title">인증 비활성화됨</string>
+    <string name="config_bearer_token_empty_warning_body">베어러 토큰이 비어 있어 MCP 서버가 접근할 수 있는 모든 사람의 인증되지 않은 요청을 허용합니다. 서버가 실행 중이면 중지한 다음 재생성을 눌러 인증을 활성화하세요.</string>
+    <string name="config_auto_start_label">부팅 시 자동 시작</string>
+    <string name="config_hide_from_recents_label">최근 앱에서 숨기기</string>
+    <string name="config_hide_from_recents_description">Android의 최근 앱 개요에서 앱을 제외합니다.</string>
+    <string name="config_tool_call_indicator_label">도구 호출 표시기 표시</string>
+    <string name="config_tool_call_indicator_description">MCP가 이 기기를 제어하는 동안 개인정보 보호 오버레이를 표시합니다.</string>
+    <string name="config_https_enabled_label">HTTPS 활성화</string>
+    <string name="config_certificate_title">HTTPS 인증서</string>
+    <string name="config_cert_auto_generated">자동 생성된 자체 서명</string>
+    <string name="config_cert_custom">사용자 지정 인증서 (.p12/.pfx)</string>
+    <string name="config_hostname_label">인증서 호스트 이름</string>
+
+    <!-- Network Security Warning -->
+    <string name="network_warning_title">네트워크 노출 경고</string>
+    <string name="network_warning_message">0.0.0.0에 바인딩하면 MCP 서버가 다음에 접근 가능해집니다:\n\n\u2022 현재 WiFi 네트워크의 모든 기기\n\u2022 핫스팟에 연결된 기기\n\u2022 네트워크 구성에 따라 잠재적으로 다른 기기\n\n이는 공용/신뢰할 수 없는 네트워크에서 보안 위험입니다.\n\n신뢰할 수 있는 사설 네트워크에서만 이 옵션을 사용하세요.</string>
+    <string name="network_warning_confirm">이해했습니다, 계속</string>
+    <string name="network_warning_cancel">취소</string>
+
+    <!-- Permissions -->
+    <string name="permissions_title">권한</string>
+    <string name="permission_accessibility">접근성 서비스</string>
+    <string name="permission_notifications">알림</string>
+    <string name="permission_enable">활성화</string>
+    <string name="permission_enabled">활성화됨</string>
+    <string name="permission_granted">부여됨</string>
+    <string name="permission_grant">부여</string>
+    <string name="permission_camera">카메라</string>
+    <string name="permission_microphone">마이크</string>
+    <string name="permission_notification_listener">알림 리스너</string>
+    <string name="permission_location">위치</string>
+
+    <!-- Permissions screen: section headers -->
+    <string name="permission_section_required_title">필수</string>
+    <string name="permission_section_required_subtitle">앱이 기기를 제어하는 데 필요합니다.</string>
+    <string name="permission_section_required_if_title">기능 사용 시 필수</string>
+    <string name="permission_section_required_if_subtitle">사용할 계획인 기능에 대해서만 권한을 부여하세요.</string>
+    <string name="permission_section_optional_title">선택 사항</string>
+    <string name="permission_section_optional_subtitle">있으면 좋지만 없어도 모두 작동합니다.</string>
+    <!-- Permissions screen: per-permission rationale (default / foss values) -->
+    <string name="permission_accessibility_rationale">화면을 읽고 탭, 스와이프, 입력을 수행합니다.</string>
+    <string name="permission_notifications_rationale">OAuth 승인 프롬프트, 이벤트 채널 알림, 서버 상태.</string>
+    <string name="permission_notification_listener_rationale">기기 알림을 읽고 이에 따라 조치합니다.</string>
+    <string name="permission_camera_rationale">사진을 찍고 동영상을 녹화합니다.</string>
+    <string name="permission_location_rationale">GPS 위치를 읽습니다.</string>
+    <string name="permission_microphone_rationale">녹화된 동영상에 오디오를 추가합니다.</string>
+
+    <!-- Permission Warning (main screen: accessibility is the one required permission) -->
+    <string name="permission_warning_title">접근성 권한이 필요합니다</string>
+    <string name="permission_warning_action">권한 설정으로 이동</string>
+    <string name="server_pending_approvals_title">%1$d개의 대기 중인 연결 승인</string>
+    <string name="server_pending_approvals_action">검토</string>
+
+    <!-- Network Access Suggestion (main screen: localhost-only bind with no tunnel) -->
+    <string name="server_network_access_suggestion_title">이 기기에서만 접근 가능</string>
+    <string name="server_network_access_suggestion_wifi">Wi-Fi 접근 활성화</string>
+    <string name="server_network_access_suggestion_tunnel">터널 설정</string>
+
+    <!-- Battery Optimization -->
+    <string name="battery_optimization_card_title">서버를 계속 실행하기</string>
+    <string name="battery_optimization_card_action">배터리 최적화 비활성화</string>
+
+    <!-- Server Logs -->
+    <string name="server_logs_title">서버 로그</string>
+    <string name="server_logs_empty">아직 로그 항목이 없습니다</string>
+    <string name="server_logs_show_more">더 보기</string>
+    <string name="server_logs_clear">로그 지우기</string>
+    <string name="server_logs_clear_dialog_title">로그를 지우시겠습니까?</string>
+    <string name="server_logs_clear_dialog_body">모든 서버 로그 항목이 영구적으로 삭제됩니다.</string>
+    <string name="server_logs_clear_dialog_confirm">지우기</string>
+    <string name="server_logs_clear_dialog_cancel">취소</string>
+    <string name="server_logs_type_tool_call">도구 호출</string>
+    <string name="server_logs_type_tunnel">터널</string>
+    <string name="server_logs_type_server">서버</string>
+    <string name="server_logs_type_oauth">OAuth</string>
+    <string name="server_logs_type_auth">인증</string>
+    <string name="server_logs_type_channel">채널</string>
+    <string name="server_logs_type_settings">설정</string>
+    <string name="server_logs_type_privacy">개인정보</string>
+
+    <!-- Remote Access / Tunnel -->
+    <string name="remote_access_title">원격 접근</string>
+    <string name="remote_access_enabled_label">원격 접근 활성화</string>
+    <string name="remote_access_provider_label">터널 제공자</string>
+    <string name="remote_access_provider_cloudflare">Cloudflare</string>
+    <string name="remote_access_provider_cloudflare_desc">계정 필요 없음</string>
+    <string name="remote_access_provider_ngrok">ngrok</string>
+    <string name="remote_access_provider_ngrok_desc">계정 필요</string>
+    <string name="remote_access_ngrok_authtoken_label">ngrok 인증 토큰</string>
+    <string name="remote_access_ngrok_domain_label">도메인 (선택 사항)</string>
+    <string name="remote_access_ngrok_domain_hint">자동 할당을 받으려면 비워 두세요</string>
+    <string name="remote_access_status_disconnected">연결 끊김</string>
+    <string name="remote_access_status_connecting">연결 중…</string>
+    <string name="remote_access_status_connected">연결됨</string>
+    <string name="remote_access_status_error">오류: %1$s</string>
+    <string name="remote_access_public_url_label">공용 URL</string>
+    <string name="remote_access_ngrok_unsupported">이 기기에서는 ngrok을 사용할 수 없습니다 (arm64-v8a 또는 x86_64 필요)</string>
+    <string name="remote_access_cloudflare_mode_label">Cloudflare 모드</string>
+    <string name="remote_access_cloudflare_mode_free">무료</string>
+    <string name="remote_access_cloudflare_mode_free_desc">무작위 임시 URL, 계정 불필요</string>
+    <string name="remote_access_cloudflare_mode_token">토큰 사용</string>
+    <string name="remote_access_cloudflare_mode_token_desc">Cloudflare 계정을 통한 고정 호스트 이름</string>
+    <string name="remote_access_cloudflare_token_label">Cloudflare 터널 토큰</string>
+    <string name="remote_access_cloudflare_extra_args_label">추가 인수</string>
+    <string name="remote_access_cloudflare_extra_args_hint">--edge region1.v2.argotunnel.com:7844</string>
+    <string name="remote_access_cloudflare_extra_args_help">cloudflared에 전달되는 선택적 플래그 (예: DNS 문제를 우회하려면 --edge 지정)</string>
+    <string name="remote_access_cloudflare_service_url_help">Cloudflare 대시보드에서 이 터널의 공용 호스트 이름 → 서비스를 다음으로 설정하세요:</string>
+    <string name="remote_access_cloudflare_service_url_copy">서비스 URL 복사</string>
+    <string name="remote_access_https_disabled_warning">HTTPS가 활성화된 동안에는 원격 접근을 사용할 수 없습니다. 터널을 사용하려면 HTTPS를 비활성화하세요.</string>
+    <string name="remote_access_no_route_configured">구성된 경로가 없습니다</string>
+    <string name="remote_access_route_misconfigured">경로가 이 서버를 가리키지 않습니다</string>
+
+    <!-- Connection Info -->
+    <string name="connection_info_title">연결 정보</string>
+    <string name="connection_info_ip">IP 주소</string>
+    <string name="connection_info_port">포트</string>
+    <string name="connection_info_url">URL</string>
+    <string name="connection_info_token">토큰</string>
+    <string name="connection_info_copy_all">모두 복사</string>
+    <string name="connection_info_share">공유</string>
+
+    <!-- Storage Locations -->
+    <string name="storage_locations_title">저장소 위치</string>
+    <string name="storage_locations_description">저장소 위치를 추가하여 MCP 도구를 통한 파일 작업을 활성화합니다. 각 위치는 선택한 디렉터리에 대한 접근 권한을 부여합니다.</string>
+    <string name="storage_location_no_locations">추가된 저장소 위치가 없습니다. +를 탭하여 추가하세요.</string>
+    <string name="storage_location_path_label">경로: %1$s</string>
+    <string name="storage_location_add_button">저장소 위치 추가</string>
+    <string name="storage_location_add_dialog_title">저장소 위치 추가</string>
+    <string name="storage_location_add_dialog_description_label">설명 (선택 사항)</string>
+    <string name="storage_location_add_dialog_description_hint">예: 프로젝트 파일, 다운로드</string>
+    <string name="storage_location_add_dialog_browse">찾아보기</string>
+    <string name="storage_location_add_dialog_selected">선택됨: %1$s</string>
+    <string name="storage_location_add_dialog_no_selection">선택된 디렉터리 없음</string>
+    <string name="storage_location_add_dialog_add">추가</string>
+    <string name="storage_location_add_dialog_cancel">취소</string>
+    <string name="storage_location_add_dialog_duplicate">이 디렉터리는 이미 추가되었습니다.</string>
+    <string name="storage_location_description_counter">%1$d / %2$d</string>
+    <string name="storage_location_edit_dialog_title">설명 편집</string>
+    <string name="storage_location_edit_dialog_save">저장</string>
+    <string name="storage_location_delete_dialog_title">저장소 위치 제거</string>
+    <string name="storage_location_delete_dialog_message">\"%1$s\"을(를) 제거하시겠습니까? MCP 서버가 더 이상 이 위치의 파일에 접근할 수 없습니다.</string>
+    <string name="storage_location_delete_dialog_confirm">제거</string>
+    <string name="storage_location_delete_dialog_cancel">취소</string>
+    <string name="storage_location_allow_write_label">쓰기 허용</string>
+    <string name="storage_location_allow_delete_label">삭제 허용</string>
+    <string name="storage_builtin_locations_title">내장 위치</string>
+    <string name="storage_builtin_locations_description">항상 사용 가능합니다. MediaStore를 사용하여 추가 설정 없이 파일을 읽고 쓸 수 있습니다.</string>
+    <string name="storage_user_locations_title">사용자 위치</string>
+    <string name="storage_builtin_grant_all_files">모든 파일에 대한 접근 권한 부여</string>
+    <string name="storage_builtin_all_files_granted">모든 파일 접근 권한 부여됨</string>
+    <string name="storage_builtin_manage_access">접근 관리</string>
+    <string name="storage_file_size_limit_label">파일 크기 제한 (MB)</string>
+    <string name="storage_file_size_limit_error">%1$d~%2$d MB 사이여야 합니다</string>
+    <string name="storage_download_timeout_label">다운로드 시간 초과 (초)</string>
+    <string name="storage_download_timeout_error">%1$d~%2$d초 사이여야 합니다</string>
+    <string name="storage_allow_http_downloads_label">HTTP 다운로드 허용</string>
+    <string name="storage_allow_http_downloads_description">암호화되지 않은 HTTP URL에서 파일 다운로드 허용 (보안 취약)</string>
+    <string name="storage_allow_unverified_https_label">미검증 HTTPS 허용</string>
+    <string name="storage_allow_unverified_https_description">다운로드 시 미검증 HTTPS 인증서 수락 (보안 취약)</string>
+
+    <!-- Event Channel — start/stop dialogs -->
+    <string name="channel_not_configured_dialog_title">엔드포인트 URL이 설정되지 않음</string>
+    <string name="channel_not_configured_dialog_body">서비스를 시작하기 전에 설정 → 이벤트 채널에서 이벤트 채널 엔드포인트 URL을 구성하세요. 인증 토큰은 선택 사항이며 엔드포인트에서 필요로 하지 않으면 비워 둘 수 있습니다.</string>
+    <string name="channel_not_configured_dialog_ok">확인</string>
+
+    <!-- Access settings (OAuth + bearer) -->
+    <string name="access_title">접근</string>
+    <string name="access_oauth_label">OAuth</string>
+    <string name="access_oauth_supporting">활성 터널 필요 (HTTPS, 공용 접근성)</string>
+    <string name="access_connected_clients">연결된 클라이언트</string>
+    <string name="access_bearer_label">베어러 토큰 인증</string>
+    <string name="access_bearer_token_field_label">베어러 토큰</string>
+    <string name="access_public_url_label">공용 URL 재정의 (선택 사항)</string>
+    <string name="access_public_url_supporting">요청에서 자동 감지하려면 비워 두세요. OAuth 메타데이터와 공유 링크에 사용되는 호스트를 재정의합니다</string>
+    <string name="access_no_auth_warning_title">서버에 인증이 없음</string>
+    <string name="access_no_auth_warning_body">서버에 접근할 수 있는 사람은 누구나 이 기기를 완전히 제어할 수 있습니다.</string>
+    <string name="access_internet_exposure_warning_title">인터넷을 통해 접근 가능</string>
+    <string name="access_internet_exposure_warning_body">터널이 활성화되어 있고 인증이 꺼져 있어 Android 원격 제어를 인터넷을 통해 아무런 검사 없이 접근할 수 있습니다 — URL을 아는 사람은 누구나 이 기기를 완전히 제어할 수 있습니다. OAuth 또는 베어러 토큰을 활성화하세요.</string>
+    <string name="access_disable_auth_dialog_title">모든 인증을 비활성화하시겠습니까?</string>
+    <string name="access_disable_auth_dialog_body">서버에 인증이 전혀 없게 됩니다. 접근할 수 있는 사람은 누구나 완전히 제어할 수 있습니다. 계속하시겠습니까?</string>
+    <string name="access_disable_auth_confirm">그래도 비활성화</string>
+    <string name="access_disable_auth_cancel">취소</string>
+    <string name="access_token_show">토큰 표시</string>
+    <string name="access_token_hide">토큰 숨기기</string>
+    <string name="access_token_copy">토큰 복사</string>
+    <string name="access_token_regenerate">토큰 재생성</string>
+
+    <!-- Connected clients -->
+    <string name="oauth_clients_title">연결된 클라이언트</string>
+    <string name="oauth_clients_empty">연결된 클라이언트가 없습니다. 클라이언트는 OAuth를 통해 연결한 후 여기에 표시됩니다.</string>
+    <string name="oauth_clients_created">생성됨 %1$s</string>
+    <string name="oauth_clients_last_used">마지막 사용 %1$s</string>
+    <string name="oauth_clients_revoke">해지</string>
+    <string name="oauth_clients_revoke_dialog_title">클라이언트를 해지하시겠습니까?</string>
+    <string name="oauth_clients_revoke_dialog_body">해지하면 이 클라이언트의 토큰이 즉시 무효화됩니다. 다시 연결하려면 재승인해야 합니다.</string>
+    <string name="oauth_clients_revoke_confirm">해지</string>
+    <string name="oauth_clients_revoke_cancel">취소</string>
+
+    <!-- Pairing (short-code) -->
+    <string name="pairing_code_title">코드로 페어링</string>
+    <string name="pairing_code_desc">클라이언트(wallet Device 화면 또는 dai Mobile 페이지)에 이 코드를 입력하여 페어링하세요 — 복사할 토큰이 없습니다.</string>
+    <string name="pairing_code_expires">만료 %1$s</string>
+    <string name="pairing_code_copy">코드 복사</string>
+    <string name="pairing_code_refresh">새 코드</string>
+    <string name="paired_devices">페어링된 기기</string>
+    <string name="paired_devices_title">페어링된 기기</string>
+    <string name="paired_devices_empty">페어링된 기기가 없습니다. 클라이언트는 페어링 코드를 사용한 후 여기에 표시됩니다.</string>
+    <string name="paired_devices_created">페어링됨 %1$s</string>
+    <string name="paired_devices_last_used">마지막 사용 %1$s</string>
+    <string name="paired_devices_revoke">해지</string>
+    <string name="paired_devices_revoke_dialog_title">기기를 해지하시겠습니까?</string>
+    <string name="paired_devices_revoke_dialog_body">해지하면 이 기기의 페어링 토큰이 즉시 무효화됩니다. 새 코드로 다시 페어링해야 합니다.</string>
+    <string name="paired_devices_revoke_confirm">해지</string>
+    <string name="paired_devices_revoke_cancel">취소</string>
+    <string name="access_paired_devices_supporting">코드로 페어링한 클라이언트</string>
+
+    <!-- On-device approval -->
+    <string name="approval_title">연결 요청</string>
+    <string name="approval_empty">대기 중인 요청이 없습니다.</string>
+    <string name="approval_match_code_label">이 코드가 브라우저와 일치하는지 확인하세요:</string>
+    <string name="approval_approve">승인</string>
+    <string name="approval_deny">거부</string>
+    <string name="approval_expires_in">%1$s 후 만료</string>
+    <string name="approval_expired">요청이 만료되었습니다</string>
+    <string name="notification_channel_oauth_approval_name">연결 승인</string>
+    <string name="notification_oauth_approval_title">연결 요청 대기 중</string>
+    <string name="notification_oauth_approval_body">%1$d개의 요청 대기 중 — 탭하여 검토</string>
+    <string name="notification_channel_update_name">앱 업데이트</string>
+    <string name="notification_update_available_title">업데이트 사용 가능</string>
+    <string name="notification_update_available_body">버전 %1$s을(를) 사용할 수 있습니다 — 탭하여 릴리스 보기</string>
+    <string name="update_banner_text">업데이트 사용 가능: v%1$s — 탭하여 보기</string>
+    <string name="update_banner_open_description">릴리스 페이지 열기</string>
+    <string name="about_updates_section">업데이트</string>
+    <string name="about_auto_update_label">자동으로 업데이트 확인</string>
+    <string name="about_check_updates_button">업데이트 확인</string>
+    <string name="about_update_up_to_date">최신 버전을 사용 중입니다</string>
+    <string name="about_update_check_failed">업데이트를 확인할 수 없습니다. 나중에 다시 시도하세요.</string>
+    <string name="about_update_dev_build">개발 빌드에서는 업데이트 확인이 비활성화됩니다</string>
+    <string name="about_update_found">버전 %1$s을(를) 사용할 수 있습니다 — 탭하여 릴리스 보기</string>
+    <string name="event_channel_subtitle">알림 및 WiFi 이벤트 전달</string>
+    <string name="settings_privacy_title">개인정보 보호 모드</string>
+    <string name="settings_privacy_subtitle">AI 제공자로부터 개인 데이터 숨기기</string>
+    <string name="privacy_enable_label">개인정보 보호 모드 활성화</string>
+    <string name="privacy_consent_title">감지 모델을 다운로드하시겠습니까?</string>
+    <string name="privacy_consent_message">개인정보 보호 모드에는 약 154 MB의 감지 모델이 필요하며, Hugging Face(오픈 소스 ai4privacy 모델)에서 한 번 다운로드하고 체크섬으로 검증합니다. 계속하시겠습니까?</string>
+    <string name="privacy_consent_confirm">다운로드 및 활성화</string>
+    <string name="privacy_consent_cancel">취소</string>
+    <string name="privacy_download_progress">모델 다운로드 중… %1$d%%</string>
+    <string name="privacy_download_verifying">다운로드 검증 중…</string>
+    <string name="privacy_download_failed">모델 다운로드 실패: %1$s</string>
+    <string name="privacy_status_ready">활성 — 모델 로드됨</string>
+    <string name="privacy_status_deterministic">활성 — 패턴 감지만 (모델 범주 비활성화됨)</string>
+    <string name="privacy_status_unavailable">사용 불가: %1$s</string>
+    <string name="privacy_status_disabled">비활성화됨</string>
+    <string name="privacy_benchmark_estimate">MCP 도구는 평균적으로 약 +%1$s초가 소요됩니다 (화면 요소 100개 기준 추정)</string>
+    <string name="privacy_benchmark_running">기기 성능을 측정하는 중입니다… 앱을 계속 사용하거나 개인정보 보호 모드를 끌 수 있습니다. 측정은 자동으로 완료됩니다</string>
+    <string name="privacy_enable_preparing">개인정보 보호 모드 준비 중…</string>
+    <string name="privacy_detection_rates_header">측정된 감지율</string>
+    <string name="privacy_detection_rates_caption">범주별로 감지된 개인 데이터 항목의 비율로, 8개 언어에 걸친 현실적인 UI 스타일 콘텐츠에서 프로젝트의 효과성 벤치마크로 측정했습니다. 실제 결과는 콘텐츠와 언어에 따라 달라집니다.</string>
+    <string name="privacy_categories_header">보호되는 범주</string>
+    <string name="privacy_category_credentials">비밀번호 &amp; 자격 증명</string>
+    <string name="privacy_category_cards_iban">결제 카드 &amp; IBAN</string>
+    <string name="privacy_category_emails">이메일 주소</string>
+    <string name="privacy_category_phones">전화번호</string>
+    <string name="privacy_category_names">이름</string>
+    <string name="privacy_category_addresses">주소</string>
+    <string name="privacy_category_national_ids">국가 ID &amp; 문서</string>
+    <string name="privacy_mode_header">가리기 스타일</string>
+    <string name="privacy_mode_pseudonymize">가명 처리 (일관된 자리표시자, 도구가 계속 작동함)</string>
+    <string name="privacy_mode_redact">완전히 가리기</string>
+    <string name="privacy_format_header">자리표시자 형식</string>
+    <string name="privacy_format_hashed">일관됨 — 동일한 값은 항상 동일한 자리표시자를 유지합니다 (EMAIL#a1b2c)</string>
+    <string name="privacy_format_numbered">번호 매김 — 세션별 순차 ([EMAIL_1])</string>
+    <string name="privacy_disclaimer">감지는 최선의 완화책일 뿐 보장이 아닙니다. 모든 개인 데이터를 감지하는 탐지기는 없으며, 스크린샷은 표시된 화면 요소에 범위가 있을 때만 마스킹됩니다.</string>
+    <string name="privacy_card_title">개인 데이터가 걱정되시나요?</string>
+    <string name="privacy_card_action">개인정보 보호 모드 설정</string>
+    <string name="privacy_card_dismiss">닫기</string>
+</resources>

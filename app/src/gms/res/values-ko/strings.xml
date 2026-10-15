@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="event_channel_subtitle">알림, WiFi 및 지오펜스 이벤트 전달</string>
+    <!-- gms: Location rationale mentions geofences (overrides the main default) -->
+    <string name="permission_location_rationale">GPS 위치를 읽고 지오펜스를 트리거합니다.</string>
+    <!-- gms: Background Location permission row (geofence-only) -->
+    <string name="permission_background_location">백그라운드 위치</string>
+    <string name="permission_background_location_open_settings">설정 열기</string>
+    <string name="permission_background_location_rationale">백그라운드에서 지오펜스 이벤트를 발생시킵니다.</string>
+</resources>

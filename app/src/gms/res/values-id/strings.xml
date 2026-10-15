@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="event_channel_subtitle">Penerusan peristiwa notifikasi, WiFi, dan geofence</string>
+    <!-- gms: Location rationale mentions geofences (overrides the main default) -->
+    <string name="permission_location_rationale">Membaca posisi GPS dan memicu geofence.</string>
+    <!-- gms: Background Location permission row (geofence-only) -->
+    <string name="permission_background_location">Lokasi Latar Belakang</string>
+    <string name="permission_background_location_open_settings">Buka Pengaturan</string>
+    <string name="permission_background_location_rationale">Memicu peristiwa geofence saat berjalan di latar belakang.</string>
+</resources>

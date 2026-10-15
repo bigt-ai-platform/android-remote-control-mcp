@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Controle remoto Android MCP</string>
+    <string name="share_target_label">Controle remoto Android MCP</string>
+
+    <!-- Accessibility Service -->
+    <string name="accessibility_service_description">Fornece recursos de controle remoto via protocolo MCP. Permite inspecionar elementos da interface e executar ações no dispositivo.</string>
+
+    <!-- Notification Channel -->
+    <string name="notification_channel_mcp_server_id">mcp_server_channel</string>
+    <string name="notification_channel_mcp_server_name">Servidor MCP</string>
+    <!-- Notification Content -->
+    <string name="notification_mcp_server_title">Servidor MCP em execução</string>
+
+    <!-- App Bar -->
+    <string name="app_bar_title">Controle Remoto MCP</string>
+
+    <!-- Tabs -->
+    <string name="tab_server">Servidor</string>
+    <string name="tab_settings">Configurações</string>
+    <string name="tab_about">Sobre</string>
+
+    <!-- Settings Sub-pages -->
+    <string name="settings_general_title">Geral</string>
+    <string name="settings_general_subtitle">Porta, endereço, dispositivo, início automático</string>
+    <string name="settings_access_title">Acesso</string>
+    <string name="settings_access_subtitle">OAuth, token de acesso, clientes conectados</string>
+    <string name="settings_security_title">Segurança</string>
+    <string name="settings_security_subtitle">HTTPS, certificado</string>
+    <string name="settings_tunnel_title">Túnel</string>
+    <string name="settings_tunnel_subtitle">Cloudflare, ngrok</string>
+    <string name="settings_mcp_tools_title">Ferramentas MCP</string>
+    <string name="settings_mcp_tools_subtitle">Ativar ou desativar ferramentas</string>
+    <string name="settings_mcp_tools_placeholder">Permissões de ferramentas — disponível na próxima atualização</string>
+    <string name="settings_mcp_tools_missing_permission">Permissão não concedida — estas ferramentas ficam ocultas dos clientes. Toque para conceder.</string>
+    <string name="settings_mcp_tools_param_missing_permission">Permissão não concedida — esta opção não está disponível. Toque para conceder.</string>
+    <string name="settings_permissions_title">Permissões</string>
+    <string name="settings_permissions_subtitle">Acessibilidade, câmera, microfone</string>
+    <string name="settings_storage_title">Armazenamento</string>
+    <string name="settings_storage_subtitle">Locais de armazenamento, limites de arquivo</string>
+
+    <!-- About Screen -->
+    <string name="about_links_section">Links</string>
+    <string name="about_link_github">Repositório GitHub</string>
+    <string name="about_link_license">Licença MIT</string>
+    <string name="about_link_issues">Relatar um problema</string>
+    <string name="about_attributions_section">Atribuições</string>
+    <string name="about_attribution_dbip">Dados de geolocalização de IP por DB-IP (db-ip.com), licenciados sob CC BY 4.0.</string>
+    <string name="about_attribution_privacy_model">Modelo de detecção de PII do Modo Privacidade por Ai4Privacy (licença MIT). Criado com Llama.</string>
+    <string name="about_footer">Código aberto, licença MIT</string>
+
+    <!-- Clipboard -->
+    <string name="copied_to_clipboard">Copiado para a área de transferência</string>
+
+    <!-- Server Status -->
+    <string name="server_status_title">Status do servidor</string>
+    <string name="server_status_running">Em execução</string>
+    <string name="server_status_stopped">Parado</string>
+    <string name="server_status_starting">Iniciando…</string>
+    <string name="server_status_stopping">Parando…</string>
+    <string name="server_status_error">Erro: %1$s</string>
+    <string name="server_action_start">Iniciar</string>
+    <string name="server_action_stop">Parar</string>
+
+    <!-- Configuration -->
+    <string name="configuration_title">Configuração</string>
+    <string name="config_binding_address_label">Endereço de vinculação</string>
+    <string name="config_binding_localhost">Localhost (127.0.0.1)</string>
+    <string name="config_binding_network">Rede (0.0.0.0)</string>
+    <string name="config_port_label">Porta</string>
+    <string name="config_device_slug_label">Slug do dispositivo (opcional)</string>
+    <string name="config_device_slug_hint">ex.: pixel7, celular_trabalho</string>
+    <string name="config_bearer_token_label">Token de acesso</string>
+    <string name="config_token_show">Mostrar token</string>
+    <string name="config_token_hide">Ocultar token</string>
+    <string name="config_token_copy">Copiar token</string>
+    <string name="config_token_regenerate">Regenerar token</string>
+    <string name="config_token_clear">Limpar token</string>
+    <string name="config_bearer_token_empty_warning_title">Autenticação desativada</string>
+    <string name="config_bearer_token_empty_warning_body">O token de acesso está vazio, então o servidor MCP aceita solicitações não autenticadas de qualquer pessoa que consiga alcançá-lo. Pare o servidor (se estiver em execução) e pressione Regenerar para ativar a autenticação.</string>
+    <string name="config_auto_start_label">Iniciar automaticamente na inicialização</string>
+    <string name="config_hide_from_recents_label">Ocultar dos recentes</string>
+    <string name="config_hide_from_recents_description">Exclui o app da visão de apps recentes do Android.</string>
+    <string name="config_tool_call_indicator_label">Mostrar indicador de chamadas de ferramentas</string>
+    <string name="config_tool_call_indicator_description">Exibe uma sobreposição segura para a privacidade enquanto o MCP controla este dispositivo.</string>
+    <string name="config_https_enabled_label">Ativar HTTPS</string>
+    <string name="config_certificate_title">Certificado HTTPS</string>
+    <string name="config_cert_auto_generated">Autoassinado gerado automaticamente</string>
+    <string name="config_cert_custom">Certificado personalizado (.p12/.pfx)</string>
+    <string name="config_hostname_label">Nome de host do certificado</string>
+
+    <!-- Network Security Warning -->
+    <string name="network_warning_title">Aviso de exposição de rede</string>
+    <string name="network_warning_message">Vincular a 0.0.0.0 torna o servidor MCP acessível a:\n\n\u2022 Todos os dispositivos na sua rede WiFi atual\n\u2022 Dispositivos conectados ao seu hotspot\n\u2022 Potencialmente outros dispositivos, dependendo da configuração de rede\n\nIsso é um RISCO DE SEGURANÇA em redes públicas/não confiáveis.\n\nUse esta opção apenas em redes privadas confiáveis.</string>
+    <string name="network_warning_confirm">Entendi, continuar</string>
+    <string name="network_warning_cancel">Cancelar</string>
+
+    <!-- Permissions -->
+    <string name="permissions_title">Permissões</string>
+    <string name="permission_accessibility">Serviço de acessibilidade</string>
+    <string name="permission_notifications">Notificações</string>
+    <string name="permission_enable">Ativar</string>
+    <string name="permission_enabled">Ativado</string>
+    <string name="permission_granted">Concedido</string>
+    <string name="permission_grant">Conceder</string>
+    <string name="permission_camera">Câmera</string>
+    <string name="permission_microphone">Microfone</string>
+    <string name="permission_notification_listener">Leitor de notificações</string>
+    <string name="permission_location">Localização</string>
+
+    <!-- Permissions screen: section headers -->
+    <string name="permission_section_required_title">Obrigatórias</string>
+    <string name="permission_section_required_subtitle">Necessárias para o app controlar seu dispositivo.</string>
+    <string name="permission_section_required_if_title">Obrigatória se você usar um recurso</string>
+    <string name="permission_section_required_if_subtitle">Conceda apenas os recursos que você pretende usar.</string>
+    <string name="permission_section_optional_title">Opcionais</string>
+    <string name="permission_section_optional_subtitle">Úteis, mas tudo funciona sem elas.</string>
+    <!-- Permissions screen: per-permission rationale (default / foss values) -->
+    <string name="permission_accessibility_rationale">Lê a tela e realiza toques, deslizes e digitação.</string>
+    <string name="permission_notifications_rationale">Solicitações de aprovação OAuth, alertas do Canal de Eventos e status do servidor.</string>
+    <string name="permission_notification_listener_rationale">Lê e age conforme as notificações do dispositivo.</string>
+    <string name="permission_camera_rationale">Tirar fotos e gravar vídeos.</string>
+    <string name="permission_location_rationale">Lê a posição do GPS.</string>
+    <string name="permission_microphone_rationale">Adiciona áudio ao vídeo gravado.</string>
+
+    <!-- Permission Warning (main screen: accessibility is the one required permission) -->
+    <string name="permission_warning_title">Permissão de acessibilidade necessária</string>
+    <string name="permission_warning_action">Ir para permissões</string>
+    <string name="server_pending_approvals_title">%1$d aprovação(ões) de conexão pendente(s)</string>
+    <string name="server_pending_approvals_action">Revisar</string>
+
+    <!-- Network Access Suggestion (main screen: localhost-only bind with no tunnel) -->
+    <string name="server_network_access_suggestion_title">Acessível apenas deste dispositivo</string>
+    <string name="server_network_access_suggestion_wifi">Ativar acesso por Wi-Fi</string>
+    <string name="server_network_access_suggestion_tunnel">Configurar túnel</string>
+
+    <!-- Battery Optimization -->
+    <string name="battery_optimization_card_title">Mantenha o servidor em execução</string>
+    <string name="battery_optimization_card_action">Desativar otimização de bateria</string>
+
+    <!-- Server Logs -->
+    <string name="server_logs_title">Logs do servidor</string>
+    <string name="server_logs_empty">Nenhuma entrada de log ainda</string>
+    <string name="server_logs_show_more">Mostrar mais</string>
+    <string name="server_logs_clear">Limpar logs</string>
+    <string name="server_logs_clear_dialog_title">Limpar logs?</string>
+    <string name="server_logs_clear_dialog_body">Todas as entradas de log do servidor serão excluídas permanentemente.</string>
+    <string name="server_logs_clear_dialog_confirm">Limpar</string>
+    <string name="server_logs_clear_dialog_cancel">Cancelar</string>
+    <string name="server_logs_type_tool_call">Chamadas de ferramentas</string>
+    <string name="server_logs_type_tunnel">Túnel</string>
+    <string name="server_logs_type_server">Servidor</string>
+    <string name="server_logs_type_oauth">OAuth</string>
+    <string name="server_logs_type_auth">Autenticação</string>
+    <string name="server_logs_type_channel">Canal</string>
+    <string name="server_logs_type_settings">Configurações</string>
+    <string name="server_logs_type_privacy">Privacidade</string>
+
+    <!-- Remote Access / Tunnel -->
+    <string name="remote_access_title">Acesso remoto</string>
+    <string name="remote_access_enabled_label">Ativar acesso remoto</string>
+    <string name="remote_access_provider_label">Provedor de túnel</string>
+    <string name="remote_access_provider_cloudflare">Cloudflare</string>
+    <string name="remote_access_provider_cloudflare_desc">Não requer conta</string>
+    <string name="remote_access_provider_ngrok">ngrok</string>
+    <string name="remote_access_provider_ngrok_desc">Requer conta</string>
+    <string name="remote_access_ngrok_authtoken_label">Authtoken do ngrok</string>
+    <string name="remote_access_ngrok_domain_label">Domínio (opcional)</string>
+    <string name="remote_access_ngrok_domain_hint">Deixe vazio para atribuição automática</string>
+    <string name="remote_access_status_disconnected">Desconectado</string>
+    <string name="remote_access_status_connecting">Conectando…</string>
+    <string name="remote_access_status_connected">Conectado</string>
+    <string name="remote_access_status_error">Erro: %1$s</string>
+    <string name="remote_access_public_url_label">URL pública</string>
+    <string name="remote_access_ngrok_unsupported">O ngrok não está disponível neste dispositivo (requer arm64-v8a ou x86_64)</string>
+    <string name="remote_access_cloudflare_mode_label">Modo Cloudflare</string>
+    <string name="remote_access_cloudflare_mode_free">Grátis</string>
+    <string name="remote_access_cloudflare_mode_free_desc">URL temporária aleatória, sem conta</string>
+    <string name="remote_access_cloudflare_mode_token">Com token</string>
+    <string name="remote_access_cloudflare_mode_token_desc">Nome de host estático via sua conta Cloudflare</string>
+    <string name="remote_access_cloudflare_token_label">Token do túnel Cloudflare</string>
+    <string name="remote_access_cloudflare_extra_args_label">Argumentos extras</string>
+    <string name="remote_access_cloudflare_extra_args_hint">--edge region1.v2.argotunnel.com:7844</string>
+    <string name="remote_access_cloudflare_extra_args_help">Sinalizadores opcionais passados ao cloudflared (por exemplo, especifique --edge para contornar problemas de DNS)</string>
+    <string name="remote_access_cloudflare_service_url_help">No painel da Cloudflare, defina o Nome de host público → Serviço deste túnel como:</string>
+    <string name="remote_access_cloudflare_service_url_copy">Copiar URL do serviço</string>
+    <string name="remote_access_https_disabled_warning">O acesso remoto não está disponível enquanto o HTTPS estiver ativado. Desative o HTTPS para usar um túnel.</string>
+    <string name="remote_access_no_route_configured">Nenhuma rota configurada</string>
+    <string name="remote_access_route_misconfigured">A rota não aponta para este servidor</string>
+
+    <!-- Connection Info -->
+    <string name="connection_info_title">Informações de conexão</string>
+    <string name="connection_info_ip">Endereço IP</string>
+    <string name="connection_info_port">Porta</string>
+    <string name="connection_info_url">URL</string>
+    <string name="connection_info_token">Token</string>
+    <string name="connection_info_copy_all">Copiar tudo</string>
+    <string name="connection_info_share">Compartilhar</string>
+
+    <!-- Storage Locations -->
+    <string name="storage_locations_title">Locais de armazenamento</string>
+    <string name="storage_locations_description">Adicione locais de armazenamento para permitir operações de arquivo por meio das ferramentas MCP. Cada local concede acesso a um diretório que você escolher.</string>
+    <string name="storage_location_no_locations">Nenhum local de armazenamento adicionado. Toque em + para adicionar um.</string>
+    <string name="storage_location_path_label">Caminho: %1$s</string>
+    <string name="storage_location_add_button">Adicionar local de armazenamento</string>
+    <string name="storage_location_add_dialog_title">Adicionar local de armazenamento</string>
+    <string name="storage_location_add_dialog_description_label">Descrição (opcional)</string>
+    <string name="storage_location_add_dialog_description_hint">ex.: Arquivos do projeto, Downloads</string>
+    <string name="storage_location_add_dialog_browse">Procurar</string>
+    <string name="storage_location_add_dialog_selected">Selecionado: %1$s</string>
+    <string name="storage_location_add_dialog_no_selection">Nenhum diretório selecionado</string>
+    <string name="storage_location_add_dialog_add">Adicionar</string>
+    <string name="storage_location_add_dialog_cancel">Cancelar</string>
+    <string name="storage_location_add_dialog_duplicate">Este diretório já foi adicionado.</string>
+    <string name="storage_location_description_counter">%1$d / %2$d</string>
+    <string name="storage_location_edit_dialog_title">Editar descrição</string>
+    <string name="storage_location_edit_dialog_save">Salvar</string>
+    <string name="storage_location_delete_dialog_title">Remover local de armazenamento</string>
+    <string name="storage_location_delete_dialog_message">Remover \"%1$s\"? O servidor MCP não poderá mais acessar arquivos neste local.</string>
+    <string name="storage_location_delete_dialog_confirm">Remover</string>
+    <string name="storage_location_delete_dialog_cancel">Cancelar</string>
+    <string name="storage_location_allow_write_label">Permitir gravação</string>
+    <string name="storage_location_allow_delete_label">Permitir exclusão</string>
+    <string name="storage_builtin_locations_title">Locais integrados</string>
+    <string name="storage_builtin_locations_description">Sempre disponíveis. Use MediaStore para ler e gravar arquivos sem configuração adicional.</string>
+    <string name="storage_user_locations_title">Locais do usuário</string>
+    <string name="storage_builtin_grant_all_files">Conceder acesso a todos os arquivos</string>
+    <string name="storage_builtin_all_files_granted">Acesso a todos os arquivos concedido</string>
+    <string name="storage_builtin_manage_access">Gerenciar acesso</string>
+    <string name="storage_file_size_limit_label">Limite de tamanho de arquivo (MB)</string>
+    <string name="storage_file_size_limit_error">Deve estar entre %1$d e %2$d MB</string>
+    <string name="storage_download_timeout_label">Tempo limite de download (segundos)</string>
+    <string name="storage_download_timeout_error">Deve estar entre %1$d e %2$d segundos</string>
+    <string name="storage_allow_http_downloads_label">Permitir downloads HTTP</string>
+    <string name="storage_allow_http_downloads_description">Permite baixar arquivos de URLs HTTP não criptografadas (menos seguro)</string>
+    <string name="storage_allow_unverified_https_label">Permitir HTTPS não verificado</string>
+    <string name="storage_allow_unverified_https_description">Aceita certificados HTTPS não verificados para downloads (menos seguro)</string>
+
+    <!-- Event Channel — start/stop dialogs -->
+    <string name="channel_not_configured_dialog_title">URL do endpoint não definida</string>
+    <string name="channel_not_configured_dialog_body">Configure a URL do endpoint do canal de eventos em Configurações → Canal de Eventos antes de iniciar o serviço. O token de autenticação é opcional e pode ficar vazio se o seu endpoint não exigir.</string>
+    <string name="channel_not_configured_dialog_ok">OK</string>
+
+    <!-- Access settings (OAuth + bearer) -->
+    <string name="access_title">Acesso</string>
+    <string name="access_oauth_label">OAuth</string>
+    <string name="access_oauth_supporting">Requer um túnel ativo (HTTPS, acessibilidade pública)</string>
+    <string name="access_connected_clients">Clientes conectados</string>
+    <string name="access_bearer_label">Autenticação por token de acesso</string>
+    <string name="access_bearer_token_field_label">Token de acesso</string>
+    <string name="access_public_url_label">Substituição da URL pública (opcional)</string>
+    <string name="access_public_url_supporting">Deixe vazio para detectar automaticamente a partir da solicitação; substitui o host usado para metadados OAuth e links de compartilhamento</string>
+    <string name="access_no_auth_warning_title">O servidor NÃO tem autenticação</string>
+    <string name="access_no_auth_warning_body">Qualquer pessoa que consiga alcançar o servidor tem controle total deste dispositivo.</string>
+    <string name="access_internet_exposure_warning_title">Acessível pela internet</string>
+    <string name="access_internet_exposure_warning_body">Um túnel está ativo e a autenticação está desativada, então o Controle remoto Android MCP pode ser acessado pela internet sem nenhuma verificação — qualquer pessoa com a URL tem controle total deste dispositivo. Ative o OAuth ou o token de acesso.</string>
+    <string name="access_disable_auth_dialog_title">Desativar toda a autenticação?</string>
+    <string name="access_disable_auth_dialog_body">Isso deixa o servidor SEM autenticação. Qualquer pessoa que consiga alcançá-lo tem controle total. Continuar?</string>
+    <string name="access_disable_auth_confirm">Desativar mesmo assim</string>
+    <string name="access_disable_auth_cancel">Cancelar</string>
+    <string name="access_token_show">Mostrar token</string>
+    <string name="access_token_hide">Ocultar token</string>
+    <string name="access_token_copy">Copiar token</string>
+    <string name="access_token_regenerate">Regenerar token</string>
+
+    <!-- Connected clients -->
+    <string name="oauth_clients_title">Clientes conectados</string>
+    <string name="oauth_clients_empty">Nenhum cliente conectado. Os clientes aparecem aqui depois de se conectarem via OAuth.</string>
+    <string name="oauth_clients_created">Criado em %1$s</string>
+    <string name="oauth_clients_last_used">Usado pela última vez em %1$s</string>
+    <string name="oauth_clients_revoke">Revogar</string>
+    <string name="oauth_clients_revoke_dialog_title">Revogar cliente?</string>
+    <string name="oauth_clients_revoke_dialog_body">A revogação invalida imediatamente os tokens deste cliente. Ele precisará autorizar novamente para se reconectar.</string>
+    <string name="oauth_clients_revoke_confirm">Revogar</string>
+    <string name="oauth_clients_revoke_cancel">Cancelar</string>
+
+    <!-- Pairing (short-code) -->
+    <string name="pairing_code_title">Emparelhar com um código</string>
+    <string name="pairing_code_desc">Digite este código no cliente (tela Dispositivo da carteira, ou página dai Mobile) para emparelhar — sem token para copiar.</string>
+    <string name="pairing_code_expires">Expira em %1$s</string>
+    <string name="pairing_code_copy">Copiar código</string>
+    <string name="pairing_code_refresh">Novo código</string>
+    <string name="paired_devices">Dispositivos emparelhados</string>
+    <string name="paired_devices_title">Dispositivos emparelhados</string>
+    <string name="paired_devices_empty">Nenhum dispositivo emparelhado. Um cliente aparece aqui depois de usar um código de emparelhamento.</string>
+    <string name="paired_devices_created">Emparelhado em %1$s</string>
+    <string name="paired_devices_last_used">Usado pela última vez em %1$s</string>
+    <string name="paired_devices_revoke">Revogar</string>
+    <string name="paired_devices_revoke_dialog_title">Revogar dispositivo?</string>
+    <string name="paired_devices_revoke_dialog_body">A revogação invalida imediatamente o token de emparelhamento deste dispositivo. Ele precisará emparelhar novamente com um novo código.</string>
+    <string name="paired_devices_revoke_confirm">Revogar</string>
+    <string name="paired_devices_revoke_cancel">Cancelar</string>
+    <string name="access_paired_devices_supporting">Clientes que emparelharam com um código</string>
+
+    <!-- On-device approval -->
+    <string name="approval_title">Solicitações de conexão</string>
+    <string name="approval_empty">Nenhuma solicitação pendente.</string>
+    <string name="approval_match_code_label">Confirme se este código corresponde ao do seu navegador:</string>
+    <string name="approval_approve">Aprovar</string>
+    <string name="approval_deny">Negar</string>
+    <string name="approval_expires_in">Expira em %1$s</string>
+    <string name="approval_expired">Solicitação expirada</string>
+    <string name="notification_channel_oauth_approval_name">Aprovações de conexão</string>
+    <string name="notification_oauth_approval_title">Solicitação de conexão pendente</string>
+    <string name="notification_oauth_approval_body">%1$d solicitação(ões) aguardando — toque para revisar</string>
+    <string name="notification_channel_update_name">Atualizações do app</string>
+    <string name="notification_update_available_title">Atualização disponível</string>
+    <string name="notification_update_available_body">A versão %1$s está disponível — toque para ver o lançamento</string>
+    <string name="update_banner_text">Atualização disponível: v%1$s — toque para ver</string>
+    <string name="update_banner_open_description">Abrir a página do lançamento</string>
+    <string name="about_updates_section">Atualizações</string>
+    <string name="about_auto_update_label">Verificar atualizações automaticamente</string>
+    <string name="about_check_updates_button">Verificar atualizações</string>
+    <string name="about_update_up_to_date">Você está na versão mais recente</string>
+    <string name="about_update_check_failed">Não foi possível verificar atualizações. Tente novamente mais tarde.</string>
+    <string name="about_update_dev_build">As verificações de atualização estão desativadas para compilações de desenvolvimento</string>
+    <string name="about_update_found">A versão %1$s está disponível — toque para ver o lançamento</string>
+    <string name="event_channel_subtitle">Encaminhamento de notificações e eventos de WiFi</string>
+    <string name="settings_privacy_title">Modo Privacidade</string>
+    <string name="settings_privacy_subtitle">Ocultar dados pessoais de provedores de IA</string>
+    <string name="privacy_enable_label">Ativar Modo Privacidade</string>
+    <string name="privacy_consent_title">Baixar modelo de detecção?</string>
+    <string name="privacy_consent_message">O Modo Privacidade precisa de um modelo de detecção de ~154 MB, baixado uma vez do Hugging Face (o modelo de código aberto ai4privacy) e verificado por checksum. Continuar?</string>
+    <string name="privacy_consent_confirm">Baixar e ativar</string>
+    <string name="privacy_consent_cancel">Cancelar</string>
+    <string name="privacy_download_progress">Baixando modelo… %1$d%%</string>
+    <string name="privacy_download_verifying">Verificando download…</string>
+    <string name="privacy_download_failed">Falha no download do modelo: %1$s</string>
+    <string name="privacy_status_ready">Ativo — modelo carregado</string>
+    <string name="privacy_status_deterministic">Ativo — apenas detecção por padrões (categorias do modelo desativadas)</string>
+    <string name="privacy_status_unavailable">INDISPONÍVEL: %1$s</string>
+    <string name="privacy_status_disabled">Desativado</string>
+    <string name="privacy_benchmark_estimate">As ferramentas MCP levarão aproximadamente +%1$s s em média (estimado para 100 elementos na tela)</string>
+    <string name="privacy_benchmark_running">Medindo o desempenho no dispositivo… você pode continuar usando o app ou desativar o Modo Privacidade; a medição termina por conta própria</string>
+    <string name="privacy_enable_preparing">Preparando o Modo Privacidade…</string>
+    <string name="privacy_detection_rates_header">Taxas de detecção medidas</string>
+    <string name="privacy_detection_rates_caption">Proporção de itens de dados pessoais detectados por categoria, medida com o benchmark de eficácia do projeto em conteúdo realista no estilo de interface em 8 idiomas. Os resultados reais variam conforme o conteúdo e o idioma.</string>
+    <string name="privacy_categories_header">Categorias protegidas</string>
+    <string name="privacy_category_credentials">Senhas &amp; credenciais</string>
+    <string name="privacy_category_cards_iban">Cartões de pagamento &amp; IBANs</string>
+    <string name="privacy_category_emails">Endereços de e-mail</string>
+    <string name="privacy_category_phones">Números de telefone</string>
+    <string name="privacy_category_names">Nomes</string>
+    <string name="privacy_category_addresses">Endereços</string>
+    <string name="privacy_category_national_ids">IDs e documentos nacionais</string>
+    <string name="privacy_mode_header">Estilo de ocultação</string>
+    <string name="privacy_mode_pseudonymize">Pseudonimizar (substitutos consistentes, as ferramentas continuam funcionando)</string>
+    <string name="privacy_mode_redact">Ocultar totalmente</string>
+    <string name="privacy_format_header">Formato do substituto</string>
+    <string name="privacy_format_hashed">Consistente — o mesmo valor sempre mantém o mesmo substituto (EMAIL#a1b2c)</string>
+    <string name="privacy_format_numbered">Numerado — sequencial por sessão ([EMAIL_1])</string>
+    <string name="privacy_disclaimer">A detecção é uma mitigação de melhor esforço, não uma garantia. Nenhum detector captura todos os dados pessoais; as capturas de tela são mascaradas apenas onde os elementos sinalizados têm limites definidos.</string>
+    <string name="privacy_card_title">Preocupado com dados pessoais?</string>
+    <string name="privacy_card_action">Configurar o Modo Privacidade</string>
+    <string name="privacy_card_dismiss">Dispensar</string>
+</resources>

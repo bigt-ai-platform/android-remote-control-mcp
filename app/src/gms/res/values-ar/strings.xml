@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="event_channel_subtitle">إشعارات وتحويل أحداث WiFi والسياج الجغرافي</string>
+    <!-- gms: Location rationale mentions geofences (overrides the main default) -->
+    <string name="permission_location_rationale">قراءة موقع GPS وتشغيل الأسوار الجغرافية.</string>
+    <!-- gms: Background Location permission row (geofence-only) -->
+    <string name="permission_background_location">الموقع في الخلفية</string>
+    <string name="permission_background_location_open_settings">فتح الإعدادات</string>
+    <string name="permission_background_location_rationale">إطلاق أحداث السياج الجغرافي أثناء العمل في الخلفية.</string>
+</resources>

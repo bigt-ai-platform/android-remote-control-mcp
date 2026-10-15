@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="event_channel_subtitle">Пересылка уведомлений, событий WiFi и геозон</string>
+    <!-- gms: Location rationale mentions geofences (overrides the main default) -->
+    <string name="permission_location_rationale">Чтение координат GPS и запуск геозон.</string>
+    <!-- gms: Background Location permission row (geofence-only) -->
+    <string name="permission_background_location">Местоположение в фоне</string>
+    <string name="permission_background_location_open_settings">Открыть настройки</string>
+    <string name="permission_background_location_rationale">Срабатывание событий геозон в фоне.</string>
+</resources>

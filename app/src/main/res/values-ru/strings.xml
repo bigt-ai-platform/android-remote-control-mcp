@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Удалённое управление Android MCP</string>
+    <string name="share_target_label">Удалённое управление Android MCP</string>
+
+    <!-- Accessibility Service -->
+    <string name="accessibility_service_description">Обеспечивает возможности удалённого управления по протоколу MCP. Позволяет анализировать элементы интерфейса и выполнять действия на устройстве.</string>
+
+    <!-- Notification Channel -->
+    <string name="notification_channel_mcp_server_id">mcp_server_channel</string>
+    <string name="notification_channel_mcp_server_name">Сервер MCP</string>
+    <!-- Notification Content -->
+    <string name="notification_mcp_server_title">Сервер MCP запущен</string>
+
+    <!-- App Bar -->
+    <string name="app_bar_title">Удалённое управление MCP</string>
+
+    <!-- Tabs -->
+    <string name="tab_server">Сервер</string>
+    <string name="tab_settings">Настройки</string>
+    <string name="tab_about">О приложении</string>
+
+    <!-- Settings Sub-pages -->
+    <string name="settings_general_title">Основные</string>
+    <string name="settings_general_subtitle">Порт, адрес, устройство, автозапуск</string>
+    <string name="settings_access_title">Доступ</string>
+    <string name="settings_access_subtitle">OAuth, bearer-токен, подключённые клиенты</string>
+    <string name="settings_security_title">Безопасность</string>
+    <string name="settings_security_subtitle">HTTPS, сертификат</string>
+    <string name="settings_tunnel_title">Туннель</string>
+    <string name="settings_tunnel_subtitle">Cloudflare, ngrok</string>
+    <string name="settings_mcp_tools_title">Инструменты MCP</string>
+    <string name="settings_mcp_tools_subtitle">Включение и отключение инструментов</string>
+    <string name="settings_mcp_tools_placeholder">Разрешения инструментов — доступны в следующем обновлении</string>
+    <string name="settings_mcp_tools_missing_permission">Разрешение не предоставлено — эти инструменты скрыты от клиентов. Нажмите, чтобы предоставить.</string>
+    <string name="settings_mcp_tools_param_missing_permission">Разрешение не предоставлено — эта опция недоступна. Нажмите, чтобы предоставить.</string>
+    <string name="settings_permissions_title">Разрешения</string>
+    <string name="settings_permissions_subtitle">Специальные возможности, камера, микрофон</string>
+    <string name="settings_storage_title">Хранилище</string>
+    <string name="settings_storage_subtitle">Расположения хранилища, лимиты файлов</string>
+
+    <!-- About Screen -->
+    <string name="about_links_section">Ссылки</string>
+    <string name="about_link_github">Репозиторий GitHub</string>
+    <string name="about_link_license">Лицензия MIT</string>
+    <string name="about_link_issues">Сообщить о проблеме</string>
+    <string name="about_attributions_section">Благодарности</string>
+    <string name="about_attribution_dbip">Данные геолокации по IP от DB-IP (db-ip.com), лицензия CC BY 4.0.</string>
+    <string name="about_attribution_privacy_model">Модель обнаружения PII для режима приватности от Ai4Privacy (лицензия MIT). Создана с помощью Llama.</string>
+    <string name="about_footer">Открытый исходный код, лицензия MIT</string>
+
+    <!-- Clipboard -->
+    <string name="copied_to_clipboard">Скопировано в буфер обмена</string>
+
+    <!-- Server Status -->
+    <string name="server_status_title">Состояние сервера</string>
+    <string name="server_status_running">Работает</string>
+    <string name="server_status_stopped">Остановлен</string>
+    <string name="server_status_starting">Запуск…</string>
+    <string name="server_status_stopping">Остановка…</string>
+    <string name="server_status_error">Ошибка: %1$s</string>
+    <string name="server_action_start">Запустить</string>
+    <string name="server_action_stop">Остановить</string>
+
+    <!-- Configuration -->
+    <string name="configuration_title">Конфигурация</string>
+    <string name="config_binding_address_label">Адрес привязки</string>
+    <string name="config_binding_localhost">Локальный (127.0.0.1)</string>
+    <string name="config_binding_network">Сеть (0.0.0.0)</string>
+    <string name="config_port_label">Порт</string>
+    <string name="config_device_slug_label">Идентификатор устройства (необязательно)</string>
+    <string name="config_device_slug_hint">напр., pixel7, work_phone</string>
+    <string name="config_bearer_token_label">Bearer-токен</string>
+    <string name="config_token_show">Показать токен</string>
+    <string name="config_token_hide">Скрыть токен</string>
+    <string name="config_token_copy">Копировать токен</string>
+    <string name="config_token_regenerate">Создать новый токен</string>
+    <string name="config_token_clear">Очистить токен</string>
+    <string name="config_bearer_token_empty_warning_title">Аутентификация отключена</string>
+    <string name="config_bearer_token_empty_warning_body">Bearer-токен пуст, поэтому сервер MCP принимает неаутентифицированные запросы от любого, кто может до него добраться. Остановите сервер (если он запущен), затем нажмите «Создать новый», чтобы включить аутентификацию.</string>
+    <string name="config_auto_start_label">Автозапуск при загрузке</string>
+    <string name="config_hide_from_recents_label">Скрыть из недавних</string>
+    <string name="config_hide_from_recents_description">Исключить приложение из обзора недавних приложений Android.</string>
+    <string name="config_tool_call_indicator_label">Показывать индикатор вызова инструментов</string>
+    <string name="config_tool_call_indicator_description">Показывать безопасный для приватности оверлей, пока MCP управляет этим устройством.</string>
+    <string name="config_https_enabled_label">Включить HTTPS</string>
+    <string name="config_certificate_title">Сертификат HTTPS</string>
+    <string name="config_cert_auto_generated">Автоматически созданный самоподписанный</string>
+    <string name="config_cert_custom">Собственный сертификат (.p12/.pfx)</string>
+    <string name="config_hostname_label">Имя хоста сертификата</string>
+
+    <!-- Network Security Warning -->
+    <string name="network_warning_title">Предупреждение о сетевой доступности</string>
+    <string name="network_warning_message">Привязка к 0.0.0.0 делает сервер MCP доступным для:\n\n\u2022 Всех устройств в вашей текущей сети WiFi\n\u2022 Устройств, подключённых к вашей точке доступа\n\u2022 Возможно, других устройств в зависимости от конфигурации сети\n\nЭто РИСК ДЛЯ БЕЗОПАСНОСТИ в общедоступных/недоверенных сетях.\n\nИспользуйте эту опцию только в доверенных частных сетях.</string>
+    <string name="network_warning_confirm">Понятно, продолжить</string>
+    <string name="network_warning_cancel">Отмена</string>
+
+    <!-- Permissions -->
+    <string name="permissions_title">Разрешения</string>
+    <string name="permission_accessibility">Служба специальных возможностей</string>
+    <string name="permission_notifications">Уведомления</string>
+    <string name="permission_enable">Включить</string>
+    <string name="permission_enabled">Включено</string>
+    <string name="permission_granted">Предоставлено</string>
+    <string name="permission_grant">Предоставить</string>
+    <string name="permission_camera">Камера</string>
+    <string name="permission_microphone">Микрофон</string>
+    <string name="permission_notification_listener">Доступ к уведомлениям</string>
+    <string name="permission_location">Местоположение</string>
+
+    <!-- Permissions screen: section headers -->
+    <string name="permission_section_required_title">Обязательно</string>
+    <string name="permission_section_required_subtitle">Необходимо, чтобы приложение могло управлять вашим устройством.</string>
+    <string name="permission_section_required_if_title">Требуется при использовании функции</string>
+    <string name="permission_section_required_if_subtitle">Предоставляйте только те возможности, которые планируете использовать.</string>
+    <string name="permission_section_optional_title">Необязательно</string>
+    <string name="permission_section_optional_subtitle">Желательно, но всё работает и без этого.</string>
+    <!-- Permissions screen: per-permission rationale (default / foss values) -->
+    <string name="permission_accessibility_rationale">Считывает экран и выполняет нажатия, свайпы и ввод текста.</string>
+    <string name="permission_notifications_rationale">Запросы на подтверждение OAuth, оповещения канала событий и состояние сервера.</string>
+    <string name="permission_notification_listener_rationale">Чтение уведомлений устройства и действия с ними.</string>
+    <string name="permission_camera_rationale">Съёмка фото и запись видео.</string>
+    <string name="permission_location_rationale">Чтение координат GPS.</string>
+    <string name="permission_microphone_rationale">Добавляет звук к записанному видео.</string>
+
+    <!-- Permission Warning (main screen: accessibility is the one required permission) -->
+    <string name="permission_warning_title">Требуется разрешение на специальные возможности</string>
+    <string name="permission_warning_action">Перейти к разрешениям</string>
+    <string name="server_pending_approvals_title">%1$d ожидающих подтверждений подключения</string>
+    <string name="server_pending_approvals_action">Просмотреть</string>
+
+    <!-- Network Access Suggestion (main screen: localhost-only bind with no tunnel) -->
+    <string name="server_network_access_suggestion_title">Доступно только с этого устройства</string>
+    <string name="server_network_access_suggestion_wifi">Включить доступ по Wi-Fi</string>
+    <string name="server_network_access_suggestion_tunnel">Настроить туннель</string>
+
+    <!-- Battery Optimization -->
+    <string name="battery_optimization_card_title">Поддерживать работу сервера</string>
+    <string name="battery_optimization_card_action">Отключить оптимизацию батареи</string>
+
+    <!-- Server Logs -->
+    <string name="server_logs_title">Журналы сервера</string>
+    <string name="server_logs_empty">Записей в журнале пока нет</string>
+    <string name="server_logs_show_more">Показать больше</string>
+    <string name="server_logs_clear">Очистить журналы</string>
+    <string name="server_logs_clear_dialog_title">Очистить журналы?</string>
+    <string name="server_logs_clear_dialog_body">Все записи журнала сервера будут безвозвратно удалены.</string>
+    <string name="server_logs_clear_dialog_confirm">Очистить</string>
+    <string name="server_logs_clear_dialog_cancel">Отмена</string>
+    <string name="server_logs_type_tool_call">Вызовы инструментов</string>
+    <string name="server_logs_type_tunnel">Туннель</string>
+    <string name="server_logs_type_server">Сервер</string>
+    <string name="server_logs_type_oauth">OAuth</string>
+    <string name="server_logs_type_auth">Аутентификация</string>
+    <string name="server_logs_type_channel">Канал</string>
+    <string name="server_logs_type_settings">Настройки</string>
+    <string name="server_logs_type_privacy">Приватность</string>
+
+    <!-- Remote Access / Tunnel -->
+    <string name="remote_access_title">Удалённый доступ</string>
+    <string name="remote_access_enabled_label">Включить удалённый доступ</string>
+    <string name="remote_access_provider_label">Провайдер туннеля</string>
+    <string name="remote_access_provider_cloudflare">Cloudflare</string>
+    <string name="remote_access_provider_cloudflare_desc">Аккаунт не требуется</string>
+    <string name="remote_access_provider_ngrok">ngrok</string>
+    <string name="remote_access_provider_ngrok_desc">Требуется аккаунт</string>
+    <string name="remote_access_ngrok_authtoken_label">Authtoken ngrok</string>
+    <string name="remote_access_ngrok_domain_label">Домен (необязательно)</string>
+    <string name="remote_access_ngrok_domain_hint">Оставьте пустым для автоматического назначения</string>
+    <string name="remote_access_status_disconnected">Отключено</string>
+    <string name="remote_access_status_connecting">Подключение…</string>
+    <string name="remote_access_status_connected">Подключено</string>
+    <string name="remote_access_status_error">Ошибка: %1$s</string>
+    <string name="remote_access_public_url_label">Публичный URL</string>
+    <string name="remote_access_ngrok_unsupported">ngrok недоступен на этом устройстве (требуется arm64-v8a или x86_64)</string>
+    <string name="remote_access_cloudflare_mode_label">Режим Cloudflare</string>
+    <string name="remote_access_cloudflare_mode_free">Бесплатный</string>
+    <string name="remote_access_cloudflare_mode_free_desc">Случайный временный URL, без аккаунта</string>
+    <string name="remote_access_cloudflare_mode_token">С токеном</string>
+    <string name="remote_access_cloudflare_mode_token_desc">Постоянное имя хоста через ваш аккаунт Cloudflare</string>
+    <string name="remote_access_cloudflare_token_label">Токен туннеля Cloudflare</string>
+    <string name="remote_access_cloudflare_extra_args_label">Дополнительные аргументы</string>
+    <string name="remote_access_cloudflare_extra_args_hint">--edge region1.v2.argotunnel.com:7844</string>
+    <string name="remote_access_cloudflare_extra_args_help">Необязательные флаги, передаваемые cloudflared (например, укажите --edge для обхода проблем с DNS)</string>
+    <string name="remote_access_cloudflare_service_url_help">В панели Cloudflare задайте для Public Hostname → Service этого туннеля:</string>
+    <string name="remote_access_cloudflare_service_url_copy">Копировать URL службы</string>
+    <string name="remote_access_https_disabled_warning">Удалённый доступ недоступен, пока включён HTTPS. Отключите HTTPS, чтобы использовать туннель.</string>
+    <string name="remote_access_no_route_configured">Маршрут не настроен</string>
+    <string name="remote_access_route_misconfigured">Маршрут не указывает на этот сервер</string>
+
+    <!-- Connection Info -->
+    <string name="connection_info_title">Информация о подключении</string>
+    <string name="connection_info_ip">IP-адрес</string>
+    <string name="connection_info_port">Порт</string>
+    <string name="connection_info_url">URL</string>
+    <string name="connection_info_token">Токен</string>
+    <string name="connection_info_copy_all">Копировать всё</string>
+    <string name="connection_info_share">Поделиться</string>
+
+    <!-- Storage Locations -->
+    <string name="storage_locations_title">Расположения хранилища</string>
+    <string name="storage_locations_description">Добавьте расположения хранилища, чтобы включить файловые операции через инструменты MCP. Каждое расположение даёт доступ к выбранной вами папке.</string>
+    <string name="storage_location_no_locations">Расположения хранилища не добавлены. Нажмите +, чтобы добавить.</string>
+    <string name="storage_location_path_label">Путь: %1$s</string>
+    <string name="storage_location_add_button">Добавить расположение хранилища</string>
+    <string name="storage_location_add_dialog_title">Добавить расположение хранилища</string>
+    <string name="storage_location_add_dialog_description_label">Описание (необязательно)</string>
+    <string name="storage_location_add_dialog_description_hint">напр., файлы проекта, Загрузки</string>
+    <string name="storage_location_add_dialog_browse">Обзор</string>
+    <string name="storage_location_add_dialog_selected">Выбрано: %1$s</string>
+    <string name="storage_location_add_dialog_no_selection">Папка не выбрана</string>
+    <string name="storage_location_add_dialog_add">Добавить</string>
+    <string name="storage_location_add_dialog_cancel">Отмена</string>
+    <string name="storage_location_add_dialog_duplicate">Эта папка уже добавлена.</string>
+    <string name="storage_location_description_counter">%1$d / %2$d</string>
+    <string name="storage_location_edit_dialog_title">Изменить описание</string>
+    <string name="storage_location_edit_dialog_save">Сохранить</string>
+    <string name="storage_location_delete_dialog_title">Удалить расположение хранилища</string>
+    <string name="storage_location_delete_dialog_message">Удалить \"%1$s\"? Сервер MCP больше не сможет получать доступ к файлам в этом расположении.</string>
+    <string name="storage_location_delete_dialog_confirm">Удалить</string>
+    <string name="storage_location_delete_dialog_cancel">Отмена</string>
+    <string name="storage_location_allow_write_label">Разрешить запись</string>
+    <string name="storage_location_allow_delete_label">Разрешить удаление</string>
+    <string name="storage_builtin_locations_title">Встроенные расположения</string>
+    <string name="storage_builtin_locations_description">Доступны всегда. Используйте MediaStore для чтения и записи файлов без дополнительной настройки.</string>
+    <string name="storage_user_locations_title">Пользовательские расположения</string>
+    <string name="storage_builtin_grant_all_files">Предоставить доступ ко всем файлам</string>
+    <string name="storage_builtin_all_files_granted">Доступ ко всем файлам предоставлен</string>
+    <string name="storage_builtin_manage_access">Управление доступом</string>
+    <string name="storage_file_size_limit_label">Лимит размера файла (МБ)</string>
+    <string name="storage_file_size_limit_error">Должно быть от %1$d до %2$d МБ</string>
+    <string name="storage_download_timeout_label">Тайм-аут загрузки (секунды)</string>
+    <string name="storage_download_timeout_error">Должно быть от %1$d до %2$d секунд</string>
+    <string name="storage_allow_http_downloads_label">Разрешить загрузки по HTTP</string>
+    <string name="storage_allow_http_downloads_description">Разрешить загрузку файлов по незашифрованным URL HTTP (менее безопасно)</string>
+    <string name="storage_allow_unverified_https_label">Разрешить непроверенный HTTPS</string>
+    <string name="storage_allow_unverified_https_description">Принимать непроверенные сертификаты HTTPS при загрузке (менее безопасно)</string>
+
+    <!-- Event Channel — start/stop dialogs -->
+    <string name="channel_not_configured_dialog_title">URL конечной точки не задан</string>
+    <string name="channel_not_configured_dialog_body">Настройте URL конечной точки канала событий в разделе Настройки → Канал событий перед запуском службы. Токен авторизации необязателен и может быть оставлен пустым, если ваша конечная точка его не требует.</string>
+    <string name="channel_not_configured_dialog_ok">ОК</string>
+
+    <!-- Access settings (OAuth + bearer) -->
+    <string name="access_title">Доступ</string>
+    <string name="access_oauth_label">OAuth</string>
+    <string name="access_oauth_supporting">Требуется активный туннель (HTTPS, публичная доступность)</string>
+    <string name="access_connected_clients">Подключённые клиенты</string>
+    <string name="access_bearer_label">Аутентификация по bearer-токену</string>
+    <string name="access_bearer_token_field_label">Bearer-токен</string>
+    <string name="access_public_url_label">Переопределение публичного URL (необязательно)</string>
+    <string name="access_public_url_supporting">Оставьте пустым для автоопределения из запроса; переопределяет хост, используемый для метаданных OAuth и ссылок для обмена</string>
+    <string name="access_no_auth_warning_title">У сервера НЕТ аутентификации</string>
+    <string name="access_no_auth_warning_body">Любой, кто может добраться до сервера, получает полный контроль над этим устройством.</string>
+    <string name="access_internet_exposure_warning_title">Доступен через интернет</string>
+    <string name="access_internet_exposure_warning_body">Туннель активен, а аутентификация отключена, поэтому удалённое управление Android доступно через интернет без каких-либо проверок — любой, у кого есть URL, получает полный контроль над этим устройством. Включите OAuth или bearer-токен.</string>
+    <string name="access_disable_auth_dialog_title">Отключить всю аутентификацию?</string>
+    <string name="access_disable_auth_dialog_body">Это оставит сервер БЕЗ аутентификации. Любой, кто может добраться до него, получает полный контроль. Продолжить?</string>
+    <string name="access_disable_auth_confirm">Всё равно отключить</string>
+    <string name="access_disable_auth_cancel">Отмена</string>
+    <string name="access_token_show">Показать токен</string>
+    <string name="access_token_hide">Скрыть токен</string>
+    <string name="access_token_copy">Копировать токен</string>
+    <string name="access_token_regenerate">Создать новый токен</string>
+
+    <!-- Connected clients -->
+    <string name="oauth_clients_title">Подключённые клиенты</string>
+    <string name="oauth_clients_empty">Нет подключённых клиентов. Клиенты появятся здесь после подключения через OAuth.</string>
+    <string name="oauth_clients_created">Создан %1$s</string>
+    <string name="oauth_clients_last_used">Последнее использование %1$s</string>
+    <string name="oauth_clients_revoke">Отозвать</string>
+    <string name="oauth_clients_revoke_dialog_title">Отозвать клиент?</string>
+    <string name="oauth_clients_revoke_dialog_body">Отзыв немедленно делает токены этого клиента недействительными. Ему придётся авторизоваться заново для повторного подключения.</string>
+    <string name="oauth_clients_revoke_confirm">Отозвать</string>
+    <string name="oauth_clients_revoke_cancel">Отмена</string>
+
+    <!-- Pairing (short-code) -->
+    <string name="pairing_code_title">Сопряжение по коду</string>
+    <string name="pairing_code_desc">Введите этот код в клиенте (экран Device в кошельке или мобильная страница dai), чтобы выполнить сопряжение — токен копировать не нужно.</string>
+    <string name="pairing_code_expires">Истекает %1$s</string>
+    <string name="pairing_code_copy">Копировать код</string>
+    <string name="pairing_code_refresh">Новый код</string>
+    <string name="paired_devices">Сопряжённые устройства</string>
+    <string name="paired_devices_title">Сопряжённые устройства</string>
+    <string name="paired_devices_empty">Нет сопряжённых устройств. Клиент появится здесь после использования кода сопряжения.</string>
+    <string name="paired_devices_created">Сопряжено %1$s</string>
+    <string name="paired_devices_last_used">Последнее использование %1$s</string>
+    <string name="paired_devices_revoke">Отозвать</string>
+    <string name="paired_devices_revoke_dialog_title">Отозвать устройство?</string>
+    <string name="paired_devices_revoke_dialog_body">Отзыв немедленно делает токен сопряжения этого устройства недействительным. Ему придётся выполнить сопряжение заново с новым кодом.</string>
+    <string name="paired_devices_revoke_confirm">Отозвать</string>
+    <string name="paired_devices_revoke_cancel">Отмена</string>
+    <string name="access_paired_devices_supporting">Клиенты, сопряжённые по коду</string>
+
+    <!-- On-device approval -->
+    <string name="approval_title">Запросы на подключение</string>
+    <string name="approval_empty">Нет ожидающих запросов.</string>
+    <string name="approval_match_code_label">Убедитесь, что этот код совпадает с кодом в браузере:</string>
+    <string name="approval_approve">Подтвердить</string>
+    <string name="approval_deny">Отклонить</string>
+    <string name="approval_expires_in">Истекает через %1$s</string>
+    <string name="approval_expired">Срок запроса истёк</string>
+    <string name="notification_channel_oauth_approval_name">Подтверждения подключений</string>
+    <string name="notification_oauth_approval_title">Ожидается запрос на подключение</string>
+    <string name="notification_oauth_approval_body">Ожидается запросов: %1$d — нажмите, чтобы просмотреть</string>
+    <string name="notification_channel_update_name">Обновления приложения</string>
+    <string name="notification_update_available_title">Доступно обновление</string>
+    <string name="notification_update_available_body">Доступна версия %1$s — нажмите, чтобы посмотреть выпуск</string>
+    <string name="update_banner_text">Доступно обновление: v%1$s — нажмите, чтобы посмотреть</string>
+    <string name="update_banner_open_description">Открыть страницу выпуска</string>
+    <string name="about_updates_section">Обновления</string>
+    <string name="about_auto_update_label">Автоматически проверять обновления</string>
+    <string name="about_check_updates_button">Проверить обновления</string>
+    <string name="about_update_up_to_date">У вас последняя версия</string>
+    <string name="about_update_check_failed">Не удалось проверить обновления. Повторите попытку позже.</string>
+    <string name="about_update_dev_build">Проверка обновлений отключена для сборок разработки</string>
+    <string name="about_update_found">Доступна версия %1$s — нажмите, чтобы посмотреть выпуск</string>
+    <string name="event_channel_subtitle">Пересылка уведомлений и событий WiFi</string>
+    <string name="settings_privacy_title">Режим приватности</string>
+    <string name="settings_privacy_subtitle">Скрытие персональных данных от поставщиков ИИ</string>
+    <string name="privacy_enable_label">Включить режим приватности</string>
+    <string name="privacy_consent_title">Скачать модель обнаружения?</string>
+    <string name="privacy_consent_message">Для режима приватности нужна модель обнаружения размером ~154 МБ, один раз загружаемая с Hugging Face (открытая модель ai4privacy) и проверяемая по контрольной сумме. Продолжить?</string>
+    <string name="privacy_consent_confirm">Скачать и включить</string>
+    <string name="privacy_consent_cancel">Отмена</string>
+    <string name="privacy_download_progress">Загрузка модели… %1$d%%</string>
+    <string name="privacy_download_verifying">Проверка загрузки…</string>
+    <string name="privacy_download_failed">Не удалось загрузить модель: %1$s</string>
+    <string name="privacy_status_ready">Активно — модель загружена</string>
+    <string name="privacy_status_deterministic">Активно — только обнаружение по шаблонам (категории модели отключены)</string>
+    <string name="privacy_status_unavailable">НЕДОСТУПНО: %1$s</string>
+    <string name="privacy_status_disabled">Отключено</string>
+    <string name="privacy_benchmark_estimate">Инструменты MCP будут работать в среднем примерно на +%1$s с дольше (оценка для 100 элементов на экране)</string>
+    <string name="privacy_benchmark_running">Измерение производительности на устройстве… вы можете продолжать пользоваться приложением или отключить режим приватности; измерение завершится само</string>
+    <string name="privacy_enable_preparing">Подготовка режима приватности…</string>
+    <string name="privacy_detection_rates_header">Измеренные показатели обнаружения</string>
+    <string name="privacy_detection_rates_caption">Доля обнаруженных элементов персональных данных по категориям, измеренная с помощью эталонного теста эффективности проекта на реалистичном контенте в стиле интерфейса на 8 языках. Фактические результаты зависят от контента и языка.</string>
+    <string name="privacy_categories_header">Защищённые категории</string>
+    <string name="privacy_category_credentials">Пароли и учётные данные</string>
+    <string name="privacy_category_cards_iban">Платёжные карты и IBAN</string>
+    <string name="privacy_category_emails">Адреса электронной почты</string>
+    <string name="privacy_category_phones">Номера телефонов</string>
+    <string name="privacy_category_names">Имена</string>
+    <string name="privacy_category_addresses">Адреса</string>
+    <string name="privacy_category_national_ids">Национальные ID и документы</string>
+    <string name="privacy_mode_header">Стиль редактирования</string>
+    <string name="privacy_mode_pseudonymize">Псевдонимизация (согласованные заполнители, инструменты продолжают работать)</string>
+    <string name="privacy_mode_redact">Полное скрытие</string>
+    <string name="privacy_format_header">Формат заполнителя</string>
+    <string name="privacy_format_hashed">Согласованный — одно и то же значение всегда сохраняет один и тот же заполнитель (EMAIL#a1b2c)</string>
+    <string name="privacy_format_numbered">Нумерованный — последовательный в рамках сеанса ([EMAIL_1])</string>
+    <string name="privacy_disclaimer">Обнаружение — это снижение риска по мере возможности, а не гарантия. Ни один детектор не выявляет все персональные данные; скриншоты маскируются только там, где у отмеченных элементов экрана есть границы.</string>
+    <string name="privacy_card_title">Беспокоитесь о персональных данных?</string>
+    <string name="privacy_card_action">Настроить режим приватности</string>
+    <string name="privacy_card_dismiss">Закрыть</string>
+</resources>

@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Android التحكم عن بعد MCP</string>
+    <string name="share_target_label">Android التحكم عن بعد MCP</string>
+
+    <!-- Accessibility Service -->
+    <string name="accessibility_service_description">يوفر إمكانات التحكم عن بعد عبر بروتوكول MCP. يتيح فحص عناصر واجهة المستخدم وتنفيذ الإجراءات على الجهاز.</string>
+
+    <!-- Notification Channel -->
+    <string name="notification_channel_mcp_server_id">mcp_server_channel</string>
+    <string name="notification_channel_mcp_server_name">خادم MCP</string>
+    <!-- Notification Content -->
+    <string name="notification_mcp_server_title">خادم MCP قيد التشغيل</string>
+
+    <!-- App Bar -->
+    <string name="app_bar_title">التحكم عن بعد MCP</string>
+
+    <!-- Tabs -->
+    <string name="tab_server">الخادم</string>
+    <string name="tab_settings">الإعدادات</string>
+    <string name="tab_about">حول</string>
+
+    <!-- Settings Sub-pages -->
+    <string name="settings_general_title">عام</string>
+    <string name="settings_general_subtitle">المنفذ، العنوان، الجهاز، التشغيل التلقائي</string>
+    <string name="settings_access_title">الوصول</string>
+    <string name="settings_access_subtitle">OAuth، رمز الحامل، العملاء المتصلون</string>
+    <string name="settings_security_title">الأمان</string>
+    <string name="settings_security_subtitle">HTTPS، الشهادة</string>
+    <string name="settings_tunnel_title">النفق</string>
+    <string name="settings_tunnel_subtitle">Cloudflare، ngrok</string>
+    <string name="settings_mcp_tools_title">أدوات MCP</string>
+    <string name="settings_mcp_tools_subtitle">تمكين الأدوات أو تعطيلها</string>
+    <string name="settings_mcp_tools_placeholder">أذونات الأدوات — متاحة في التحديث التالي</string>
+    <string name="settings_mcp_tools_missing_permission">لم يُمنح الإذن — هذه الأدوات مخفية عن العملاء. انقر للمنح.</string>
+    <string name="settings_mcp_tools_param_missing_permission">لم يُمنح الإذن — هذا الخيار غير متاح. انقر للمنح.</string>
+    <string name="settings_permissions_title">الأذونات</string>
+    <string name="settings_permissions_subtitle">إمكانية الوصول، الكاميرا، الميكروفون</string>
+    <string name="settings_storage_title">التخزين</string>
+    <string name="settings_storage_subtitle">مواقع التخزين، حدود الملفات</string>
+
+    <!-- About Screen -->
+    <string name="about_links_section">الروابط</string>
+    <string name="about_link_github">مستودع GitHub</string>
+    <string name="about_link_license">رخصة MIT</string>
+    <string name="about_link_issues">الإبلاغ عن مشكلة</string>
+    <string name="about_attributions_section">الإسنادات</string>
+    <string name="about_attribution_dbip">بيانات تحديد الموقع الجغرافي عبر IP من DB-IP (db-ip.com)، مرخّصة بموجب CC BY 4.0.</string>
+    <string name="about_attribution_privacy_model">نموذج كشف البيانات الشخصية لوضع الخصوصية من Ai4Privacy (رخصة MIT). مبني باستخدام Llama.</string>
+    <string name="about_footer">مفتوح المصدر، رخصة MIT</string>
+
+    <!-- Clipboard -->
+    <string name="copied_to_clipboard">تم النسخ إلى الحافظة</string>
+
+    <!-- Server Status -->
+    <string name="server_status_title">حالة الخادم</string>
+    <string name="server_status_running">يعمل</string>
+    <string name="server_status_stopped">متوقف</string>
+    <string name="server_status_starting">جارٍ البدء…</string>
+    <string name="server_status_stopping">جارٍ الإيقاف…</string>
+    <string name="server_status_error">خطأ: %1$s</string>
+    <string name="server_action_start">بدء</string>
+    <string name="server_action_stop">إيقاف</string>
+
+    <!-- Configuration -->
+    <string name="configuration_title">التكوين</string>
+    <string name="config_binding_address_label">عنوان الربط</string>
+    <string name="config_binding_localhost">المضيف المحلي (127.0.0.1)</string>
+    <string name="config_binding_network">الشبكة (0.0.0.0)</string>
+    <string name="config_port_label">المنفذ</string>
+    <string name="config_device_slug_label">معرّف الجهاز (اختياري)</string>
+    <string name="config_device_slug_hint">مثال: pixel7، work_phone</string>
+    <string name="config_bearer_token_label">رمز الحامل</string>
+    <string name="config_token_show">إظهار الرمز</string>
+    <string name="config_token_hide">إخفاء الرمز</string>
+    <string name="config_token_copy">نسخ الرمز</string>
+    <string name="config_token_regenerate">إعادة إنشاء الرمز</string>
+    <string name="config_token_clear">مسح الرمز</string>
+    <string name="config_bearer_token_empty_warning_title">المصادقة معطّلة</string>
+    <string name="config_bearer_token_empty_warning_body">رمز الحامل فارغ، لذا يقبل خادم MCP طلبات غير مصادق عليها من أي شخص يمكنه الوصول إليه. أوقف الخادم (إن كان يعمل)، ثم اضغط إعادة إنشاء لتمكين المصادقة.</string>
+    <string name="config_auto_start_label">التشغيل التلقائي عند الإقلاع</string>
+    <string name="config_hide_from_recents_label">إخفاء من التطبيقات الأخيرة</string>
+    <string name="config_hide_from_recents_description">استثناء التطبيق من نظرة عامة على التطبيقات الأخيرة في Android.</string>
+    <string name="config_tool_call_indicator_label">إظهار مؤشر استدعاء الأدوات</string>
+    <string name="config_tool_call_indicator_description">عرض طبقة آمنة للخصوصية أثناء تحكم MCP بهذا الجهاز.</string>
+    <string name="config_https_enabled_label">تمكين HTTPS</string>
+    <string name="config_certificate_title">شهادة HTTPS</string>
+    <string name="config_cert_auto_generated">موقّعة ذاتيًا ومُنشأة تلقائيًا</string>
+    <string name="config_cert_custom">شهادة مخصّصة (.p12/.pfx)</string>
+    <string name="config_hostname_label">اسم مضيف الشهادة</string>
+
+    <!-- Network Security Warning -->
+    <string name="network_warning_title">تحذير من التعرّض على الشبكة</string>
+    <string name="network_warning_message">الربط بـ 0.0.0.0 يجعل خادم MCP متاحًا لما يلي:\n\n\u2022 جميع الأجهزة على شبكة WiFi الحالية\n\u2022 الأجهزة المتصلة بنقطة الاتصال الخاصة بك\n\u2022 ربما أجهزة أخرى حسب إعدادات الشبكة\n\nيُعد هذا خطرًا أمنيًا على الشبكات العامة/غير الموثوقة.\n\nاستخدم هذا الخيار فقط على الشبكات الخاصة الموثوقة.</string>
+    <string name="network_warning_confirm">أفهم ذلك، متابعة</string>
+    <string name="network_warning_cancel">إلغاء</string>
+
+    <!-- Permissions -->
+    <string name="permissions_title">الأذونات</string>
+    <string name="permission_accessibility">خدمة إمكانية الوصول</string>
+    <string name="permission_notifications">الإشعارات</string>
+    <string name="permission_enable">تمكين</string>
+    <string name="permission_enabled">ممكّن</string>
+    <string name="permission_granted">ممنوح</string>
+    <string name="permission_grant">منح</string>
+    <string name="permission_camera">الكاميرا</string>
+    <string name="permission_microphone">الميكروفون</string>
+    <string name="permission_notification_listener">مستمع الإشعارات</string>
+    <string name="permission_location">الموقع</string>
+
+    <!-- Permissions screen: section headers -->
+    <string name="permission_section_required_title">مطلوب</string>
+    <string name="permission_section_required_subtitle">مطلوب ليتحكم التطبيق بجهازك.</string>
+    <string name="permission_section_required_if_title">مطلوب إذا استخدمت ميزة</string>
+    <string name="permission_section_required_if_subtitle">امنح فقط الإمكانات التي تخطط لاستخدامها.</string>
+    <string name="permission_section_optional_title">اختياري</string>
+    <string name="permission_section_optional_subtitle">مستحسن؛ كل شيء يعمل بدونه.</string>
+    <!-- Permissions screen: per-permission rationale (default / foss values) -->
+    <string name="permission_accessibility_rationale">يقرأ الشاشة وينفّذ النقرات والسحب والكتابة.</string>
+    <string name="permission_notifications_rationale">مطالبات موافقة OAuth، وتنبيهات قناة الأحداث، وحالة الخادم.</string>
+    <string name="permission_notification_listener_rationale">قراءة إشعارات الجهاز والتفاعل معها.</string>
+    <string name="permission_camera_rationale">التقاط الصور وتسجيل الفيديو.</string>
+    <string name="permission_location_rationale">قراءة موقع GPS.</string>
+    <string name="permission_microphone_rationale">إضافة الصوت إلى الفيديو المسجّل.</string>
+
+    <!-- Permission Warning (main screen: accessibility is the one required permission) -->
+    <string name="permission_warning_title">إذن إمكانية الوصول مطلوب</string>
+    <string name="permission_warning_action">الانتقال إلى الأذونات</string>
+    <string name="server_pending_approvals_title">%1$d موافقة اتصال معلّقة</string>
+    <string name="server_pending_approvals_action">مراجعة</string>
+
+    <!-- Network Access Suggestion (main screen: localhost-only bind with no tunnel) -->
+    <string name="server_network_access_suggestion_title">يمكن الوصول إليه من هذا الجهاز فقط</string>
+    <string name="server_network_access_suggestion_wifi">تمكين الوصول عبر Wi-Fi</string>
+    <string name="server_network_access_suggestion_tunnel">إعداد النفق</string>
+
+    <!-- Battery Optimization -->
+    <string name="battery_optimization_card_title">إبقاء الخادم قيد التشغيل</string>
+    <string name="battery_optimization_card_action">تعطيل تحسين البطارية</string>
+
+    <!-- Server Logs -->
+    <string name="server_logs_title">سجلات الخادم</string>
+    <string name="server_logs_empty">لا توجد إدخالات سجل بعد</string>
+    <string name="server_logs_show_more">عرض المزيد</string>
+    <string name="server_logs_clear">مسح السجلات</string>
+    <string name="server_logs_clear_dialog_title">مسح السجلات؟</string>
+    <string name="server_logs_clear_dialog_body">ستُحذف جميع إدخالات سجل الخادم نهائيًا.</string>
+    <string name="server_logs_clear_dialog_confirm">مسح</string>
+    <string name="server_logs_clear_dialog_cancel">إلغاء</string>
+    <string name="server_logs_type_tool_call">استدعاءات الأدوات</string>
+    <string name="server_logs_type_tunnel">النفق</string>
+    <string name="server_logs_type_server">الخادم</string>
+    <string name="server_logs_type_oauth">OAuth</string>
+    <string name="server_logs_type_auth">المصادقة</string>
+    <string name="server_logs_type_channel">القناة</string>
+    <string name="server_logs_type_settings">الإعدادات</string>
+    <string name="server_logs_type_privacy">الخصوصية</string>
+
+    <!-- Remote Access / Tunnel -->
+    <string name="remote_access_title">الوصول عن بعد</string>
+    <string name="remote_access_enabled_label">تمكين الوصول عن بعد</string>
+    <string name="remote_access_provider_label">مزوّد النفق</string>
+    <string name="remote_access_provider_cloudflare">Cloudflare</string>
+    <string name="remote_access_provider_cloudflare_desc">لا يلزم حساب</string>
+    <string name="remote_access_provider_ngrok">ngrok</string>
+    <string name="remote_access_provider_ngrok_desc">يلزم حساب</string>
+    <string name="remote_access_ngrok_authtoken_label">رمز مصادقة ngrok</string>
+    <string name="remote_access_ngrok_domain_label">النطاق (اختياري)</string>
+    <string name="remote_access_ngrok_domain_hint">اتركه فارغًا للتعيين التلقائي</string>
+    <string name="remote_access_status_disconnected">غير متصل</string>
+    <string name="remote_access_status_connecting">جارٍ الاتصال…</string>
+    <string name="remote_access_status_connected">متصل</string>
+    <string name="remote_access_status_error">خطأ: %1$s</string>
+    <string name="remote_access_public_url_label">عنوان URL العام</string>
+    <string name="remote_access_ngrok_unsupported">ngrok غير متاح على هذا الجهاز (يتطلب arm64-v8a أو x86_64)</string>
+    <string name="remote_access_cloudflare_mode_label">وضع Cloudflare</string>
+    <string name="remote_access_cloudflare_mode_free">مجاني</string>
+    <string name="remote_access_cloudflare_mode_free_desc">عنوان URL مؤقت عشوائي، بدون حساب</string>
+    <string name="remote_access_cloudflare_mode_token">مع رمز</string>
+    <string name="remote_access_cloudflare_mode_token_desc">اسم مضيف ثابت عبر حساب Cloudflare الخاص بك</string>
+    <string name="remote_access_cloudflare_token_label">رمز نفق Cloudflare</string>
+    <string name="remote_access_cloudflare_extra_args_label">وسيطات إضافية</string>
+    <string name="remote_access_cloudflare_extra_args_hint">--edge region1.v2.argotunnel.com:7844</string>
+    <string name="remote_access_cloudflare_extra_args_help">علامات اختيارية تُمرَّر إلى cloudflared (مثال: حدّد --edge لتجاوز مشكلات DNS)</string>
+    <string name="remote_access_cloudflare_service_url_help">في لوحة تحكم Cloudflare، اضبط اسم المضيف العام لهذا النفق → الخدمة على:</string>
+    <string name="remote_access_cloudflare_service_url_copy">نسخ عنوان URL للخدمة</string>
+    <string name="remote_access_https_disabled_warning">الوصول عن بعد غير متاح أثناء تمكين HTTPS. عطّل HTTPS لاستخدام نفق.</string>
+    <string name="remote_access_no_route_configured">لم يتم تكوين مسار</string>
+    <string name="remote_access_route_misconfigured">المسار لا يشير إلى هذا الخادم</string>
+
+    <!-- Connection Info -->
+    <string name="connection_info_title">معلومات الاتصال</string>
+    <string name="connection_info_ip">عنوان IP</string>
+    <string name="connection_info_port">المنفذ</string>
+    <string name="connection_info_url">URL</string>
+    <string name="connection_info_token">الرمز</string>
+    <string name="connection_info_copy_all">نسخ الكل</string>
+    <string name="connection_info_share">مشاركة</string>
+
+    <!-- Storage Locations -->
+    <string name="storage_locations_title">مواقع التخزين</string>
+    <string name="storage_locations_description">أضف مواقع تخزين لتمكين عمليات الملفات عبر أدوات MCP. يمنح كل موقع وصولًا إلى دليل تختاره.</string>
+    <string name="storage_location_no_locations">لم تُضف مواقع تخزين. انقر + لإضافة واحد.</string>
+    <string name="storage_location_path_label">المسار: %1$s</string>
+    <string name="storage_location_add_button">إضافة موقع تخزين</string>
+    <string name="storage_location_add_dialog_title">إضافة موقع تخزين</string>
+    <string name="storage_location_add_dialog_description_label">الوصف (اختياري)</string>
+    <string name="storage_location_add_dialog_description_hint">مثال: ملفات المشروع، التنزيلات</string>
+    <string name="storage_location_add_dialog_browse">تصفح</string>
+    <string name="storage_location_add_dialog_selected">المحدد: %1$s</string>
+    <string name="storage_location_add_dialog_no_selection">لم يُحدد أي دليل</string>
+    <string name="storage_location_add_dialog_add">إضافة</string>
+    <string name="storage_location_add_dialog_cancel">إلغاء</string>
+    <string name="storage_location_add_dialog_duplicate">هذا الدليل مضاف بالفعل.</string>
+    <string name="storage_location_description_counter">%1$d / %2$d</string>
+    <string name="storage_location_edit_dialog_title">تعديل الوصف</string>
+    <string name="storage_location_edit_dialog_save">حفظ</string>
+    <string name="storage_location_delete_dialog_title">إزالة موقع تخزين</string>
+    <string name="storage_location_delete_dialog_message">إزالة \"%1$s\"؟ لن يتمكن خادم MCP بعد الآن من الوصول إلى الملفات في هذا الموقع.</string>
+    <string name="storage_location_delete_dialog_confirm">إزالة</string>
+    <string name="storage_location_delete_dialog_cancel">إلغاء</string>
+    <string name="storage_location_allow_write_label">السماح بالكتابة</string>
+    <string name="storage_location_allow_delete_label">السماح بالحذف</string>
+    <string name="storage_builtin_locations_title">المواقع المضمّنة</string>
+    <string name="storage_builtin_locations_description">متاحة دائمًا. استخدم MediaStore لقراءة الملفات وكتابتها دون إعداد إضافي.</string>
+    <string name="storage_user_locations_title">مواقع المستخدم</string>
+    <string name="storage_builtin_grant_all_files">منح الوصول إلى جميع الملفات</string>
+    <string name="storage_builtin_all_files_granted">تم منح الوصول إلى جميع الملفات</string>
+    <string name="storage_builtin_manage_access">إدارة الوصول</string>
+    <string name="storage_file_size_limit_label">حد حجم الملف (MB)</string>
+    <string name="storage_file_size_limit_error">يجب أن يكون بين %1$d و %2$d MB</string>
+    <string name="storage_download_timeout_label">مهلة التنزيل (ثوانٍ)</string>
+    <string name="storage_download_timeout_error">يجب أن تكون بين %1$d و %2$d ثانية</string>
+    <string name="storage_allow_http_downloads_label">السماح بتنزيلات HTTP</string>
+    <string name="storage_allow_http_downloads_description">السماح بتنزيل الملفات من عناوين HTTP غير المشفّرة (أقل أمانًا)</string>
+    <string name="storage_allow_unverified_https_label">السماح بـ HTTPS غير الموثّق</string>
+    <string name="storage_allow_unverified_https_description">قبول شهادات HTTPS غير الموثّقة للتنزيلات (أقل أمانًا)</string>
+
+    <!-- Event Channel — start/stop dialogs -->
+    <string name="channel_not_configured_dialog_title">لم يتم تعيين عنوان URL لنقطة النهاية</string>
+    <string name="channel_not_configured_dialog_body">كوّن عنوان URL لنقطة نهاية قناة الأحداث في الإعدادات → قناة الأحداث قبل بدء الخدمة. رمز المصادقة اختياري ويمكن تركه فارغًا إذا كانت نقطة النهاية لديك لا تتطلبه.</string>
+    <string name="channel_not_configured_dialog_ok">حسنًا</string>
+
+    <!-- Access settings (OAuth + bearer) -->
+    <string name="access_title">الوصول</string>
+    <string name="access_oauth_label">OAuth</string>
+    <string name="access_oauth_supporting">يتطلب نفقًا نشطًا (HTTPS، إمكانية الوصول العامة)</string>
+    <string name="access_connected_clients">العملاء المتصلون</string>
+    <string name="access_bearer_label">مصادقة رمز الحامل</string>
+    <string name="access_bearer_token_field_label">رمز الحامل</string>
+    <string name="access_public_url_label">تجاوز عنوان URL العام (اختياري)</string>
+    <string name="access_public_url_supporting">اتركه فارغًا للكشف التلقائي من الطلب؛ يتجاوز المضيف المستخدم لبيانات OAuth الوصفية وروابط المشاركة</string>
+    <string name="access_no_auth_warning_title">الخادم بلا مصادقة إطلاقًا</string>
+    <string name="access_no_auth_warning_body">أي شخص يمكنه الوصول إلى الخادم يتحكم تحكمًا كاملًا بهذا الجهاز.</string>
+    <string name="access_internet_exposure_warning_title">يمكن الوصول إليه عبر الإنترنت</string>
+    <string name="access_internet_exposure_warning_body">النفق نشط والمصادقة معطّلة، لذا يمكن الوصول إلى Android Remote Control عبر الإنترنت دون أي فحوصات — أي شخص لديه عنوان URL يتحكم تحكمًا كاملًا بهذا الجهاز. مكّن OAuth أو رمز الحامل.</string>
+    <string name="access_disable_auth_dialog_title">تعطيل كل المصادقة؟</string>
+    <string name="access_disable_auth_dialog_body">سيترك هذا الخادم بلا مصادقة إطلاقًا. أي شخص يمكنه الوصول إليه يتحكم تحكمًا كاملًا. هل تريد المتابعة؟</string>
+    <string name="access_disable_auth_confirm">تعطيل على أي حال</string>
+    <string name="access_disable_auth_cancel">إلغاء</string>
+    <string name="access_token_show">إظهار الرمز</string>
+    <string name="access_token_hide">إخفاء الرمز</string>
+    <string name="access_token_copy">نسخ الرمز</string>
+    <string name="access_token_regenerate">إعادة إنشاء الرمز</string>
+
+    <!-- Connected clients -->
+    <string name="oauth_clients_title">العملاء المتصلون</string>
+    <string name="oauth_clients_empty">لا يوجد عملاء متصلون. يظهر العملاء هنا بعد اتصالهم عبر OAuth.</string>
+    <string name="oauth_clients_created">أُنشئ %1$s</string>
+    <string name="oauth_clients_last_used">آخر استخدام %1$s</string>
+    <string name="oauth_clients_revoke">إبطال</string>
+    <string name="oauth_clients_revoke_dialog_title">إبطال العميل؟</string>
+    <string name="oauth_clients_revoke_dialog_body">يؤدي الإبطال إلى إلغاء رموز هذا العميل فورًا. يجب أن يعيد التصريح لإعادة الاتصال.</string>
+    <string name="oauth_clients_revoke_confirm">إبطال</string>
+    <string name="oauth_clients_revoke_cancel">إلغاء</string>
+
+    <!-- Pairing (short-code) -->
+    <string name="pairing_code_title">الاقتران برمز</string>
+    <string name="pairing_code_desc">أدخل هذا الرمز في العميل (شاشة الجهاز في wallet، أو صفحة dai Mobile) للاقتران — دون نسخ أي رمز.</string>
+    <string name="pairing_code_expires">ينتهي %1$s</string>
+    <string name="pairing_code_copy">نسخ الرمز</string>
+    <string name="pairing_code_refresh">رمز جديد</string>
+    <string name="paired_devices">الأجهزة المقترنة</string>
+    <string name="paired_devices_title">الأجهزة المقترنة</string>
+    <string name="paired_devices_empty">لا توجد أجهزة مقترنة. يظهر العميل هنا بعد استخدام رمز اقتران.</string>
+    <string name="paired_devices_created">تم الاقتران %1$s</string>
+    <string name="paired_devices_last_used">آخر استخدام %1$s</string>
+    <string name="paired_devices_revoke">إبطال</string>
+    <string name="paired_devices_revoke_dialog_title">إبطال الجهاز؟</string>
+    <string name="paired_devices_revoke_dialog_body">يؤدي الإبطال إلى إلغاء رمز اقتران هذا الجهاز فورًا. يجب أن يقترن مجددًا برمز جديد.</string>
+    <string name="paired_devices_revoke_confirm">إبطال</string>
+    <string name="paired_devices_revoke_cancel">إلغاء</string>
+    <string name="access_paired_devices_supporting">العملاء الذين اقترنوا برمز</string>
+
+    <!-- On-device approval -->
+    <string name="approval_title">طلبات الاتصال</string>
+    <string name="approval_empty">لا توجد طلبات معلّقة.</string>
+    <string name="approval_match_code_label">تأكد من مطابقة هذا الرمز لما يظهر في متصفحك:</string>
+    <string name="approval_approve">موافقة</string>
+    <string name="approval_deny">رفض</string>
+    <string name="approval_expires_in">ينتهي خلال %1$s</string>
+    <string name="approval_expired">انتهت صلاحية الطلب</string>
+    <string name="notification_channel_oauth_approval_name">موافقات الاتصال</string>
+    <string name="notification_oauth_approval_title">طلب اتصال معلّق</string>
+    <string name="notification_oauth_approval_body">%1$d طلب بانتظار المراجعة — انقر للمراجعة</string>
+    <string name="notification_channel_update_name">تحديثات التطبيق</string>
+    <string name="notification_update_available_title">يتوفر تحديث</string>
+    <string name="notification_update_available_body">الإصدار %1$s متاح — انقر لعرض الإصدار</string>
+    <string name="update_banner_text">يتوفر تحديث: v%1$s — انقر للعرض</string>
+    <string name="update_banner_open_description">فتح صفحة الإصدار</string>
+    <string name="about_updates_section">التحديثات</string>
+    <string name="about_auto_update_label">التحقق تلقائيًا من التحديثات</string>
+    <string name="about_check_updates_button">التحقق من التحديثات</string>
+    <string name="about_update_up_to_date">لديك أحدث إصدار</string>
+    <string name="about_update_check_failed">تعذّر التحقق من التحديثات. حاول مرة أخرى لاحقًا.</string>
+    <string name="about_update_dev_build">فحوصات التحديث معطّلة في إصدارات التطوير</string>
+    <string name="about_update_found">الإصدار %1$s متاح — انقر لعرض الإصدار</string>
+    <string name="event_channel_subtitle">إشعارات وتحويل أحداث WiFi</string>
+    <string name="settings_privacy_title">وضع الخصوصية</string>
+    <string name="settings_privacy_subtitle">إخفاء البيانات الشخصية عن مزوّدي الذكاء الاصطناعي</string>
+    <string name="privacy_enable_label">تمكين وضع الخصوصية</string>
+    <string name="privacy_consent_title">تنزيل نموذج الكشف؟</string>
+    <string name="privacy_consent_message">يحتاج وضع الخصوصية إلى نموذج كشف بحجم ~154 MB، يُنزَّل مرة واحدة من Hugging Face (نموذج ai4privacy مفتوح المصدر) ويُتحقق منه عبر المجموع الاختباري. هل تريد المتابعة؟</string>
+    <string name="privacy_consent_confirm">تنزيل وتمكين</string>
+    <string name="privacy_consent_cancel">إلغاء</string>
+    <string name="privacy_download_progress">جارٍ تنزيل النموذج… %1$d%%</string>
+    <string name="privacy_download_verifying">جارٍ التحقق من التنزيل…</string>
+    <string name="privacy_download_failed">فشل تنزيل النموذج: %1$s</string>
+    <string name="privacy_status_ready">نشط — النموذج محمّل</string>
+    <string name="privacy_status_deterministic">نشط — كشف الأنماط فقط (فئات النموذج معطّلة)</string>
+    <string name="privacy_status_unavailable">غير متاح: %1$s</string>
+    <string name="privacy_status_disabled">معطّل</string>
+    <string name="privacy_benchmark_estimate">ستستغرق أدوات MCP نحو +%1$s ثانية في المتوسط (تقديري لـ 100 عنصر على الشاشة)</string>
+    <string name="privacy_benchmark_running">جارٍ قياس الأداء على الجهاز… يمكنك متابعة استخدام التطبيق أو إيقاف تشغيل وضع الخصوصية؛ يكتمل القياس من تلقاء نفسه</string>
+    <string name="privacy_enable_preparing">جارٍ تحضير وضع الخصوصية…</string>
+    <string name="privacy_detection_rates_header">معدلات الكشف المقيسة</string>
+    <string name="privacy_detection_rates_caption">نسبة عناصر البيانات الشخصية المكتشفة لكل فئة، مقيسة بمعيار فعالية المشروع على محتوى واقعي بأسلوب واجهة المستخدم عبر 8 لغات. تختلف النتائج الفعلية حسب المحتوى واللغة.</string>
+    <string name="privacy_categories_header">الفئات المحمية</string>
+    <string name="privacy_category_credentials">كلمات المرور &amp; بيانات الاعتماد</string>
+    <string name="privacy_category_cards_iban">بطاقات الدفع &amp; أرقام IBAN</string>
+    <string name="privacy_category_emails">عناوين البريد الإلكتروني</string>
+    <string name="privacy_category_phones">أرقام الهاتف</string>
+    <string name="privacy_category_names">الأسماء</string>
+    <string name="privacy_category_addresses">العناوين</string>
+    <string name="privacy_category_national_ids">الهويات الوطنية &amp; المستندات</string>
+    <string name="privacy_mode_header">نمط الحجب</string>
+    <string name="privacy_mode_pseudonymize">استخدام أسماء مستعارة (عناصر نائبة متسقة، تظل الأدوات تعمل)</string>
+    <string name="privacy_mode_redact">حجب كامل</string>
+    <string name="privacy_format_header">تنسيق العنصر النائب</string>
+    <string name="privacy_format_hashed">متسق — تحتفظ القيمة نفسها دائمًا بالعنصر النائب نفسه (EMAIL#a1b2c)</string>
+    <string name="privacy_format_numbered">مرقّم — تسلسلي لكل جلسة ([EMAIL_1])</string>
+    <string name="privacy_disclaimer">الكشف تخفيف بأقصى جهد ممكن وليس ضمانًا. لا يوجد كاشف يلتقط كل البيانات الشخصية؛ تُحجب لقطات الشاشة فقط حيث يكون لعناصر الشاشة المعلَّمة حدود.</string>
+    <string name="privacy_card_title">هل تقلق بشأن بياناتك الشخصية؟</string>
+    <string name="privacy_card_action">إعداد وضع الخصوصية</string>
+    <string name="privacy_card_dismiss">تجاهل</string>
+</resources>

@@ -15,10 +15,10 @@
 # release versionName instead of a `0.0.0-dev+<hash>` name the OTA updater skips.
 #
 # Env:
-#   S3_ENDPOINT    MinIO endpoint (default https://minio-s1001.bigt.ai)
+#   S3_ENDPOINT    MinIO endpoint (default https://minio-s1002.bigt.ai)
 #   S3_ACCESS_KEY / S3_SECRET_KEY (required)
-#   S3_BUCKET      (default mobile-agent — the bucket the app links serve from)
-#   S3_PREFIX      object prefix inside the bucket (default empty = bucket root)
+#   S3_BUCKET      (default apps — the shared release bucket)
+#   S3_PREFIX      object prefix inside the bucket (default android-remote-control-mcp/apk)
 #   OUT_DIR        local APK dir (default ./out)
 #   MC_IMAGE       minio client image (default quay.io/minio/mc)
 #   PUBLIC_BASE_URL public base the OTA manifest's apk url is built from
@@ -49,9 +49,9 @@ for a in "$@"; do
   esac
 done
 
-S3_ENDPOINT="${S3_ENDPOINT:-https://minio-s1001.bigt.ai}"
-S3_BUCKET="${S3_BUCKET:-mobile-agent}"
-S3_PREFIX="${S3_PREFIX:-}"
+S3_ENDPOINT="${S3_ENDPOINT:-https://minio-s1002.bigt.ai}"
+S3_BUCKET="${S3_BUCKET:-apps}"
+S3_PREFIX="${S3_PREFIX:-android-remote-control-mcp/apk}"
 S3_KEY_PREFIX="${S3_PREFIX:+$S3_PREFIX/}"
 OUT_DIR="${OUT_DIR:-$ROOT/out}"
 MC_IMAGE="${MC_IMAGE:-quay.io/minio/mc}"

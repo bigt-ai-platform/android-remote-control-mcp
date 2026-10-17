@@ -79,7 +79,7 @@ class OtaManifestCheckerImplTest {
             checker.fetchLatestManifest()
 
             assertEquals(
-                "https://minio-s1001.bigt.ai/mobile-agent/mobile-agent-foss-release-latest.json",
+                "https://s3.bigt.ai/apps/android-remote-control-mcp/apk/mobile-agent-foss-release-latest.json",
                 requestedUrl,
             )
         }
@@ -87,7 +87,7 @@ class OtaManifestCheckerImplTest {
     @Test
     fun `manifestUrl is the release manifest under the bucket base`() {
         assertEquals(
-            "https://minio-s1001.bigt.ai/mobile-agent/mobile-agent-gms-release-latest.json",
+            "https://s3.bigt.ai/apps/android-remote-control-mcp/apk/mobile-agent-gms-release-latest.json",
             OtaManifestCheckerImpl.manifestUrl("gms"),
         )
     }

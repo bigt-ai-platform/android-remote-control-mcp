@@ -103,7 +103,7 @@ class OtaManifestCheckerImpl
 
         companion object {
             private const val TAG = "MCP:UpdateChecker"
-            private const val BASE_URL = "https://minio-s1001.bigt.ai/mobile-agent"
+            private const val BASE_URL = "https://s3.bigt.ai/apps/android-remote-control-mcp/apk"
             private const val USER_AGENT = "android-remote-control-mcp"
             private const val REQUEST_TIMEOUT_MS = 15_000L
             private const val CONNECT_TIMEOUT_MS = 10_000L

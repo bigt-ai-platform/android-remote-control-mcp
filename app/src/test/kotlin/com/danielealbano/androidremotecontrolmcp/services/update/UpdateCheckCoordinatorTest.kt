@@ -25,7 +25,7 @@ class UpdateCheckCoordinatorTest {
     private lateinit var versionProvider: AppVersionProvider
     private lateinit var coordinator: UpdateCheckCoordinator
 
-    private val downloadUrl = "https://minio-s1001.bigt.ai/mobile-agent/MobileAgent.apk"
+    private val downloadUrl = "https://s3.bigt.ai/apps/android-remote-control-mcp/apk/MobileAgent.apk"
 
     @BeforeEach
     fun setUp() {

@@ -41,6 +41,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -92,7 +93,14 @@ fun AboutScreen(
                         Modifier
                             .size(72.dp)
                             .clip(CircleShape)
-                            .background(colorResource(R.color.ic_launcher_background)),
+                            .background(
+                                Brush.linearGradient(
+                                    listOf(
+                                        colorResource(R.color.ic_launcher_gradient_start),
+                                        colorResource(R.color.ic_launcher_gradient_end),
+                                    ),
+                                ),
+                            ),
                     contentAlignment = Alignment.Center,
                 ) {
                     Image(

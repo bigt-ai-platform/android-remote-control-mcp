@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Launcher icon background gradient stops (match the app theme primary colors). -->
+    <color name="ic_launcher_gradient_start">#4A5FE0</color>
+    <color name="ic_launcher_gradient_end">#2D43C7</color>
+</resources>

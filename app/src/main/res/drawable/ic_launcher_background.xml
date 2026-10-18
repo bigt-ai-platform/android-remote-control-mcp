@@ -1,0 +1,29 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!--
+      Launcher background: diagonal gradient built from the app's theme colors
+      (PrimaryLight -> PrimaryContainerDark). The About screen paints the same
+      stops with a Compose linear gradient, so the icon and UI stay in sync.
+    -->
+    <path android:pathData="M0,0h108v108h-108z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:endX="108"
+                android:endY="108"
+                android:startX="0"
+                android:startY="0"
+                android:type="linear">
+                <item
+                    android:color="@color/ic_launcher_gradient_start"
+                    android:offset="0" />
+                <item
+                    android:color="@color/ic_launcher_gradient_end"
+                    android:offset="1" />
+            </gradient>
+        </aapt:attr>
+    </path>
+</vector>

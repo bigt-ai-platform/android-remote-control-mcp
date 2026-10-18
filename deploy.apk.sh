@@ -27,7 +27,7 @@
 #   VERSION        override the release tag version (e.g. VERSION=1.2.3)
 #   FDROID_DIR     local F-Droid workspace (default $OUT_DIR/fdroid)
 #   FDROID_S3_PREFIX bucket prefix for the repo (default android-remote-control-mcp/fdroid)
-#   FDROID_KEYSTORE repo index signing key (default ~/keys/app/android-remote-control-mcp-fdroid.keystore)
+#   FDROID_KEYSTORE key that signs the repo index (default: the app's release key from keystore.properties)
 #   FDROID_VENV    fdroidserver venv (default ~/.cache/android-remote-control-mcp/fdroid-venv)
 #
 # Uploads out/MobileAgent-<flavor>-<type>-<sha>.apk plus the stable
@@ -38,9 +38,9 @@
 #
 # --fdroid (foss release only) additionally regenerates the self-hosted F-Droid
 # repo — fdroidserver in a venv (created on first use), listing metadata from
-# ./fdroid/metadata/, index signing key under ~/keys/app — and mirrors it under
-# $FDROID_S3_PREFIX/repo. Add the printed URL to the F-Droid client and verify
-# the fingerprint it shows against the printed key.
+# ./fdroid/metadata/ — and mirrors it under $FDROID_S3_PREFIX/repo. The repo
+# index is signed with the app's release key (keystore.properties), so users
+# verify that same fingerprint when they add the repo URL printed at the end.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")" && pwd)"
@@ -188,17 +188,14 @@ docker run --rm \
 
 # --fdroid: regenerate the self-hosted F-Droid repo (workspace under $FDROID_DIR,
 # listing text from ./fdroid/metadata/) and mirror it to $FDROID_S3_PREFIX/repo.
-# The index is signed with a dedicated key created on first use; keep it backed
-# up — F-Droid clients pin it and would stop accepting updates if it changes.
+# The repo index is signed with the app's release key (keystore.properties), so
+# one keystore covers both the APK and the catalog.
 publish_fdroid() {
   local fd_dir="${FDROID_DIR:-$OUT_DIR/fdroid}"
   local s3_prefix="${FDROID_S3_PREFIX:-android-remote-control-mcp/fdroid}"
   local venv="${FDROID_VENV:-${XDG_CACHE_HOME:-$HOME/.cache}/android-remote-control-mcp/fdroid-venv}"
   local repo_url="${FDROID_REPO_URL:-${PUBLIC_BASE_URL%/}/$s3_prefix/repo}"
-  local keys_dir="$HOME/keys/app"
-  local keystore="${FDROID_KEYSTORE:-$keys_dir/android-remote-control-mcp-fdroid.keystore}"
-  local keyalias="fdroidrepo"
-  local keydname="CN=F-Droid Repo, O=bigt.ai, C=EU"
+  local props="$ROOT/keystore.properties"
 
   # fdroidserver needs JDK tools (`jar`, `keytool`) and drives apksigner
   # (located via ANDROID_HOME). A bare JRE `java` on PATH is not enough.
@@ -225,21 +222,20 @@ publish_fdroid() {
   fi
   local FDBIN="$venv/bin/fdroid"
 
-  mkdir -p "$keys_dir"; touch "$keys_dir/passwords.env"; chmod 600 "$keys_dir/passwords.env"
-  local kspass
-  kspass="$(grep -m1 '^FDROID_REPO_STORE_PASS=' "$keys_dir/passwords.env" | cut -d= -f2- || true)"
-  if [ ! -f "$keystore" ]; then
-    if [ -z "$kspass" ]; then
-      kspass="$(openssl rand -base64 36 | tr -dc 'A-Za-z0-9' | cut -c1-24)"
-      printf 'FDROID_REPO_STORE_PASS=%s\nFDROID_REPO_KEY_ALIAS=%s\n' "$kspass" "$keyalias" >> "$keys_dir/passwords.env"
-    fi
-    echo "fdroid: creating repo signing key $keystore"
-    keytool -genkeypair -keystore "$keystore" -storetype PKCS12 -alias "$keyalias" \
-      -keyalg RSA -keysize 4096 -validity 10000 \
-      -storepass "$kspass" -keypass "$kspass" -dname "$keydname" >/dev/null
-    chmod 600 "$keystore"
-  fi
-  [ -n "$kspass" ] || { echo "fdroid: FDROID_REPO_STORE_PASS missing in $keys_dir/passwords.env for $keystore" >&2; exit 1; }
+  # Sign with the release key Gradle uses for the APK (keystore.properties); the
+  # FDROID_KEY* overrides exist for a separately managed repo key.
+  local keystore keyalias kspass
+  keystore="${FDROID_KEYSTORE:-$(sed -n 's/^storeFile=//p' "$props" 2>/dev/null | head -1)}"
+  keyalias="${FDROID_KEY_ALIAS:-$(sed -n 's/^keyAlias=//p' "$props" 2>/dev/null | head -1)}"
+  kspass="${FDROID_KEY_PASS:-$(sed -n 's/^storePassword=//p' "$props" 2>/dev/null | head -1)}"
+  [ -f "$keystore" ] || { echo "fdroid: keystore not found: ${keystore:-<none>} — set storeFile/keyAlias/storePassword in keystore.properties, or FDROID_KEYSTORE/FDROID_KEY_ALIAS/FDROID_KEY_PASS" >&2; exit 1; }
+  [ -n "$keyalias" ] && [ -n "$kspass" ] || { echo "fdroid: keystore alias/password missing — see keystore.properties or FDROID_KEY_ALIAS/FDROID_KEY_PASS" >&2; exit 1; }
+
+  # fdroidserver records the DN in config.yml; take the certificate's own so the
+  # config can never disagree with the key.
+  local keydname
+  keydname="$(keytool -list -v -keystore "$keystore" -storepass "$kspass" -alias "$keyalias" 2>/dev/null | sed -n 's/^Owner: //p' | head -1)"
+  [ -n "$keydname" ] || { echo "fdroid: cannot read the certificate DN for alias '$keyalias' in $keystore" >&2; exit 1; }
 
   [ -d "$ROOT/fdroid/metadata" ] || { echo "fdroid: $ROOT/fdroid/metadata is missing" >&2; exit 1; }
   mkdir -p "$fd_dir/repo" "$fd_dir/metadata"

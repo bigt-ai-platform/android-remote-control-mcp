@@ -1,0 +1,18 @@
+# F-Droid listing metadata for the self-hosted repo published by
+# `./deploy.apk.sh --fdroid`. The listing text lives here; the signed repo
+# index is generated at publish time (fdroidserver) and mirrored to the bucket.
+Categories:
+  - Tools
+License: MIT
+WebSite: https://github.com/bigt-ai-platform/android-remote-control-mcp
+SourceCode: https://github.com/bigt-ai-platform/android-remote-control-mcp
+IssueTracker: https://github.com/bigt-ai-platform/android-remote-control-mcp/issues
+Summary: Drive your phone with AI agents over MCP (FOSS build)
+Description: |
+  Runs a Model Context Protocol (MCP) server on the device so AI agents can
+  inspect the screen, operate apps and automate tasks through the Android
+  accessibility API. No root and no ADB are required; the server is reachable
+  over the local network or through an optional tunnel.
+  .
+  This is the FOSS build: it contains no Google Mobile Services dependencies
+  and no proprietary libraries.

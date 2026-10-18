@@ -4,6 +4,7 @@
 #
 #   ./deploy.apk.sh                 # release, gms flavor (full app)
 #   ./deploy.apk.sh --foss          # release, foss flavor (no Google Play Services)
+#   ./deploy.apk.sh --fdroid        # foss release + publish the self-hosted F-Droid repo
 #   ./deploy.apk.sh --debug         # debug build (auto-signed, sideloadable)
 #   ./deploy.apk.sh --gradle-only   # skip the cloudflared/ngrok native cross-compile
 #   ./deploy.apk.sh --skip-build    # upload the APK already in out/
@@ -24,30 +25,48 @@
 #   PUBLIC_BASE_URL public base the OTA manifest's apk url is built from
 #   MANDATORY      true to mark this build mandatory in the OTA manifest
 #   VERSION        override the release tag version (e.g. VERSION=1.2.3)
+#   FDROID_DIR     local F-Droid workspace (default $OUT_DIR/fdroid)
+#   FDROID_S3_PREFIX bucket prefix for the repo (default android-remote-control-mcp/fdroid)
+#   FDROID_KEYSTORE repo index signing key (default ~/keys/app/android-remote-control-mcp-fdroid.keystore)
+#   FDROID_VENV    fdroidserver venv (default ~/.cache/android-remote-control-mcp/fdroid-venv)
 #
 # Uploads out/MobileAgent-<flavor>-<type>-<sha>.apk plus the stable
 # MobileAgent.apk (gms) / MobileAgent-foss.apk alias the docs link to, and
 # writes mobile-agent-<flavor>-<type>-latest.json — the OTA manifest an in-app
 # updater reads. Releases must be signed (keystore.properties) to install over
 # an existing build.
+#
+# --fdroid (foss release only) additionally regenerates the self-hosted F-Droid
+# repo — fdroidserver in a venv (created on first use), listing metadata from
+# ./fdroid/metadata/, index signing key under ~/keys/app — and mirrors it under
+# $FDROID_S3_PREFIX/repo. Add the printed URL to the F-Droid client and verify
+# the fingerprint it shows against the printed key.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 cd "$ROOT"
 
-BUILD_TYPE="release"; FLAVOR="gms"; SKIP_BUILD=0; GRADLE_ONLY=0
+BUILD_TYPE="release"; FLAVOR="gms"; SKIP_BUILD=0; GRADLE_ONLY=0; FDROID=0; FLAVOR_EXPLICIT=0
 for a in "$@"; do
   case "$a" in
     --release) BUILD_TYPE=release ;;
     --debug) BUILD_TYPE=debug ;;
-    --foss) FLAVOR=foss ;;
-    --gms) FLAVOR=gms ;;
+    --foss) FLAVOR=foss; FLAVOR_EXPLICIT=1 ;;
+    --gms) FLAVOR=gms; FLAVOR_EXPLICIT=1 ;;
+    --fdroid) FDROID=1 ;;
     --gradle-only) GRADLE_ONLY=1 ;;
     --skip-build) SKIP_BUILD=1 ;;
-    --help|-h) sed -n '2,32p' "$0"; exit 0 ;;
+    --help|-h) sed -n '2,/^set -euo pipefail$/p' "$0" | head -n -1; exit 0 ;;
     *) echo "unknown arg: $a" >&2; exit 1 ;;
   esac
 done
+if [ "$FDROID" -eq 1 ]; then
+  [ "$BUILD_TYPE" = release ] || { echo "--fdroid publishes release builds only" >&2; exit 1; }
+  if [ "$FLAVOR_EXPLICIT" -eq 1 ] && [ "$FLAVOR" != foss ]; then
+    echo "--fdroid publishes the foss flavor (F-Droid must not link GMS) — drop --gms" >&2; exit 1
+  fi
+  FLAVOR=foss
+fi
 
 S3_ENDPOINT="${S3_ENDPOINT:-https://minio-s1002.bigt.ai}"
 S3_BUCKET="${S3_BUCKET:-apps}"
@@ -130,11 +149,14 @@ sha256sum "$OUT_APK"
 VERSION_NAME="$(git describe --tags --always 2>/dev/null || git rev-parse --short HEAD)"
 VERSION_CODE="$(git rev-list --count HEAD)"
 AAPT="$(ls "${ANDROID_HOME:-/nonexistent}"/build-tools/*/aapt 2>/dev/null | sort -V | tail -1 || true)"
+APP_ID=""
 if [ -n "$AAPT" ]; then
   BADGING="$("$AAPT" dump badging "$OUT_APK")"
+  APP_ID="$(printf '%s\n' "$BADGING" | sed -n "s/^package: name='\([^']*\)'.*/\1/p")"
   VERSION_NAME="$(printf '%s\n' "$BADGING" | sed -n "s/^package:.*versionName='\([^']*\)'.*/\1/p")"
   VERSION_CODE="$(printf '%s\n' "$BADGING" | sed -n "s/^package:.*versionCode='\([^']*\)'.*/\1/p")"
 fi
+[ -n "$APP_ID" ] || [ "$FDROID" -eq 0 ] || { echo "--fdroid needs ANDROID_HOME (aapt) to read the package name from $OUT_APK" >&2; exit 1; }
 [ -n "$VERSION_NAME" ] && [ -n "$VERSION_CODE" ] || { echo "cannot read version from $OUT_APK" >&2; exit 1; }
 echo "version: $VERSION_NAME (code $VERSION_CODE)"
 
@@ -163,6 +185,97 @@ docker run --rm \
    mc cp "/out/$NAME" "up/$S3_BUCKET/${S3_KEY_PREFIX}$ALIAS" && \
    mc cp "/out/$MANIFEST" "up/$S3_BUCKET/$S3_KEY_PREFIX$MANIFEST"' \
   || { echo "upload failed — check S3_* creds / MC_IMAGE ($MC_IMAGE)" >&2; exit 1; }
+
+# --fdroid: regenerate the self-hosted F-Droid repo (workspace under $FDROID_DIR,
+# listing text from ./fdroid/metadata/) and mirror it to $FDROID_S3_PREFIX/repo.
+# The index is signed with a dedicated key created on first use; keep it backed
+# up — F-Droid clients pin it and would stop accepting updates if it changes.
+publish_fdroid() {
+  local fd_dir="${FDROID_DIR:-$OUT_DIR/fdroid}"
+  local s3_prefix="${FDROID_S3_PREFIX:-android-remote-control-mcp/fdroid}"
+  local venv="${FDROID_VENV:-${XDG_CACHE_HOME:-$HOME/.cache}/android-remote-control-mcp/fdroid-venv}"
+  local repo_url="${FDROID_REPO_URL:-${PUBLIC_BASE_URL%/}/$s3_prefix/repo}"
+  local keys_dir="$HOME/keys/app"
+  local keystore="${FDROID_KEYSTORE:-$keys_dir/android-remote-control-mcp-fdroid.keystore}"
+  local keyalias="fdroidrepo"
+  local keydname="CN=F-Droid Repo, O=bigt.ai, C=EU"
+
+  # fdroidserver needs JDK tools (`jar`, `keytool`) and drives apksigner
+  # (located via ANDROID_HOME). A bare JRE `java` on PATH is not enough.
+  if ! command -v jar >/dev/null 2>&1; then
+    local jdk=""
+    if [ -n "${JAVA_HOME:-}" ] && [ -x "$JAVA_HOME/bin/jar" ]; then
+      jdk="$JAVA_HOME"
+    else
+      for d in "$HOME"/.local/java-* /usr/lib/jvm/*; do
+        if [ -x "$d/bin/jar" ]; then jdk="$d"; fi
+      done
+    fi
+    if [ -n "$jdk" ]; then
+      PATH="$jdk/bin:$PATH"
+    else
+      echo "fdroid: a JDK is required (jar on PATH, or JAVA_HOME / ~/.local/java-* / /usr/lib/jvm/*)" >&2; exit 1
+    fi
+  fi
+
+  if [ ! -x "$venv/bin/fdroid" ]; then
+    echo "fdroid: creating fdroidserver venv at $venv (one-time, needs network)"
+    python3 -m venv "$venv"
+    "$venv/bin/pip" install -q --disable-pip-version-check fdroidserver
+  fi
+  local FDBIN="$venv/bin/fdroid"
+
+  mkdir -p "$keys_dir"; touch "$keys_dir/passwords.env"; chmod 600 "$keys_dir/passwords.env"
+  local kspass
+  kspass="$(grep -m1 '^FDROID_REPO_STORE_PASS=' "$keys_dir/passwords.env" | cut -d= -f2- || true)"
+  if [ ! -f "$keystore" ]; then
+    if [ -z "$kspass" ]; then
+      kspass="$(openssl rand -base64 36 | tr -dc 'A-Za-z0-9' | cut -c1-24)"
+      printf 'FDROID_REPO_STORE_PASS=%s\nFDROID_REPO_KEY_ALIAS=%s\n' "$kspass" "$keyalias" >> "$keys_dir/passwords.env"
+    fi
+    echo "fdroid: creating repo signing key $keystore"
+    keytool -genkeypair -keystore "$keystore" -storetype PKCS12 -alias "$keyalias" \
+      -keyalg RSA -keysize 4096 -validity 10000 \
+      -storepass "$kspass" -keypass "$kspass" -dname "$keydname" >/dev/null
+    chmod 600 "$keystore"
+  fi
+  [ -n "$kspass" ] || { echo "fdroid: FDROID_REPO_STORE_PASS missing in $keys_dir/passwords.env for $keystore" >&2; exit 1; }
+
+  [ -d "$ROOT/fdroid/metadata" ] || { echo "fdroid: $ROOT/fdroid/metadata is missing" >&2; exit 1; }
+  mkdir -p "$fd_dir/repo" "$fd_dir/metadata"
+  cp -f "$ROOT"/fdroid/metadata/*.yml "$fd_dir/metadata/"
+  cat > "$fd_dir/config.yml" <<EOF
+repo_url: $repo_url
+repo_name: ${FDROID_REPO_NAME:-Android Remote Control MCP}
+repo_description: ${FDROID_REPO_DESCRIPTION:-FOSS builds of Android Remote Control MCP, published by bigt.ai}
+keystore: $keystore
+repo_keyalias: $keyalias
+keystorepass: $kspass
+keypass: $kspass
+keydname: $keydname
+EOF
+  chmod 600 "$fd_dir/config.yml"
+  cp -f "$OUT_APK" "$fd_dir/repo/${APP_ID}_${VERSION_CODE}.apk"
+
+  ( cd "$fd_dir" && "$FDBIN" update )
+
+  docker run --rm \
+    -e S3_ENDPOINT="$S3_ENDPOINT" -e S3_ACCESS_KEY="$S3_ACCESS_KEY" -e S3_SECRET_KEY="$S3_SECRET_KEY" \
+    -e S3_BUCKET="$S3_BUCKET" -e S3_PREFIX="$s3_prefix" \
+    -v "$fd_dir/repo:/fdroid-repo:ro" --entrypoint /bin/sh "$MC_IMAGE" -c \
+    'mc alias set up "$S3_ENDPOINT" "$S3_ACCESS_KEY" "$S3_SECRET_KEY" >/dev/null && \
+     mc mirror --overwrite --remove /fdroid-repo "up/$S3_BUCKET/$S3_PREFIX/repo"' \
+    || { echo "fdroid upload failed — check S3_* creds / MC_IMAGE ($MC_IMAGE)" >&2; exit 1; }
+
+  local fp
+  fp="$(keytool -list -v -keystore "$keystore" -storepass "$kspass" 2>/dev/null | sed -n 's/.*SHA256: //p' | head -1 || true)"
+  echo "fdroid repo: $repo_url"
+  echo "fdroid key : ${fp:-fingerprint unavailable} (must match the fingerprint F-Droid shows on first add)"
+}
+
+if [ "$FDROID" -eq 1 ]; then
+  publish_fdroid
+fi
 
 if [ -n "$TAG_TO_PUSH" ]; then
   git push origin "$TAG_TO_PUSH" \

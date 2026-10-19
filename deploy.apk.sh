@@ -16,7 +16,7 @@
 # release versionName instead of a `0.0.0-dev+<hash>` name the OTA updater skips.
 #
 # Env:
-#   S3_ENDPOINT    MinIO endpoint (default https://minio-s1001.bigt.ai)
+#   S3_ENDPOINT    MinIO endpoint (default https://s3.bigt.ai)
 #   S3_ACCESS_KEY / S3_SECRET_KEY (required)
 #   S3_BUCKET      (default apps — the shared release bucket)
 #   S3_PREFIX      object prefix inside the bucket (default android-remote-control-mcp/apk)
@@ -68,7 +68,9 @@ if [ "$FDROID" -eq 1 ]; then
   FLAVOR=foss
 fi
 
-S3_ENDPOINT="${S3_ENDPOINT:-https://minio-s1001.bigt.ai}"
+# EU serving host: s3.bigt.ai is a transparent proxy that preserves Host, so
+# SigV4 signatures (including presigned URLs) stay valid.
+S3_ENDPOINT="${S3_ENDPOINT:-https://s3.bigt.ai}"
 S3_BUCKET="${S3_BUCKET:-apps}"
 S3_PREFIX="${S3_PREFIX:-android-remote-control-mcp/apk}"
 S3_KEY_PREFIX="${S3_PREFIX:+$S3_PREFIX/}"

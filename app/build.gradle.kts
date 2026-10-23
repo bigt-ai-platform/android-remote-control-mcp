@@ -258,7 +258,11 @@ android {
         }
         release {
             isDebuggable = false
-            isMinifyEnabled = false
+            // R8 shrinks unused code (notably the ~11 MB of unused material icons) and resource
+            // shrinking drops unreferenced resources. Keep rules for JNI / reflection live in
+            // proguard-rules.pro; every release build must be smoke-tested on a device.
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
@@ -295,6 +299,15 @@ android {
             excludes += "/META-INF/io.netty.*"
             excludes += "/META-INF/LICENSE.md"
             excludes += "/META-INF/LICENSE-notice.md"
+            // Legacy Picnic PQC parameter tables (~1.2 MB) — the app only uses BouncyCastle for
+            // X.509 self-signed certificate generation (RSA/EC), never these algorithms.
+            excludes += "org/bouncycastle/pqc/legacy/**"
+        }
+        // DEX is ~85 MB across 7 files; storing it uncompressed (AGP default since 8.0) makes the
+        // APK much larger than necessary. Decompressing at install costs a little install time and
+        // saves ~58 MB of download.
+        dex {
+            useLegacyPackaging = true
         }
         jniLibs {
             useLegacyPackaging = true
@@ -469,6 +482,9 @@ val generateLocationDb =
     tasks.register<GenerateLocationDbTask>("generateLocationDb") {
         script.set(rootProject.layout.projectDirectory.file("scripts/location-db/build_location_db.py"))
         month.set(YearMonth.now().toString())
+        // Country granularity merges ranges aggressively: 100.8 MB raw / 24.7 MB in the APK becomes
+        // 9.0 MB raw / 1.8 MB. Pass -PlocationDbGranularity=city to keep city names.
+        granularity.set(providers.gradleProperty("locationDbGranularity").getOrElse("country"))
         cacheDir.set(rootProject.layout.projectDirectory.dir(".dbip-cache"))
         outputDir.set(layout.buildDirectory.dir("generated/locationDb"))
     }
@@ -485,6 +501,18 @@ androidComponents {
         // Registered as a generated assets source — the generation runs only for variants that package
         // assets (assemble/lint-vital), never for the unit-test path, which uses the committed fixture.
         variant.sources.assets?.addGeneratedSourceDirectory(generateLocationDb, GenerateLocationDbTask::outputDir)
+    }
+    // The public APK targets phones; the x86/x86_64 and 32-bit ARM JNI libraries are emulator/legacy
+    // only and cost ~52 MB. Excluding them per-variant (rather than an ndk.abiFilters that would also
+    // hit debug builds) keeps the x86_64 emulator APK used by the E2E tests intact.
+    onVariants(selector().withBuildType("release")) { variant ->
+        variant.packaging.jniLibs.excludes.addAll(
+            listOf(
+                "lib/x86/**",
+                "lib/x86_64/**",
+                "lib/armeabi-v7a/**",
+            ),
+        )
     }
 }
 
@@ -611,6 +639,9 @@ abstract class GenerateLocationDbTask : DefaultTask() {
     @get:Input
     abstract val month: Property<String>
 
+    @get:Input
+    abstract val granularity: Property<String>
+
     @get:Internal
     abstract val cacheDir: DirectoryProperty
 
@@ -632,6 +663,8 @@ abstract class GenerateLocationDbTask : DefaultTask() {
                 month.get(),
                 "--cache-dir",
                 cacheDir.get().asFile.absolutePath,
+                "--granularity",
+                granularity.get(),
                 "--out",
                 asset.absolutePath,
             )

@@ -14,9 +14,9 @@ data class GeoLocation(
 
 /**
  * Reader for the compact `LDB1` location database produced by `scripts/location-db`. It operates over a
- * [ByteBuffer] (in production a read-only `MappedByteBuffer`, so the 100+ MB table is disk-backed paged
- * memory, never the Java heap) and resolves an [InetAddress] to a [GeoLocation] via a binary search of the
- * sorted, contiguous per-family range table. See the Python `location_db.py` docstring for the byte layout.
+ * [ByteBuffer] (in production a read-only `MappedByteBuffer`, so the (country-level, ~9 MB) table is
+ * disk-backed paged memory, never the Java heap) and resolves an [InetAddress] to a [GeoLocation] via a
+ * binary search of the sorted, contiguous per-family range table. See the Python `location_db.py` docstring for the byte layout.
  */
 class LocationDb(
     private val buf: ByteBuffer,

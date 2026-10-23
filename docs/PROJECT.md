@@ -588,7 +588,13 @@ debug builds get a per-flavor suffix so both can be installed side by side.
 |---------|---------------|-----------|--------|---------|
 | gmsDebug | `com.danielealbano.androidremotecontrolmcp.gms.debug` | true | false | Verbose |
 | fossDebug | `com.danielealbano.androidremotecontrolmcp.foss.debug` | true | false | Verbose |
-| gmsRelease / fossRelease | `com.danielealbano.androidremotecontrolmcp` | false | false (open source) | Info+ |
+| gmsRelease / fossRelease | `com.danielealbano.androidremotecontrolmcp` | false | true (R8 + resource shrink) | Info+ |
+
+Release builds are minified with R8 (keep rules in `app/proguard-rules.pro`, class names are not
+obfuscated), repackage DEX compressed, and ship only `arm64-v8a` JNI libraries — debug builds keep all
+ABIs for the x86_64 E2E emulator. The geolocation asset is built at country granularity
+(`-PlocationDbGranularity=city` restores city names). Together these take the release APK from ~190 MB
+to ~37 MB; run a device smoke test after changing keep rules.
 
 ### Versioning
 

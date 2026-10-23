@@ -8,11 +8,14 @@ Output : a gzipped LDB1 binary (see location_db.py for the format).
 Usage:
   python3 build_location_db.py --out app/src/main/assets/geo/location-db.bin.gz
   python3 build_location_db.py --csv /path/to/dbip-city-lite.csv.gz --out out.bin.gz
+  python3 build_location_db.py --granularity city --out out.bin.gz   # keep city names
 
 By default the newest available monthly CSV is downloaded (and cached) if --csv is not
 given: the current month is tried first, then earlier months in sequence (up to 6 months
 total), since DB-IP publishes each month's file a few days into the month.
-Both IPv4 and IPv6 are ingested at city granularity.
+Both IPv4 and IPv6 are ingested. `--granularity country` (the default) drops the city
+field, which lets the builder coalesce far more neighbouring ranges: the shipped asset
+drops from ~100 MB to ~9 MB (24.7 MB -> 1.8 MB compressed in the APK).
 
 Attribution: this product includes IP geolocation data created by DB-IP.com,
 available from https://db-ip.com, licensed under CC BY 4.0.
@@ -106,7 +109,7 @@ def _open_csv(path: Path) -> io.TextIOBase:
     return open(path, "r", encoding="utf-8", newline="")
 
 
-def build(csv_path: Path) -> bytes:
+def build(csv_path: Path, granularity: str = "country") -> bytes:
     builder = LocationDbBuilder()
     v4 = v6 = 0
     with _open_csv(csv_path) as fh:
@@ -114,6 +117,8 @@ def build(csv_path: Path) -> bytes:
             if len(row) < 6:
                 continue
             start, end, country, city = row[0], row[1], row[3], row[5]
+            if granularity == "country":
+                city = ""
             if ":" in start:
                 try:
                     s = int(ipaddress.IPv6Address(start))
@@ -128,7 +133,7 @@ def build(csv_path: Path) -> bytes:
                 except ValueError:
                     continue
                 v4 += 1
-    print(f"parsed {v4:,} IPv4 rows + {v6:,} IPv6 rows (both city-level)")
+    print(f"parsed {v4:,} IPv4 rows + {v6:,} IPv6 rows ({granularity}-level)")
     return builder.serialize()
 
 
@@ -164,10 +169,16 @@ def main() -> int:
     ap.add_argument("--month", default=_default_month(), help="DB-IP month YYYY-MM (download)")
     ap.add_argument("--out", type=Path, required=True, help="output .bin.gz path")
     ap.add_argument("--cache-dir", type=Path, default=Path("/tmp/dbip-cache"))
+    ap.add_argument(
+        "--granularity",
+        choices=("country", "city"),
+        default="country",
+        help="country drops city names and coalesces far more ranges (default: country)",
+    )
     args = ap.parse_args()
 
     csv_path = args.csv or _resolve_csv(args.month, args.cache_dir)
-    blob = build(csv_path)
+    blob = build(csv_path, args.granularity)
     gz = gzip.compress(blob, mtime=0)
 
     args.out.parent.mkdir(parents=True, exist_ok=True)
